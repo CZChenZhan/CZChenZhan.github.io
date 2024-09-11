@@ -179,7 +179,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-04 17:08:49" itemprop="dateModified" datetime="2024-09-04T17:08:49+08:00">2024-09-04</time>
+      <time title="修改时间：2024-09-12 02:51:37" itemprop="dateModified" datetime="2024-09-12T02:51:37+08:00">2024-09-12</time>
     </span>
 
   
@@ -215,7 +215,7 @@
 <p>&emsp;&emsp;前置知识：知晓<span style="background-color: yellow;">Markdown语法</span>、有HTML基础会好</p>
 <h2><span id="2-初始化github仓库">2、初始化GitHub仓库</span></h2><p>&emsp;&emsp;创建GitHub仓库：进入自己的GitHub账号主页，在Repositories中找到“New”跳转到仓库创建页面</p>
 <hr>
-<p>&emsp;&emsp;<img src="/.io//08/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" class title="创建仓库"></p>
+<p>&emsp;&emsp;<img src="/2024/08/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" class title="创建仓库"></p>
 <hr>
 <p>&emsp;&emsp;如图进行填写勾选，<span style="background-color: red;">注</span>：Repository name处必须填“<span style="background-color: yellow;">账号名字.github.io</span>”</p>
 <h2><span id="3-初始化hexo">3、初始化Hexo</span></h2><p>&emsp;&emsp;[1]、在电脑选一个喜欢的位置，新建一个文件夹作为博客文件夹，比如博主的博客就建在：D:\Blog</p>
@@ -233,7 +233,7 @@
 <p>&emsp;&emsp;<code>ssh-keygen -t rsa -C &quot;GitHub账号注册邮箱&quot;</code></p>
 <p>&emsp;&emsp;程序会出现三次暂停等候输入，不用理会直接跳过。随后会出现如下界面：</p>
 <hr>
-<p>&emsp;&emsp;<img src="/.io//08/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BAssh%E5%AF%86%E9%92%A5.png" class title="创建ssh密钥"></p>
+<p>&emsp;&emsp;<img src="/2024/08/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BAssh%E5%AF%86%E9%92%A5.png" class title="创建ssh密钥"></p>
 <hr>
 <p>&emsp;&emsp;[4]、完成后，根据上图第三行代码括号中路径，找到<span style="background-color: orange;">id_rsa.pub</span>文件，用记事本打开，复制密钥</p>
 <p>&emsp;&emsp;[5]、来到GitHub个人主页，点击右上方个人账号头像，找到“Settings”，接着点击“SSH and GPG keys”</p>
@@ -245,7 +245,7 @@
 <p>&emsp;&emsp;[9]、打开你的博客文件夹，找到<span style="background-color: orange;">_config.yml</span>文件，，用准备好的VsCode打开。这是博客的配置文件，之后的样式、文字、功能等修改都需要在此对代码进行修改</p>
 <p>&emsp;&emsp;[10]、ctrl+快捷键搜索：<span style="background-color: yellow;">deploy</span>，并将此处代码修改为如下图示例：</p>
 <hr>
-<p>&emsp;&emsp;<img src="/.io//08/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%BB%A3%E7%A0%81%E7%A4%BA%E8%8C%831.png" class title="代码示范"></p>
+<p>&emsp;&emsp;<img src="/2024/08/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%BB%A3%E7%A0%81%E7%A4%BA%E8%8C%831.png" class title="代码示范"></p>
 <hr>
 <p>&emsp;&emsp;显然，在“repo”这一行，大家应修改为：</p>
 <p>&emsp;&emsp;<code>git@github.com:GitHub账号名/GitHub账号名.github.io.git</code></p>
