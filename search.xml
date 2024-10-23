@@ -16,6 +16,7 @@
 <li><a href="#4-%E5%B8%B8%E9%87%8F%E5%A3%B0%E6%98%8E">4、常量声明</a></li>
 </ul>
 </li>
+<li><a href="#%E4%BA%8C-for-if-else-switch%E5%92%8Cdefer">二、for、if、else、switch和defer</a></li>
 </ul>
 <!-- tocstop -->
 
@@ -58,12 +59,15 @@
 <p>&emsp;&emsp;<strong>类型转换</strong><span style="background-color: yellow;"> <strong>&gt; 注</strong></span>：不是任意变量的类型转换均可使用该表达式，这里特别指出与其余主流编程语言的不同，即字符串和数值无法互相转换，布尔型数据也无法和数值型变量互相转换</p>
 <h4><span id="4-常量声明">4、常量声明</span></h4><p>&emsp;&emsp;<strong>声明区域</strong>：同变量声明机制完全相同</p>
 <p>&emsp;&emsp;<strong>声明方法</strong>：常量的声明只能使用const关键字，不能使用 :&#x3D; 语句，且常量的声明必须初始化；常量的类型仅字符、字符串、布尔值或数值四种，其格式为：const 常量名 常量类型 &#x3D; 初始化值</p>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> x <span class="type">int</span> = <span class="number">1</span>                       <span class="comment">// x为int型常量1</span></span><br><span class="line"><span class="keyword">const</span> y, z <span class="type">int</span> = <span class="number">2</span>, <span class="number">2</span>                 <span class="comment">// 相同类型常量，其类型可合并</span></span><br><span class="line"><span class="keyword">const</span> p, q = <span class="number">3</span>, <span class="string">&quot;China&quot;</span>               <span class="comment">// 同样，由于进行了初始化，常量类型可不写明</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> x <span class="type">int</span> = <span class="number">1</span>                       <span class="comment">// x为int型常量1</span></span><br><span class="line"><span class="keyword">const</span> y, z <span class="type">int</span> = <span class="number">2</span>, <span class="number">2</span>                 <span class="comment">// 相同类型常量，其类型可合并</span></span><br><span class="line"><span class="keyword">const</span> p, q = <span class="number">3</span>, <span class="string">&quot;China&quot;</span>               <span class="comment">// 同样，由于进行了初始化，常量类型可不写明，但这我并不建议</span></span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;<strong>声明方法</strong><span style="background-color: yellow;"> <strong>&gt; 注</strong></span>：同var语句声明变量一样，const关键字也可以一个代码块的方式声明变量</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> (  </span><br><span class="line">    a    = <span class="number">1</span>  </span><br><span class="line">    b, c = <span class="number">2</span>, <span class="number">3</span>  </span><br><span class="line">    d    = <span class="string">&quot;China&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 
-]]></content>
+<p>&emsp;&emsp;<strong>未指定类型常量的特点</strong>：一个未指定类型的常量由上下文来决定其类型，故建议声明时即显式确定其类型</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 比如，根据算术运算式确定类型</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>  </span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2.0</span>  </span><br><span class="line"><span class="keyword">const</span> c = a + b         <span class="comment">// c被推断为float64型，因为b是float64型，而a会被提升为float64运算</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="二-for-if-else-switch和defer">二、for、if、else、switch和defer</span></h2>]]></content>
       <categories>
         <category>Programming Language Learning</category>
       </categories>
