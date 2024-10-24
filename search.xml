@@ -85,7 +85,16 @@
   <entry>
     <title>Python第三方库学习笔记-NumPy</title>
     <url>/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1><span id="基于numpy文档的个人总结">基于NumPy文档的个人总结</span></h1><p>&emsp;&emsp;博主通过<a href="https://www.numpy.org.cn/">NumPy中文文档</a>进行NumPy库的学习，并整理笔记，记录如下！</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+
+
+<!-- tocstop -->
+
+]]></content>
       <categories>
         <category>Programming Language Learning</category>
       </categories>
