@@ -16,7 +16,10 @@
 <li><a href="#4-%E5%B8%B8%E9%87%8F%E5%A3%B0%E6%98%8E">4、常量声明</a></li>
 </ul>
 </li>
-<li><a href="#%E4%BA%8C-for-if-else-switch%E5%92%8Cdefer">二、for、if、else、switch和defer</a></li>
+<li><a href="#%E4%BA%8C-for-if-else-switch%E5%92%8Cdefer">二、for、if、else、switch和defer</a><ul>
+<li><a href="#1-for%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%A4%9A%E7%A7%8D%E7%94%A8%E6%B3%95">1、for循环的多种用法</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
@@ -67,10 +70,28 @@
 <p>&emsp;&emsp;<strong>未指定类型常量的特点</strong>：一个未指定类型的常量由上下文来决定其类型，故建议声明时即显式确定其类型</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 比如，根据算术运算式确定类型</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>  </span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2.0</span>  </span><br><span class="line"><span class="keyword">const</span> c = a + b         <span class="comment">// c被推断为float64型，因为b是float64型，而a会被提升为float64运算</span></span><br></pre></td></tr></table></figure>
 
-<h2><span id="二-for-if-else-switch和defer">二、for、if、else、switch和defer</span></h2>]]></content>
+<h2><span id="二-for-if-else-switch和defer">二、for、if、else、switch和defer</span></h2><h4><span id="1-for循环的多种用法">1、for循环的多种用法</span></h4><p>&emsp;&emsp;<strong>一般结构：for ~1; ~2; ~3 { ~4}</strong></p>
+<p>&emsp;&emsp;~1：<strong>变量声明初始化语句</strong>，可选，在进入循环之前定义，只能使用 :&#x3D; 语句，所定义的变量只存活于该for循环内</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123; fmt.Println(i) &#125;         <span class="comment">// i被声明为0，可以被循环体中的fmt.Println(i)访问</span></span><br><span class="line">    <span class="comment">// for var i = 0; i &lt; 10; i++ &#123; fmt.Println(i) &#125;   // 错误，不可以使用var语句，返回报错：var declaration not allowed in for initializer</span></span><br><span class="line">    <span class="comment">// fmt.Println(i)                                  // 外界不可访问for中的i，返回报错：undefined: i</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>Programming Language Learning</category>
       </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python第三方库学习笔记-NumPy</title>
+    <url>/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Programming Language Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
   </entry>
   <entry>
     <title>第一篇博客献给建博客的自己</title>
