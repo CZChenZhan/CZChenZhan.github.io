@@ -90,10 +90,38 @@
 
 <!-- toc -->
 
-
-
+<ul>
+<li><a href="#%E4%B8%80-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9B%E5%BB%BA">一、多维数组的创建</a><ul>
+<li><a href="#1-%E7%A9%BA%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">1、空数组创建</a></li>
+<li><a href="#2-%E4%BB%85%E5%AF%B9%E8%A7%92%E7%BA%BF%E4%B8%BA1%E7%9A%84%E4%BA%8C%E7%BB%B4%E9%9B%B6%E6%95%B0%E7%BB%84%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">2、仅对角线为1的二维零数组(矩阵)创建</a></li>
+<li><a href="#3-%E5%8D%95%E4%BD%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">3、单位二维数组(单位矩阵)创建</a></li>
+</ul>
+</li>
+</ul>
 <!-- tocstop -->
 
+<h2><span id="一-多维数组的创建">一、多维数组的创建</span></h2><h4><span id="1-空数组创建">1、空数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.empty(shape, dtype&#x3D;float, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;shape：<strong>形状参数</strong>，必需，接受一个整数或整数元组(列表，可行、简单但不推荐)，其中第i个元素的值代表生成数组第i维的长度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.empty(<span class="number">2</span>)         // 生成一个<span class="number">1</span>×<span class="number">2</span>的一维数组，元素自动初始化为随机垃圾值(后同)</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>))    // 生成一个<span class="number">2</span>×<span class="number">3</span>的二维数组，</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)) // 生成</span><br><span class="line">numpy.empty([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) // 使用列表可返回相同结果，不推荐的原因是函数会先将参数处理成元组形式再进行数组生成，多了一步操作</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;dtype：<strong>生成数组中元素的数据类型</strong>，可选，默认为float，也就是numpy.float64</p>
+<p>&emsp;&emsp;order：<strong>以何种方式生成数组</strong>，可选，默认为’C’，共’C’、’F’两种选项；’C’ &#x3D;&gt; 行优先，即最右侧索引位最快；’F’ &#x3D;&gt; 列优先，即最左侧索引位最快</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">// 如果是<span class="string">&#x27;C&#x27;</span>方式创建的数组，z位索引变化的速度最快</span><br><span class="line">array1 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br><span class="line">// 如果是<span class="string">&#x27;F&#x27;</span>方式创建的数组，x位索引变化的速度最快</span><br><span class="line">array2 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;*：<strong>位置参数的终止符号</strong>，在此之前对“? &#x3D; 输入参数”的判定只需根据输入参数摆放顺序，在此之后再输入参数必需按”关键字 &#x3D; 输入参数”(关键字参数)的格式输入而无需再注意顺序</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)               // 可行但不推荐</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>)        // 推荐这一种</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), device=none)       // 正确传入参数</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>, none)  // 错误，none参数前必需带上关键字</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;device：<strong>指定用于创建数组的设备</strong>(如GPU)，可选，如果未指定，则使用默认的 NumPy 设备</p>
+<p>&emsp;&emsp;like：<strong>模仿生成数组</strong>，可选，接受指定数组、数组子类或具有shape和dtype属性的对象，生成数组的shape和dtype属性将与之相同</p>
+<p>&emsp;&emsp;<span style="background-color: yellow;"><strong>注</strong></span><strong>：上述属性如无特殊情况在本文后续不再赘述，均以上述说明为准</strong></p>
+<p>&emsp;&emsp;另一种方法：**numpy.empty_like(prototype, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, *, device&#x3D;None)**，作用类同上文函数中的like属性，不推荐，详查文档</p>
+<h4><span id="2-仅对角线为1的二维零数组矩阵创建">2、仅对角线为1的二维零数组(矩阵)创建</span></h4><p>&emsp;&emsp;*<em>numpy.eye(N, M&#x3D;None, k&#x3D;0, dtype&#x3D;&lt;class ‘float’&gt;, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;N：<strong>生成数组的行数</strong>，必需，接受一个整数值</p>
+<p>&emsp;&emsp;M：<strong>生成数组的列数</strong>，可选，默认为none &lt;&#x3D;&gt; 列数与行数相同，接受一个整数值</p>
+<p>&emsp;&emsp;k：<strong>对角线的偏移量</strong>，可选，默认为0，即主对角线，接受一个整数值，k为几，主对角线中元素a<del>ii</del>就迁移至(i+k, j-k)处，如果超过数组界限，不会报错，会直接设原位置的a<del>ii</del>为0，如下图所示：</p>
+<img src="/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/numpy.eye.k%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="numpy.eye.k效果展示">
+
+<h4><span id="3-单位二维数组单位矩阵创建">3、单位二维数组(单位矩阵)创建</span></h4><p>&emsp;&emsp;**numpy.identity(n, dtype&#x3D;None, *, like&#x3D;None)**，n接受一个整数值，生成一个n×n，数据类型为float的单位矩阵(仅对角线为1的零方阵)</p>
 ]]></content>
       <categories>
         <category>Programming Language Learning</category>
