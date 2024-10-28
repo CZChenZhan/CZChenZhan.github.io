@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://czchenzhan.github.io/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/numpy.eye.k%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
 <meta property="article:published_time" content="2024-10-24T08:27:22.157Z">
-<meta property="article:modified_time" content="2024-10-25T07:10:45.153Z">
+<meta property="article:modified_time" content="2024-10-28T13:11:02.653Z">
 <meta property="article:author" content="作者：陈展">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">基于NumPy文档的个人总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">一、多维数组的创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1、空数组创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2、仅对角线为1的二维零数组(矩阵)创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3、单位二维数组(单位矩阵)创建</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">基于NumPy文档的个人总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">一、创建多维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1、空数组创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2、仅对角线为1的二维零数组(矩阵)创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3、单位二维数组(单位矩阵)创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">4、全1数组创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">5、全0数组创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">6、指定数据数组创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">7、其他对象转换数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.8.</span> <span class="nav-text">8、提取numpy.tofile函数存入的数据来创建数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.1.0.9.</span> <span class="nav-text">9、调用函数创建数组</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-25 15:10:45" itemprop="dateModified" datetime="2024-10-25T15:10:45+08:00">2024-10-25</time>
+      <time title="修改时间：2024-10-28 21:11:02" itemprop="dateModified" datetime="2024-10-28T21:11:02+08:00">2024-10-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -257,37 +257,75 @@
 <!-- toc -->
 
 <ul>
-<li><a href="#%E4%B8%80-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%88%9B%E5%BB%BA">一、多维数组的创建</a><ul>
+<li><a href="#%E4%B8%80-%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84">一、创建多维数组</a><ul>
 <li><a href="#1-%E7%A9%BA%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">1、空数组创建</a></li>
 <li><a href="#2-%E4%BB%85%E5%AF%B9%E8%A7%92%E7%BA%BF%E4%B8%BA1%E7%9A%84%E4%BA%8C%E7%BB%B4%E9%9B%B6%E6%95%B0%E7%BB%84%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">2、仅对角线为1的二维零数组(矩阵)创建</a></li>
 <li><a href="#3-%E5%8D%95%E4%BD%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">3、单位二维数组(单位矩阵)创建</a></li>
+<li><a href="#4-%E5%85%A81%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">4、全1数组创建</a></li>
+<li><a href="#5-%E5%85%A80%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">5、全0数组创建</a></li>
+<li><a href="#6-%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">6、指定数据数组创建</a></li>
+<li><a href="#7-%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%95%B0%E7%BB%84">7、其他对象转换数组</a></li>
+<li><a href="#8-%E6%8F%90%E5%8F%96numpytofile%E5%87%BD%E6%95%B0%E5%AD%98%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9D%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">8、提取numpy.tofile函数存入的数据来创建数组</a></li>
+<li><a href="#9-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">9、调用函数创建数组</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 
-<h2><span id="一-多维数组的创建">一、多维数组的创建</span></h2><h4><span id="1-空数组创建">1、空数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.empty(shape, dtype&#x3D;float, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<h2><span id="一-创建多维数组">一、创建多维数组</span></h2><p>&emsp;&emsp;多维数组是NumPy库中定义的一个容器对象，以下创建方式均返回一个多维数组容器ndarray</p>
+<h4><span id="1-空数组创建">1、空数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.empty(shape, dtype&#x3D;float, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
 <p>&emsp;&emsp;shape：<strong>形状参数</strong>，必需，接受一个整数或整数元组(列表，可行、简单但不推荐)，其中第i个元素的值代表生成数组第i维的长度</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.empty(<span class="number">2</span>)         // 生成一个<span class="number">1</span>×<span class="number">2</span>的一维数组，元素自动初始化为随机垃圾值(后同)</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>))    // 生成一个<span class="number">2</span>×<span class="number">3</span>的二维数组，</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)) // 生成</span><br><span class="line">numpy.empty([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) // 使用列表可返回相同结果，不推荐的原因是函数会先将参数处理成元组形式再进行数组生成，多了一步操作</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.empty(<span class="number">2</span>)         <span class="comment"># 生成一个1×2的一维数组，元素自动初始化为随机垃圾值(后同)</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>))    <span class="comment"># 生成一个2×3的二维数组，</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 生成</span></span><br><span class="line">numpy.empty([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) <span class="comment"># 使用列表可返回相同结果，不推荐的原因是函数会先将参数处理成元组形式再进行数组生成，多了一步操作</span></span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;dtype：<strong>生成数组中元素的数据类型</strong>，可选，默认为float，也就是numpy.float64</p>
 <p>&emsp;&emsp;order：<strong>以何种方式生成数组</strong>，可选，默认为’C’，共’C’、’F’两种选项；’C’ &#x3D;&gt; 行优先，即最右侧索引位最快；’F’ &#x3D;&gt; 列优先，即最左侧索引位最快</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 如果是<span class="string">&#x27;C&#x27;</span>方式创建的数组，z位索引变化的速度最快</span><br><span class="line">array1 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br><span class="line">// 如果是<span class="string">&#x27;F&#x27;</span>方式创建的数组，x位索引变化的速度最快</span><br><span class="line">array2 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是&#x27;C&#x27;方式创建的数组，z位索引变化的速度最快</span></span><br><span class="line">array1 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br><span class="line"><span class="comment"># 如果是&#x27;F&#x27;方式创建的数组，x位索引变化的速度最快</span></span><br><span class="line">array2 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;*：<strong>位置参数的终止符号</strong>，在此之前对“? &#x3D; 输入参数”的判定只需根据输入参数摆放顺序，在此之后再输入参数必需按”关键字 &#x3D; 输入参数”(关键字参数)的格式输入而无需再注意顺序</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)               // 可行但不推荐</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>)        // 推荐这一种</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), device=none)       // 正确传入参数</span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>, none)  // 错误，none参数前必需带上关键字</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)               <span class="comment"># 可行但不推荐</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>)        <span class="comment"># 推荐这一种</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), device=none)       <span class="comment"># 正确传入参数</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>, none)  <span class="comment"># 错误，none参数前必需带上关键字</span></span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;device：<strong>指定用于创建数组的设备</strong>(如GPU)，可选，如果未指定，则使用默认的 NumPy 设备</p>
 <p>&emsp;&emsp;like：<strong>模仿生成数组</strong>，可选，接受指定数组、数组子类或具有shape和dtype属性的对象，生成数组的shape和dtype属性将与之相同</p>
 <p>&emsp;&emsp;<span style="background-color: yellow;"><strong>注</strong></span><strong>：上述属性如无特殊情况在本文后续不再赘述，均以上述说明为准</strong></p>
-<p>&emsp;&emsp;另一种方法：**numpy.empty_like(prototype, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, *, device&#x3D;None)**，作用类同上文函数中的like属性，不推荐，详查文档</p>
+<p>&emsp;&emsp;另一种方法：**numpy.empty_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, *, device&#x3D;None)**，作用类同上文函数中的like属性，不推荐，详查文档</p>
 <h4><span id="2-仅对角线为1的二维零数组矩阵创建">2、仅对角线为1的二维零数组(矩阵)创建</span></h4><p>&emsp;&emsp;*<em>numpy.eye(N, M&#x3D;None, k&#x3D;0, dtype&#x3D;&lt;class ‘float’&gt;, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
 <p>&emsp;&emsp;N：<strong>生成数组的行数</strong>，必需，接受一个整数值</p>
 <p>&emsp;&emsp;M：<strong>生成数组的列数</strong>，可选，默认为none &lt;&#x3D;&gt; 列数与行数相同，接受一个整数值</p>
-<p>&emsp;&emsp;k：<strong>对角线的偏移量</strong>，可选，默认为0，即主对角线，接受一个整数值，k为几，主对角线中元素a<del>ii</del>就迁移至(i+k, j-k)处，如果超过数组界限，不会报错，会直接设原位置的a<del>ii</del>为0，如下图所示：</p>
+<p>&emsp;&emsp;k：<strong>对角线的偏移量</strong>，可选，默认为0，即主对角线，接受一个整数值，k为几，主对角线向右上方移动几，如果某元素a<del>ii</del>超过数组界限，不会报错，会直接设原位置的a<del>ii</del>为0，如下图所示：</p>
 <img src="/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/numpy.eye.k%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="numpy.eye.k效果展示">
 
 <h4><span id="3-单位二维数组单位矩阵创建">3、单位二维数组(单位矩阵)创建</span></h4><p>&emsp;&emsp;**numpy.identity(n, dtype&#x3D;None, *, like&#x3D;None)**，n接受一个整数值，生成一个n×n，数据类型为float的单位矩阵(仅对角线为1的零方阵)</p>
+<h4><span id="4-全1数组创建">4、全1数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.ones(shape, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;*<em>numpy.ones_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;用法、参数含义同空数组生成函数一致，所生成的数组中所有元素的值均为1</p>
+<h4><span id="5-全0数组创建">5、全0数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.ones(shape, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;*<em>numpy.ones_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;用法、参数含义同空数组生成函数一致，所生成的数组中所有元素的值均为0</p>
+<h4><span id="6-指定数据数组创建">6、指定数据数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.full(shape, fill_value, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;*<em>numpy.full_like(a, fill_value, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;fill_value：<strong>填充数据</strong>，接受一个符合dtype类型的数值，也可以接受一个同数组尺寸匹配的列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numpy.full((<span class="number">3</span>, <span class="number">3</span>), <span class="number">2</span>)              <span class="comment"># 生成一个3×3型数组，每个元素均被初始化为2</span></span><br><span class="line">numpy.full((<span class="number">3</span>, <span class="number">3</span>), [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])      <span class="comment"># 生成一个3×3型数组，每行元素均被分别初始化为1、2、3</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="7-其他对象转换数组">7、其他对象转换数组</span></h4><p>&emsp;&emsp;*<em>numpy.array(a, dtype&#x3D;None, <em>, copy&#x3D;True, order&#x3D;’K’, subok&#x3D;False, ndmin&#x3D;0, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;copy：<strong>是否复制其中值</strong>，可选，接受一bool值，默认为真</p>
+<p>&emsp;&emsp;subok：<strong>是否返回为ndarray子类</strong>，可选，接受一bool值，默认为真</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyArray</span>(numpy.ndarray):</span><br><span class="line">    ~~~                                        <span class="comment"># 假设我们实现了一个ndarray的子类</span></span><br><span class="line">test_array = MyArray(~~~)                      <span class="comment"># 创建一个实例</span></span><br><span class="line">Array1 = numpy.array(test_array, copy=<span class="literal">True</span>)    <span class="comment"># Array1类型为MyArray</span></span><br><span class="line">Array2 = numpy.array(test_array, copy=<span class="literal">False</span>)   <span class="comment"># Array2类型为ndarray</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数接受一个具有数组接口的对象，返回与其对应的ndarray数组；如果对象已经为一个ndarray数组，则返回其副本(作用基本将numpy.copy函数覆盖，故对numpy.copy不再赘述，可<a target="_blank" rel="noopener" href="https://numpy.org/devdocs/reference/generated/numpy.copy.html#numpy.copy">自行查阅</a>)</p>
+<h4><span id="8-提取numpytofile函数存入的数据来创建数组">8、提取numpy.tofile函数存入的数据来创建数组</span></h4><p>&emsp;&emsp;*<em>numpy.fromfile(file, dtype&#x3D;float, count&#x3D;-1, sep&#x3D;’’, offset&#x3D;0, <em>, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;file：<strong>读取文件</strong>，必需，接受一个文件路径或者一个文件读取对象</p>
+<p>&emsp;&emsp;count：<strong>读取项数</strong>，可选，默认为-1，即读取文件中所有项，接受一个非负整数</p>
+<p>&emsp;&emsp;sep：<strong>分隔字符</strong>，可选，以分隔符分割数据，用于从文本文件读取数据，接受一个字符</p>
+<p>&emsp;&emsp;offset：<strong>偏移量</strong>，可选，即从何处开始读取文件，默认为0，即从头读取，接受一个正整数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">array1 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, dtype=np.float32, sep=<span class="string">&#x27; &#x27;</span>)  <span class="comment"># 以空格为间隔符，读取data.txt中所有数据，生成数组</span></span><br><span class="line">array2 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, count=<span class="number">10</span>, sep=<span class="string">&#x27;!&#x27;</span>)          <span class="comment"># 以！为间隔符，读取data.txt中10个数据，生成数组</span></span><br><span class="line">array2 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, count=<span class="number">10</span>, offset=<span class="number">16</span>)        <span class="comment"># 从第17个字节读取data.txt中10个数据，生成数组</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;该函数主要用于读取二进制文件，对于文本文件的读取有专门的函数numpy.loadtxt，较为复杂，可<a target="_blank" rel="noopener" href="https://numpy.org/devdocs/reference/generated/numpy.loadtxt.html#numpy.loadtxt">自行查阅</a></p>
+<h4><span id="9-调用函数创建数组">9、调用函数创建数组</span></h4><p>&emsp;&emsp;*<em>numpy.fromfunction(function, shape, <em>, dtype&#x3D;&lt;class ‘float’&gt;, like&#x3D;None,</em></em> ******<strong>kwargs)</strong></p>
+<p>&emsp;&emsp;function：<strong>调用函数</strong>，必需，接受一个函数，函数的参数数量与数组维度相匹配</p>
+<p>&emsp;&emsp;shape：<strong>数组尺寸</strong>，数组的维度不能超过函数的参数数量，数组中每个元素的索引值将作为参数传入函数并调用，并将返回后的结果作为初始化值储存</p>
+<p>&emsp;&emsp;**kwargs：函数允许当数组维度小于参数数量时，捕捉外界变量作为参数，较为复杂，不做使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_function</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">result = np.fromfunction(my_function, (<span class="number">3</span>, <span class="number">3</span>), dtype=<span class="built_in">int</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">返回数组</span></span><br><span class="line"><span class="string">[[0 1 2]</span></span><br><span class="line"><span class="string"> [1 2 3]</span></span><br><span class="line"><span class="string"> [2 3 4]]</span></span><br><span class="line"><span class="string"> &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
 
     </div>
 
