@@ -81,7 +81,7 @@
 <p>&emsp;&emsp;<strong>作为while使用：for ~2 { ~4}</strong></p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    i := <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i &lt; <span class="number">10</span> &#123; i += i &#125;       <span class="comment">// 等效于C++中的while (i &lt; 10) &#123; i += i;&#125;</span></span><br><span class="line">    fmt.Println(i)              <span class="comment">// 输出应为16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>&emsp;&emsp;**无限循环：for { ~4 }**，慎用且一般不用或避免使用</p>
+<p>&emsp;&emsp;<strong>无限循环</strong>：**for { ~4 }**，慎用且一般不用或避免使用</p>
 <h4><span id="2-if判断语句">2、if判断语句</span></h4><p>&emsp;&emsp;<strong>语句结构：if ~1; ~2 { ~3 }</strong></p>
 ]]></content>
       <categories>
