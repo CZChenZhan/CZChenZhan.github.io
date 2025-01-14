@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>NSSCTF-Web做题笔记(51~100)</title>
-    <url>/2024/12/15/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0(51~100)/</url>
-    <content><![CDATA[<h1><span id="解题思路记录">解题思路记录</span></h1><p>&emsp;&emsp;博主按NSSCTF-Web板块的顺序进行Web练习，并记录心得如下！</p>
-<p>&emsp;&emsp;注：由于题目数量较多，篇幅过长，使用时请找到指定题目，点击目录快速到达；返回时可点击左下角<code>↑ xx%</code>按钮即回到目录</p>
-<span id="more"></span>
-
-<!-- toc -->
-
-
-
-<!-- tocstop -->
-
-]]></content>
-      <categories>
-        <category>CTF Learning</category>
-      </categories>
-      <tags>
-        <tag>CTF-Web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Go语言学习笔记</title>
     <url>/2024/10/21/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1><span id="基于go指南的个人总结">基于Go指南的个人总结</span></h1><p>&emsp;&emsp;博主通过Go官网提供的<a href="https://tour.go-zh.org/">学习文档</a>进行Go语言的学习，并整理笔记，记录如下！</p>
@@ -110,6 +89,267 @@
       </categories>
       <tags>
         <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NSSCTF-Web做题笔记(51~100)</title>
+    <url>/2024/12/15/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0(51~100)/</url>
+    <content><![CDATA[<h1><span id="解题思路记录">解题思路记录</span></h1><p>&emsp;&emsp;博主按NSSCTF-Web板块的顺序进行Web练习，并记录心得如下！</p>
+<p>&emsp;&emsp;注：由于题目数量较多，篇幅过长，使用时请找到指定题目，点击目录快速到达；返回时可点击左下角<code>↑ xx%</code>按钮即回到目录</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#3665_gdouctf-2023hate-eat-snake-js%E5%88%86%E6%9E%90-%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD%E8%BF%90%E8%A1%8C">3665_[GDOUCTF 2023]hate eat snake –JS分析 –本地下载运行</a></li>
+<li><a href="#3868_litctf-2023%E8%BF%99%E6%98%AF%E4%BB%80%E4%B9%88sql-%E6%B3%A8%E4%B8%80%E4%B8%8B-sql%E6%B3%A8%E5%85%A5">3868_[LitCTF 2023]这是什么？SQL ！注一下 ！–SQL注入</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="3665_gdouctf-2023hate-eat-snake-js分析-本地下载运行">3665_[GDOUCTF 2023]hate eat snake –JS分析 –本地下载运行</span></h2><p>&emsp;&emsp;进入环境，熟悉的游戏环节，玩了一把还被嘲讽了，直接看网页源代码，发现里面还有个JS文件，进入</p>
+<p>&emsp;&emsp;发现里面的中文仍然无法正常显示，下载后在Notepad++查看</p>
+<p>&emsp;&emsp;？？？找不到啊，只有一堆function，又是没遇见过的，去看了佬的WriteUp，尝试<span style="background-color: yellow;">将网页和JS文件均下载至本地，修改.html文件中的JS文件查找路径</span>，即可在本地运行网页</p>
+<p>&emsp;&emsp;分析代码，发现导致速度越来越快的代码是速度变量的自增，删除这一行，再玩一次，轻松过关！</p>
+<p><img src="/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0(51~100)/3665_%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81.png" title="3665_关键代码"></p>
+<p>&emsp;&emsp;结算画面如下，又被嘲讽了一下</p>
+<p><img src="/NSSCTF-Web%E5%81%9A%E9%A2%98%E7%AC%94%E8%AE%B0(51~100)/3665_%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" title="3665_结果展示"></p>
+<h2><span id="3868_litctf-2023这是什么sql-注一下-sql注入">3868_[LitCTF 2023]这是什么？SQL ！注一下 ！–SQL注入</span></h2><p>&emsp;&emsp;进入环境，获得关键代码，易知为SQL注入考点，尝试如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CTF Learning</category>
+      </categories>
+      <tags>
+        <tag>CTF-Web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第一篇博客献给建博客的自己</title>
+    <url>/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1><span id="利用hexo和github-pages搭建个人博客">利用Hexo和GitHub Pages搭建个人博客</span></h1><p>&emsp;&emsp;博主在利用Hexo和GitHub Pages创建本博客网站时，几经波折得以建成，又几经波折得以发送出人生中第一篇博客。现将流程及所遇问题梳理如下，唯望前人栽树，后人乘凉。</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#1-%E9%A2%84%E5%A4%87%E5%B7%A5%E4%BD%9C">1、预备工作</a></li>
+<li><a href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96github%E4%BB%93%E5%BA%93">2、初始化GitHub仓库</a></li>
+<li><a href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96hexo">3、初始化Hexo</a></li>
+<li><a href="#4-%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2">4、实现远程部署</a></li>
+<li><a href="#5-%E4%BD%BF%E7%94%A8%E6%9B%B4%E7%BE%8E%E8%A7%82%E7%9A%84%E4%B8%BB%E9%A2%98%E5%8F%AF%E9%80%89">5、使用更美观的主题（可选）</a></li>
+<li><a href="#6-%E5%8F%91%E8%A1%A8%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2">6、发表第一篇博客</a></li>
+<li><a href="#7-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">7、可能出现的报错及解决方案</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="1-预备工作">1、预备工作</span></h2><p>&emsp;&emsp;环境准备：安装<span style="background-color: yellow;">Node.js</span>，用于使用npm包管理器，附官网 <a href="https://nodejs.org/en">https://nodejs.org/en</a></p>
+<p>&emsp;&emsp;工具准备：安装<span style="background-color: yellow;">Git</span>，用于远程拉取和上传，附官网<a href="https://git-scm.com/">https://git-scm.com/</a></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">VsCode</span>，用于后期修改代码，附官网<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">Typora</span>，用于更方便的编写Markdown文档，需收费，附官网<a href="https://typora.io/">https://typora.io/</a></p>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(可以逃课，CSDN博主阿辉的日常：<a href="https://blog.csdn.net/qq_56746297/article/details/141232176?ops_request_misc=&request_id=&biz_id=102&utm_term=typora%E7%A0%B4%E8%A7%A3%E7%89%88%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-141232176.nonecase&spm=1018.2226.3001.4450">Typora2024最新版破解方法（博主亲测可用）</a>)</p>
+<p>&emsp;&emsp;账号准备：注册<span style="background-color: yellow;">GitHub账号</span>，用来搭建仓库，附官网<a href="https://github.com/">https://github.com/</a></p>
+<p>&emsp;&emsp;前置知识：知晓<span style="background-color: yellow;">Markdown语法</span>、有HTML基础会好</p>
+<h2><span id="2-初始化github仓库">2、初始化GitHub仓库</span></h2><p>&emsp;&emsp;创建GitHub仓库：进入自己的GitHub账号主页，在Repositories中找到“New”跳转到仓库创建页面</p>
+<hr>
+<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" class title="创建仓库"></p>
+<hr>
+<p>&emsp;&emsp;如图进行填写勾选，<span style="background-color: red;">注</span>：Repository name处必须填“<span style="background-color: yellow;">账号名字.github.io</span>”</p>
+<h2><span id="3-初始化hexo">3、初始化Hexo</span></h2><p>&emsp;&emsp;[1]、在电脑选一个喜欢的位置，新建一个文件夹作为博客文件夹，比如博主的博客就建在：D:\Blog</p>
+<p>&emsp;&emsp;[2]、该目录下点击上方地址栏，输入cmd，打开命令行窗口，输入以安装Hexo：<span style="background-color: yellow;">npm i hexo-cli -g</span></p>
+<p>&emsp;&emsp;[3]、同样是该窗口，输入：<span style="background-color: yellow;">npm install</span>，下载依赖</p>
+<p>&emsp;&emsp;[4]、安装完成后即可初始化Hexo：<span style="background-color: yellow;">hexo init</span></p>
+<p>&emsp;&emsp;恭喜你，到这一步你已经可以在本地运行你的博客了，不要关闭命令行窗口，输入：<span style="background-color: yellow;">hexo s</span>看看成果</p>
+<p>&emsp;&emsp;虽然很丑而且还不能远程访问，不过果子得一口口吃，都会有的</p>
+<h2><span id="4-实现远程部署">4、实现远程部署</span></h2><p>&emsp;&emsp;这一步，我们要使自己的博客能够被远程访问，即通过网址让他人能看到你的博客，最终效果就是你可以在离我不知道多远的地方看我的文章๑乛◡乛๑</p>
+<p>&emsp;&emsp;[1]、同样，我们不需要关闭命令行窗口(当然如果你关闭了，重新打开就是了)，输入：<span style="background-color: yellow;">ssh</span>，检查ssh是否可用</p>
+<p>&emsp;&emsp;[2]、无异常后，输入两行代码，让Git知道你的GitHub账号信息：</p>
+<p>&emsp;&emsp;<code>git config --global user.name &quot;GitHub账号名&quot; </code></p>
+<p>&emsp;&emsp;<code>git config --global user.email &quot;GitHub账号注册邮箱&quot;</code></p>
+<p>&emsp;&emsp;[3]、在本地创建ssh秘钥，输入：</p>
+<p>&emsp;&emsp;<code>ssh-keygen -t rsa -C &quot;GitHub账号注册邮箱&quot;</code></p>
+<p>&emsp;&emsp;程序会出现三次暂停等候输入，不用理会直接跳过。随后会出现如下界面：</p>
+<hr>
+<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BAssh%E5%AF%86%E9%92%A5.png" class title="创建ssh密钥"></p>
+<hr>
+<p>&emsp;&emsp;[4]、完成后，根据上图第三行代码括号中路径，找到<span style="background-color: orange;">id_rsa.pub</span>文件，用记事本打开，复制密钥</p>
+<p>&emsp;&emsp;[5]、来到GitHub个人主页，点击右上方个人账号头像，找到“Settings”，接着点击“SSH and GPG keys”</p>
+<p>&emsp;&emsp;[6]、界面右侧会有绿色按钮“New SSH key”，点击，密钥名字任意，然后在“Key”处输入复制的密钥</p>
+<p>&emsp;&emsp;[7]、密钥生成后，可以在原命令行窗口输入以检查是否有异：</p>
+<p>&emsp;&emsp;<code>ssh git@github.com</code></p>
+<p>&emsp;&emsp;密钥密钥，自然是保护用的，密钥生成使用后，GitHub便只允许本地有私钥文件的电脑进行内容推送，你的博客才不会被随意篡改</p>
+<p>&emsp;&emsp;[8]、闲谈结束，接下来我们要让博客被推送到GitHub仓库中，首先下载必需插件：<span style="background-color: yellow;">npm install hexo-deployer-git –save</span></p>
+<p>&emsp;&emsp;[9]、打开你的博客文件夹，找到<span style="background-color: orange;">_config.yml</span>文件，，用准备好的VsCode打开。这是博客的配置文件，之后的样式、文字、功能等修改都需要在此对代码进行修改</p>
+<p>&emsp;&emsp;[10]、ctrl+快捷键搜索：<span style="background-color: yellow;">deploy</span>，并将此处代码修改为如下图示例：</p>
+<hr>
+<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%BB%A3%E7%A0%81%E7%A4%BA%E8%8C%831.png" class title="代码示范"></p>
+<hr>
+<p>&emsp;&emsp;显然，在“repo”这一行，大家应修改为：</p>
+<p>&emsp;&emsp;<code>git@github.com:GitHub账号名/GitHub账号名.github.io.git</code></p>
+<p>&emsp;&emsp;[11]、在原命令行窗口下，生成静态文件，输入：<span style="background-color: yellow;">hexo g</span></p>
+<p>&emsp;&emsp;[12]、上传到GitHub，输入：<span style="background-color: yellow;">hexo d</span></p>
+<p>&emsp;&emsp;如果你成功完成了上述十二步，现在是享受劳动成果的时候了，<span style="background-color: yellow;">https:&#x2F;&#x2F;账号名.github.io</span>，这就是专属于你的博客网址啦！&lt;(￣︶￣)&gt;</p>
+<h2><span id="5-使用更美观的主题可选">5、使用更美观的主题（可选）</span></h2><p>&emsp;&emsp;有点丑，至少我是这么想的。来选个好看的主题吧，博主这里推荐Next主体和Butterfly主体，博主会以自身博客为例，讲解下载、使用Next主题。</p>
+<p>&emsp;&emsp;[1]、打开GitHub，在搜索框搜索：<span style="background-color: yellow;">hexo next</span>，没错，这是GitHub大佬的杰作，点击“Code”，下载zip压缩包，解压到博客文件夹中的“theme”目录下</p>
+<p>&emsp;&emsp;[2]、在博客文件夹目录的<span style="background-color: orange;">_config.yml</span>文件修改配置theme：</p>
+<p>&emsp;&emsp;<code>theme: next</code></p>
+<p>&emsp;&emsp;可以先在本地运行一下博客看看有没有成功更换主题，没忘吧•⌄•(忘了就参考第三板块倒数第二句)</p>
+<p>&emsp;&emsp;[3]、当然，Next主体可更改的属性有很多，博主也还在学习怎么把博客变得更个性化，不过这不是有大佬嘛，推荐CSDN博主ywang_wnlo：<a href="https://blog.csdn.net/CoolBoySilverBullet/article/details/121719830?ops_request_misc=%257B%2522request%255Fid%2522%253A%25226298D213-4C23-421C-88C8-99A1DE4019D6%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=6298D213-4C23-421C-88C8-99A1DE4019D6&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-121719830-null-null.nonecase&utm_term=hexonext&spm=1018.2226.3001.4450">【Hexo】NexT 主题的配置使用记录</a></p>
+<h2><span id="6-发表第一篇博客">6、发表第一篇博客</span></h2><p>&emsp;&emsp;来吧，发篇博客体验一下，打开你的Typora开始写文咯，这里我将讲述我新建文章的方法</p>
+<p>&emsp;&emsp;[1]、新建一个.md文件，在利用Typora完成编写后，将文件另存到：<span style="background-color: yellow;">hexo next博客文件夹&#x2F;source&#x2F;_posts&#x2F;</span></p>
+<p>&emsp;&emsp;[2]、在博客文件夹下通过cmd命令打开命令行窗口，依次输入以下三行代码，我简称为“三板斧”：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;通过上述三行代码，你的Hexo博客和GitHub仓库会被更新，写好的md文件也会挂在博客上</p>
+<p>&emsp;&emsp;<span style="background-color: red;">注</span>：在每次修改博客文件夹中内容后，都需运行一遍“三板斧”，才会在博客中生效</p>
+<h2><span id="7-可能出现的报错及解决方案">7、可能出现的报错及解决方案</span></h2><p>&emsp;&emsp;来说说我目前在建博客上碰到的壁，满满血泪史(Ｔ▽Ｔ)</p>
+<p>&emsp;&emsp;[1]、在使用npm包管理器下载<span style="background-color: yellow;">hexo-cli</span>时卡住，可尝试两种手段</p>
+<p>&emsp;&emsp;&emsp;①、修改npm源为阿里的镜像源，不使用国外服务器：</p>
+<p>&emsp;&emsp;&emsp;<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<p>&emsp;&emsp;&emsp;②、未下载依赖：<span style="background-color: yellow;">npm install</span></p>
+<p>&emsp;&emsp;随后重新进行<span style="background-color: yellow;">hexo-cli</span>下载，即重新进行3~[2]，若使用手段①，只需将命令开头的npm改为<span style="background-color: yellow;">cnpm</span></p>
+<p>&emsp;&emsp;[2]、检查自己创建的仓库是不是公开的，即“Public”，若不是，在该步骤会出现问题：4~[12]</p>
+<p>&emsp;&emsp;[3]、一定是根据4~[5]找到“Settings”，而不是在仓库的“Settings”中的“Deploy keys”中操作</p>
+<p>&emsp;&emsp;以下是在写文章时遇到的问题(っ╥╯﹏╰╥c)</p>
+<p>&emsp;&emsp;[4]、如果你想根据标题建立目录，不要使用Typora的一键目录，使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--toc--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;[5]、不知为何，当使用Markdown文件的高亮语法“&#x3D;&#x3D;高亮内容&#x3D;&#x3D;”时，Hexo上无法显示，这里可以直接使用HTML语法：</p>
+<p>&emsp;&emsp;<code>&lt;span style=&quot;background-color: yellow;&quot;&gt;高亮内容&lt;/span&gt;</code></p>
+<p>&emsp;&emsp;[6]、为了插入图片，我也同样撞了两次壁，查了百度，查了CSDN，找到成功方案，以下使用C++注释风格：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//在博客文件夹的_config.yml文件修改</span><br><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br><span class="line">//在博客文件夹下打开命令行窗口，安装新插件</span><br><span class="line">npm install hexo-asset-img --save</span><br><span class="line">//在/source/_posts/中建立一个同md文件相同名字的文件夹，将图片存放进去</span><br><span class="line">//插入图片的语法必须要求如下(至少咱试了下其他的，都没出来)</span><br><span class="line">！[](图片路径/图片名.图片后缀 &quot;图片名&quot;) // 路径使用相对路径</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;看到这里，肯定有些人没有找到想要的解决方案，没关系，CSDN嘛，总会找到的，期待你的博客！</p>
+<p>&emsp;&emsp;╭（′▽‵）╭（′▽‵）╭（′▽‵）╯</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Python第三方库学习笔记-NumPy</title>
+    <url>/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/</url>
+    <content><![CDATA[<h1><span id="基于numpy文档的个人总结">基于NumPy文档的个人总结</span></h1><p>&emsp;&emsp;博主通过<a href="https://www.numpy.org.cn/">NumPy中文文档</a>进行NumPy库的学习，并整理笔记，记录如下！</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+<ul>
+<li><a href="#%E4%B8%80-%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84">一、创建多维数组</a><ul>
+<li><a href="#1-%E7%A9%BA%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">1、空数组创建</a></li>
+<li><a href="#2-%E4%BB%85%E5%AF%B9%E8%A7%92%E7%BA%BF%E4%B8%BA1%E7%9A%84%E4%BA%8C%E7%BB%B4%E9%9B%B6%E6%95%B0%E7%BB%84%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">2、仅对角线为1的二维零数组(矩阵)创建</a></li>
+<li><a href="#3-%E5%8D%95%E4%BD%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">3、单位二维数组(单位矩阵)创建</a></li>
+<li><a href="#4-%E5%85%A81%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">4、全1数组创建</a></li>
+<li><a href="#5-%E5%85%A80%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">5、全0数组创建</a></li>
+<li><a href="#6-%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">6、指定数据数组创建</a></li>
+<li><a href="#7-%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%95%B0%E7%BB%84">7、其他对象转换数组</a></li>
+<li><a href="#8-%E6%8F%90%E5%8F%96numpytofile%E5%87%BD%E6%95%B0%E5%AD%98%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9D%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">8、提取numpy.tofile函数存入的数据来创建数组</a></li>
+<li><a href="#9-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">9、调用函数创建数组</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E6%93%8D%E4%BD%9C%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84">二、操作多维数组</a><ul>
+<li><a href="#1-ndarray%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7">1、ndarray数组的数组属性</a></li>
+<li><a href="#2-%E6%95%B0%E7%BB%84%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95">2、数组的各种方法</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2><span id="一-创建多维数组">一、创建多维数组</span></h2><p>&emsp;&emsp;多维数组是NumPy库中定义的一个容器对象，以下创建方式均返回一个多维数组容器ndarray</p>
+<h4><span id="1-空数组创建">1、空数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.empty(shape, dtype&#x3D;float, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;shape：<strong>形状参数</strong>，必需，接受一个整数或整数元组(列表，可行、简单)，其中第i个元素的值代表生成数组第i维的长度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ！！！本文中代码均默认自动导入numpy库，import numpy</span></span><br><span class="line">numpy.empty(<span class="number">2</span>)         <span class="comment"># 生成一个1×2的一维数组，元素自动初始化为随机垃圾值(后同)</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>))    <span class="comment"># 生成一个2×3的二维数组，</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 生成</span></span><br><span class="line">numpy.empty([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) <span class="comment"># 使用列表可返回相同结果</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;dtype：<strong>生成数组中元素的数据类型</strong>，可选，默认为float，也就是numpy.float64</p>
+<p>&emsp;&emsp;order：<strong>以何种方式生成数组</strong>，可选，默认为’C’，共’C’、’F’两种选项；’C’ &#x3D;&gt; 行优先，即最右侧索引位最快；’F’ &#x3D;&gt; 列优先，即最左侧索引位最快</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果是&#x27;C&#x27;方式创建的数组，z位索引变化的速度最快</span></span><br><span class="line">array1 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br><span class="line"><span class="comment"># 如果是&#x27;F&#x27;方式创建的数组，x位索引变化的速度最快</span></span><br><span class="line">array2 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;*：<strong>位置参数的终止符号</strong>，在此之前对“? &#x3D; 输入参数”的判定只需根据输入参数摆放顺序，在此之后再输入参数必需按”关键字 &#x3D; 输入参数”(关键字参数)的格式输入而无需再注意顺序</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)               <span class="comment"># 可行但不推荐</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>)        <span class="comment"># 推荐这一种</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), device=none)       <span class="comment"># 正确传入参数</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>, none)  <span class="comment"># 错误，none参数前必需带上关键字</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;device：<strong>指定用于创建数组的设备</strong>(如GPU)，可选，如果未指定，则使用默认的 NumPy 设备</p>
+<p>&emsp;&emsp;like：<strong>模仿生成数组</strong>，可选，接受指定数组、数组子类或具有shape和dtype属性的对象，生成数组的shape和dtype属性将与之相同</p>
+<p>&emsp;&emsp;<span style="background-color: yellow;"><strong>注</strong></span><strong>：上述属性如无特殊情况在本文后续不再赘述，均以上述说明为准</strong></p>
+<p>&emsp;&emsp;另一种方法：**numpy.empty_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, *, device&#x3D;None)**，作用类同上文函数中的like属性，不推荐，详查文档</p>
+<h4><span id="2-仅对角线为1的二维零数组矩阵创建">2、仅对角线为1的二维零数组(矩阵)创建</span></h4><p>&emsp;&emsp;*<em>numpy.eye(N, M&#x3D;None, k&#x3D;0, dtype&#x3D;&lt;class ‘float’&gt;, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;N：<strong>生成数组的行数</strong>，必需，接受一个整数值</p>
+<p>&emsp;&emsp;M：<strong>生成数组的列数</strong>，可选，默认为none &lt;&#x3D;&gt; 列数与行数相同，接受一个整数值</p>
+<p>&emsp;&emsp;k：<strong>对角线的偏移量</strong>，可选，默认为0，即主对角线，接受一个整数值，k为几，主对角线向右上方移动几，如果某元素a<del>ii</del>超过数组界限，不会报错，会直接设原位置的a<del>ii</del>为0，如下图所示：</p>
+<img src="/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/numpy.eye.k%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="numpy.eye.k效果展示">
+
+<h4><span id="3-单位二维数组单位矩阵创建">3、单位二维数组(单位矩阵)创建</span></h4><p>&emsp;&emsp;**numpy.identity(n, dtype&#x3D;None, *, like&#x3D;None)**，n接受一个整数值，生成一个n×n，数据类型为float的单位矩阵(仅对角线为1的零方阵)</p>
+<h4><span id="4-全1数组创建">4、全1数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.ones(shape, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;*<em>numpy.ones_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;用法、参数含义同空数组生成函数一致，所生成的数组中所有元素的值均为1</p>
+<h4><span id="5-全0数组创建">5、全0数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.zeros(shape, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;*<em>numpy.zeros_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;用法、参数含义同空数组生成函数一致，所生成的数组中所有元素的值均为0</p>
+<h4><span id="6-指定数据数组创建">6、指定数据数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.full(shape, fill_value, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;*<em>numpy.full_like(a, fill_value, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;fill_value：<strong>填充数据</strong>，接受一个符合dtype类型的数值，也可以接受一个同数组尺寸匹配的列表</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.full((<span class="number">3</span>, <span class="number">3</span>), <span class="number">2</span>)              <span class="comment"># 生成一个3×3型数组，每个元素均被初始化为2</span></span><br><span class="line">numpy.full((<span class="number">3</span>, <span class="number">3</span>), [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])      <span class="comment"># 生成一个3×3型数组，每行元素均被分别初始化为1、2、3</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="7-其他对象转换数组">7、其他对象转换数组</span></h4><p>&emsp;&emsp;*<em>numpy.array(a, dtype&#x3D;None, <em>, copy&#x3D;True, order&#x3D;’K’, subok&#x3D;False, ndmin&#x3D;0, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;copy：<strong>是否复制其中值</strong>，可选，接受一bool值，默认为真</p>
+<p>&emsp;&emsp;subok：<strong>是否返回为ndarray子类</strong>，可选，接受一bool值，默认为真</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyArray</span>(numpy.ndarray):</span><br><span class="line">    ~~~                                        <span class="comment"># 假设我们实现了一个ndarray的子类</span></span><br><span class="line">test_array = MyArray(~~~)                      <span class="comment"># 创建一个实例</span></span><br><span class="line">Array1 = numpy.array(test_array, copy=<span class="literal">True</span>)    <span class="comment"># Array1类型为MyArray</span></span><br><span class="line">Array2 = numpy.array(test_array, copy=<span class="literal">False</span>)   <span class="comment"># Array2类型为ndarray</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;函数接受一个具有数组接口的对象，返回与其对应的ndarray数组；如果对象已经为一个ndarray数组，则返回其副本(作用基本将numpy.copy函数覆盖，故对numpy.copy不再赘述，可<a href="https://numpy.org/devdocs/reference/generated/numpy.copy.html#numpy.copy">自行查阅</a>)</p>
+<h4><span id="8-提取numpytofile函数存入的数据来创建数组">8、提取numpy.tofile函数存入的数据来创建数组</span></h4><p>&emsp;&emsp;*<em>numpy.fromfile(file, dtype&#x3D;float, count&#x3D;-1, sep&#x3D;’’, offset&#x3D;0, <em>, like&#x3D;None)</em></em></p>
+<p>&emsp;&emsp;file：<strong>读取文件</strong>，必需，接受一个文件路径或者一个文件读取对象</p>
+<p>&emsp;&emsp;count：<strong>读取项数</strong>，可选，默认为-1，即读取文件中所有项，接受一个非负整数</p>
+<p>&emsp;&emsp;sep：<strong>分隔字符</strong>，可选，以分隔符分割数据，用于从文本文件读取数据，接受一个字符</p>
+<p>&emsp;&emsp;offset：<strong>偏移量</strong>，可选，即从何处开始读取文件，默认为0，即从头读取，接受一个正整数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">array1 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, dtype=np.float32, sep=<span class="string">&#x27; &#x27;</span>)  <span class="comment"># 以空格为间隔符，读取data.txt中所有数据，生成数组</span></span><br><span class="line">array2 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, count=<span class="number">10</span>, sep=<span class="string">&#x27;!&#x27;</span>)          <span class="comment"># 以！为间隔符，读取data.txt中10个数据，生成数组</span></span><br><span class="line">array2 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, count=<span class="number">10</span>, offset=<span class="number">16</span>)        <span class="comment"># 从第17个字节读取data.txt中10个数据，生成数组</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;该函数主要用于读取二进制文件，对于文本文件的读取有专门的函数numpy.loadtxt，较为复杂，可<a href="https://numpy.org/devdocs/reference/generated/numpy.loadtxt.html#numpy.loadtxt">自行查阅</a></p>
+<h4><span id="9-调用函数创建数组">9、调用函数创建数组</span></h4><p>&emsp;&emsp;*<em>numpy.fromfunction(function, shape, <em>, dtype&#x3D;&lt;class ‘float’&gt;, like&#x3D;None,</em></em> ******<strong>kwargs)</strong></p>
+<p>&emsp;&emsp;function：<strong>调用函数</strong>，必需，接受一个函数，函数的参数数量与数组维度相匹配</p>
+<p>&emsp;&emsp;shape：<strong>数组尺寸</strong>，数组的维度不能超过函数的参数数量，数组中每个元素的索引值将作为参数传入函数并调用，并将返回后的结果作为初始化值储存</p>
+<p>&emsp;&emsp;**kwargs：函数允许当数组维度小于参数数量时，捕捉外界变量作为参数，较为复杂，不做使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_function</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">result = np.fromfunction(my_function, (<span class="number">3</span>, <span class="number">3</span>), dtype=<span class="built_in">int</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">返回数组</span></span><br><span class="line"><span class="string">[[0 1 2]</span></span><br><span class="line"><span class="string"> [1 2 3]</span></span><br><span class="line"><span class="string"> [2 3 4]]</span></span><br><span class="line"><span class="string"> &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2><span id="二-操作多维数组">二、操作多维数组</span></h2><p>&emsp;&emsp;ndarray容器的属性与方法多样，这里只记录已学习使用的部分</p>
+<h4><span id="1-ndarray数组的数组属性">1、ndarray数组的数组属性</span></h4><p>&emsp;&emsp;<strong>ndarray.flags</strong>：一个包含了关于 NumPy 数组内存布局信息的对象，其内存放多个bool属性值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建NumPy数组</span></span><br><span class="line">arr = numpy.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="comment"># 访问ndarray.flags属性</span></span><br><span class="line">flags = arr.flags</span><br><span class="line"><span class="comment"># 打印各个标志（列举部分）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;C_CONTIGUOUS:&quot;</span>, flags.C_CONTIGUOUS)          <span class="comment"># 为True则表示数组以行单位存储方式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;F_CONTIGUOUS:&quot;</span>, flags.F_CONTIGUOUS)          <span class="comment"># 为True则表示数组以列单位存储方式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OWNDATA:&quot;</span>, flags.OWNDATA)                    <span class="comment"># 为True则表示数组拥有独立内存，修改该数组不会影响其他数组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;WRITEABLE:&quot;</span>, flags.WRITEABLE)                <span class="comment"># 为True则表示数组中数据可以被修改，为False则数组只读</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ALIGNED:&quot;</span>, flags.ALIGNED)                    <span class="comment"># 为True则表示数组针对硬件进行了适当的对齐</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;WRITEBACKIFCOPY:&quot;</span>, flags.WRITEBACKIFCOPY)    <span class="comment"># 为True则表示数组是另一数组的副本</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.shape</strong>：一个存储数组维度数据的元组，也可以通过赋值修改数组的尺寸</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))           <span class="comment"># 生成一个2×3×4尺寸数组</span></span><br><span class="line"><span class="built_in">print</span>(arr.shape)                       <span class="comment"># 返回：(2, 3, 4)</span></span><br><span class="line">arr.shape = (<span class="number">3</span>, <span class="number">8</span>)                     <span class="comment"># 可以通过赋值修改属性值，前提是新形状的数组元素个数要与之前一致</span></span><br><span class="line"><span class="built_in">print</span>(arr)                             <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">                                         返回：[[0, 0, 0, 0, 0, 0, 0, 0],</span></span><br><span class="line"><span class="string">                                               [0, 0, 0, 0, 0, 0, 0, 0],</span></span><br><span class="line"><span class="string">                                               [0, 0, 0, 0, 0, 0, 0, 0]]</span></span><br><span class="line"><span class="string">                                       &#x27;&#x27;&#x27;</span>      </span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.ndim</strong>：数组维数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 生成三维数组</span></span><br><span class="line"><span class="built_in">print</span>(arr.ndim)                      <span class="comment"># 返回为3</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.size</strong>：数组中元素数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 生成2×3×4零数组</span></span><br><span class="line"><span class="built_in">print</span>(arr.size)                      <span class="comment"># 返回为24</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.itemsize</strong>：单个元素所占内存字节数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 未对数组数据类型修改，默认为numpy.float64</span></span><br><span class="line"><span class="built_in">print</span>(arr.itemsize)                  <span class="comment"># 返回为8</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.nbytes</strong>：整个数组所占内存字节数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 未对数组数据类型修改，默认为numpy.float64</span></span><br><span class="line"><span class="built_in">print</span>(arr.nbytes)                    <span class="comment"># 返回为8×24=192</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.base</strong>：指向数组的基对象，如果为其本身则返回None，当该属性不为None时，修改数组可能会对其基对象产生影响</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(arr.base)                      <span class="comment"># 数组基对象即其本身，返回None</span></span><br><span class="line">arr_0 = arr[<span class="number">0</span>]                       <span class="comment"># arr_0借助arr的内存切片生成</span></span><br><span class="line"><span class="built_in">print</span>(arr_0.base)                    <span class="comment"># 返回：&lt;memory at 0x...&gt;，即为数组arr的内存地址</span></span><br><span class="line">arr_0[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>                      <span class="comment"># 修改arr_0第一行第一列元素为1</span></span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>])                  <span class="comment"># 此时arr_0[0][0]对应的原数组中arr[0][0][0]也会变成1，输出：1</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.T</strong>：转置数组，即返回一个颠倒维度的数组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">print</span>(arr.T)                         <span class="comment"># 返回的应为一个5×4×3×2数组</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>ndarray.real</strong>：复数数组的实部</p>
+<p>&emsp;&emsp;<strong>ndarray.imag</strong>：复数数组的虚部</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.array([<span class="number">1</span> + <span class="number">0j</span>, <span class="number">0</span> + <span class="number">1j</span>])</span><br><span class="line"><span class="built_in">print</span>(arr.real)                      <span class="comment"># 返回：[1, 0]</span></span><br><span class="line"><span class="built_in">print</span>(arr.imag)                      <span class="comment"># 返回：[0, 1]</span></span><br></pre></td></tr></table></figure>
+
+<h4><span id="2-数组的各种方法">2、数组的各种方法</span></h4><p>&emsp;&emsp;太多了太多了，这里只展示使用过的 T_T  T_T  T_T</p>
+<p>&emsp;&emsp;<strong>ndarray.sum(axis&#x3D;None, dtype&#x3D;None, out&#x3D;None, keepdims&#x3D;False, initial&#x3D;0, where&#x3D;True)</strong></p>
+<p>&emsp;&emsp;axis：<strong>沿某一轴求和</strong>，可选，默认为None，表示为求数组中所有元素和，接受一个整数或整数元组</p>
+<p>&emsp;&emsp;out：<strong>指定一个数组来放置结果</strong>，可选，默认无，如果提供，它必须具有与默认输出相同的形状和类型</p>
+<p>&emsp;&emsp;keepdims：<strong>是否保持原有维数</strong>，可选，默认否，不推荐使用(据说很不好用，不过我也没用过)</p>
+<p>&emsp;&emsp;initial：<strong>累加初始值</strong>，可选，默认为零，即求和结果为&lt;元素总和+初始值&gt;，接受一个整数</p>
+<p>&emsp;&emsp;where：<strong>根据指定bool数组确定求和元素</strong>，可选，默认无，只有当where数组中对应位置为True时，输入数组中的元素才会被包含在总和计算中，接受一个尺寸相同的bool数组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.ones((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))                     <span class="comment"># 生成一个2×3×4的全1数组</span></span><br><span class="line">sum_all = numpy.<span class="built_in">sum</span>(arr)                        <span class="comment"># 返回：24</span></span><br><span class="line">sum_axis0 = arr.<span class="built_in">sum</span>(axis=<span class="number">0</span>)                     <span class="comment"># 顺第1轴计算结果</span></span><br><span class="line"><span class="built_in">print</span>(sum_axis0)                                <span class="comment"># 返回一个3×4的数组，其中第(i, j)位为原数组中第(:, i ,j)的和</span></span><br><span class="line">sum_axis1 = arr.<span class="built_in">sum</span>(axis=<span class="number">1</span>)                     <span class="comment"># 顺第2轴计算结果</span></span><br><span class="line"><span class="built_in">print</span>(sum_axis1)                                <span class="comment"># 返回一个2×4的数组</span></span><br><span class="line">sum_axis2 = arr.<span class="built_in">sum</span>(axis=[<span class="number">0</span>, <span class="number">1</span>])                <span class="comment"># axis接受第几轴的数字，该维维数输出时即变成1</span></span><br><span class="line"><span class="built_in">print</span>(sum_axis2)                                <span class="comment"># 返回一个四个数(1×1×4)的数组</span></span><br><span class="line">out_arr = numpy.zeros((<span class="number">2</span>, <span class="number">4</span>), dtype=arr.dtype)  <span class="comment"># 生成一个类型、尺寸均符合输出结果要求的数组</span></span><br><span class="line">arr.<span class="built_in">sum</span>(out=out_arr)                            <span class="comment"># 结果储存于out_array中</span></span><br><span class="line"><span class="built_in">print</span>(out_arr)                                  <span class="comment"># 返回一个2×4的数组</span></span><br><span class="line">arr_initial = <span class="number">1</span></span><br><span class="line">sum_initial = numpy.<span class="built_in">sum</span>(initial=arr_initial)    <span class="comment"># 返回：24 + 1 = 25</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Programming Language Learning</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -1649,233 +1889,5 @@
       <tags>
         <tag>CTF-Web</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Python第三方库学习笔记-NumPy</title>
-    <url>/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/</url>
-    <content><![CDATA[<h1><span id="基于numpy文档的个人总结">基于NumPy文档的个人总结</span></h1><p>&emsp;&emsp;博主通过<a href="https://www.numpy.org.cn/">NumPy中文文档</a>进行NumPy库的学习，并整理笔记，记录如下！</p>
-<span id="more"></span>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#%E4%B8%80-%E5%88%9B%E5%BB%BA%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84">一、创建多维数组</a><ul>
-<li><a href="#1-%E7%A9%BA%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">1、空数组创建</a></li>
-<li><a href="#2-%E4%BB%85%E5%AF%B9%E8%A7%92%E7%BA%BF%E4%B8%BA1%E7%9A%84%E4%BA%8C%E7%BB%B4%E9%9B%B6%E6%95%B0%E7%BB%84%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">2、仅对角线为1的二维零数组(矩阵)创建</a></li>
-<li><a href="#3-%E5%8D%95%E4%BD%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8D%95%E4%BD%8D%E7%9F%A9%E9%98%B5%E5%88%9B%E5%BB%BA">3、单位二维数组(单位矩阵)创建</a></li>
-<li><a href="#4-%E5%85%A81%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">4、全1数组创建</a></li>
-<li><a href="#5-%E5%85%A80%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">5、全0数组创建</a></li>
-<li><a href="#6-%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA">6、指定数据数组创建</a></li>
-<li><a href="#7-%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1%E8%BD%AC%E6%8D%A2%E6%95%B0%E7%BB%84">7、其他对象转换数组</a></li>
-<li><a href="#8-%E6%8F%90%E5%8F%96numpytofile%E5%87%BD%E6%95%B0%E5%AD%98%E5%85%A5%E7%9A%84%E6%95%B0%E6%8D%AE%E6%9D%A5%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">8、提取numpy.tofile函数存入的数据来创建数组</a></li>
-<li><a href="#9-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84">9、调用函数创建数组</a></li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C-%E6%93%8D%E4%BD%9C%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84">二、操作多维数组</a><ul>
-<li><a href="#1-ndarray%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E7%BB%84%E5%B1%9E%E6%80%A7">1、ndarray数组的数组属性</a></li>
-<li><a href="#2-%E6%95%B0%E7%BB%84%E7%9A%84%E5%90%84%E7%A7%8D%E6%96%B9%E6%B3%95">2、数组的各种方法</a></li>
-</ul>
-</li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="一-创建多维数组">一、创建多维数组</span></h2><p>&emsp;&emsp;多维数组是NumPy库中定义的一个容器对象，以下创建方式均返回一个多维数组容器ndarray</p>
-<h4><span id="1-空数组创建">1、空数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.empty(shape, dtype&#x3D;float, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;shape：<strong>形状参数</strong>，必需，接受一个整数或整数元组(列表，可行、简单)，其中第i个元素的值代表生成数组第i维的长度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ！！！本文中代码均默认自动导入numpy库，import numpy</span></span><br><span class="line">numpy.empty(<span class="number">2</span>)         <span class="comment"># 生成一个1×2的一维数组，元素自动初始化为随机垃圾值(后同)</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>))    <span class="comment"># 生成一个2×3的二维数组，</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)) <span class="comment"># 生成</span></span><br><span class="line">numpy.empty([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]) <span class="comment"># 使用列表可返回相同结果</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;dtype：<strong>生成数组中元素的数据类型</strong>，可选，默认为float，也就是numpy.float64</p>
-<p>&emsp;&emsp;order：<strong>以何种方式生成数组</strong>，可选，默认为’C’，共’C’、’F’两种选项；’C’ &#x3D;&gt; 行优先，即最右侧索引位最快；’F’ &#x3D;&gt; 列优先，即最左侧索引位最快</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 如果是&#x27;C&#x27;方式创建的数组，z位索引变化的速度最快</span></span><br><span class="line">array1 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;C&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br><span class="line"><span class="comment"># 如果是&#x27;F&#x27;方式创建的数组，x位索引变化的速度最快</span></span><br><span class="line">array2 = numpy.empty((<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)</span><br><span class="line">array1[x][y][z]</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;*：<strong>位置参数的终止符号</strong>，在此之前对“? &#x3D; 输入参数”的判定只需根据输入参数摆放顺序，在此之后再输入参数必需按”关键字 &#x3D; 输入参数”(关键字参数)的格式输入而无需再注意顺序</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="string">&#x27;F&#x27;</span>)               <span class="comment"># 可行但不推荐</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>)        <span class="comment"># 推荐这一种</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), device=none)       <span class="comment"># 正确传入参数</span></span><br><span class="line">numpy.empty((<span class="number">2</span>, <span class="number">3</span>), <span class="built_in">float</span>, <span class="string">&#x27;F&#x27;</span>, none)  <span class="comment"># 错误，none参数前必需带上关键字</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;device：<strong>指定用于创建数组的设备</strong>(如GPU)，可选，如果未指定，则使用默认的 NumPy 设备</p>
-<p>&emsp;&emsp;like：<strong>模仿生成数组</strong>，可选，接受指定数组、数组子类或具有shape和dtype属性的对象，生成数组的shape和dtype属性将与之相同</p>
-<p>&emsp;&emsp;<span style="background-color: yellow;"><strong>注</strong></span><strong>：上述属性如无特殊情况在本文后续不再赘述，均以上述说明为准</strong></p>
-<p>&emsp;&emsp;另一种方法：**numpy.empty_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, *, device&#x3D;None)**，作用类同上文函数中的like属性，不推荐，详查文档</p>
-<h4><span id="2-仅对角线为1的二维零数组矩阵创建">2、仅对角线为1的二维零数组(矩阵)创建</span></h4><p>&emsp;&emsp;*<em>numpy.eye(N, M&#x3D;None, k&#x3D;0, dtype&#x3D;&lt;class ‘float’&gt;, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;N：<strong>生成数组的行数</strong>，必需，接受一个整数值</p>
-<p>&emsp;&emsp;M：<strong>生成数组的列数</strong>，可选，默认为none &lt;&#x3D;&gt; 列数与行数相同，接受一个整数值</p>
-<p>&emsp;&emsp;k：<strong>对角线的偏移量</strong>，可选，默认为0，即主对角线，接受一个整数值，k为几，主对角线向右上方移动几，如果某元素a<del>ii</del>超过数组界限，不会报错，会直接设原位置的a<del>ii</del>为0，如下图所示：</p>
-<img src="/2024/10/24/Python%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NumPy/numpy.eye.k%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.png" class title="numpy.eye.k效果展示">
-
-<h4><span id="3-单位二维数组单位矩阵创建">3、单位二维数组(单位矩阵)创建</span></h4><p>&emsp;&emsp;**numpy.identity(n, dtype&#x3D;None, *, like&#x3D;None)**，n接受一个整数值，生成一个n×n，数据类型为float的单位矩阵(仅对角线为1的零方阵)</p>
-<h4><span id="4-全1数组创建">4、全1数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.ones(shape, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;*<em>numpy.ones_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;用法、参数含义同空数组生成函数一致，所生成的数组中所有元素的值均为1</p>
-<h4><span id="5-全0数组创建">5、全0数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.zeros(shape, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;*<em>numpy.zeros_like(a, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;用法、参数含义同空数组生成函数一致，所生成的数组中所有元素的值均为0</p>
-<h4><span id="6-指定数据数组创建">6、指定数据数组创建</span></h4><p>&emsp;&emsp;*<em>numpy.full(shape, fill_value, dtype&#x3D;None, order&#x3D;’C’, <em>, device&#x3D;None, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;*<em>numpy.full_like(a, fill_value, dtype&#x3D;None, order&#x3D;’K’, subok&#x3D;True, shape&#x3D;None, <em>, device&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;fill_value：<strong>填充数据</strong>，接受一个符合dtype类型的数值，也可以接受一个同数组尺寸匹配的列表</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">numpy.full((<span class="number">3</span>, <span class="number">3</span>), <span class="number">2</span>)              <span class="comment"># 生成一个3×3型数组，每个元素均被初始化为2</span></span><br><span class="line">numpy.full((<span class="number">3</span>, <span class="number">3</span>), [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])      <span class="comment"># 生成一个3×3型数组，每行元素均被分别初始化为1、2、3</span></span><br></pre></td></tr></table></figure>
-
-<h4><span id="7-其他对象转换数组">7、其他对象转换数组</span></h4><p>&emsp;&emsp;*<em>numpy.array(a, dtype&#x3D;None, <em>, copy&#x3D;True, order&#x3D;’K’, subok&#x3D;False, ndmin&#x3D;0, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;copy：<strong>是否复制其中值</strong>，可选，接受一bool值，默认为真</p>
-<p>&emsp;&emsp;subok：<strong>是否返回为ndarray子类</strong>，可选，接受一bool值，默认为真</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyArray</span>(numpy.ndarray):</span><br><span class="line">    ~~~                                        <span class="comment"># 假设我们实现了一个ndarray的子类</span></span><br><span class="line">test_array = MyArray(~~~)                      <span class="comment"># 创建一个实例</span></span><br><span class="line">Array1 = numpy.array(test_array, copy=<span class="literal">True</span>)    <span class="comment"># Array1类型为MyArray</span></span><br><span class="line">Array2 = numpy.array(test_array, copy=<span class="literal">False</span>)   <span class="comment"># Array2类型为ndarray</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;函数接受一个具有数组接口的对象，返回与其对应的ndarray数组；如果对象已经为一个ndarray数组，则返回其副本(作用基本将numpy.copy函数覆盖，故对numpy.copy不再赘述，可<a href="https://numpy.org/devdocs/reference/generated/numpy.copy.html#numpy.copy">自行查阅</a>)</p>
-<h4><span id="8-提取numpytofile函数存入的数据来创建数组">8、提取numpy.tofile函数存入的数据来创建数组</span></h4><p>&emsp;&emsp;*<em>numpy.fromfile(file, dtype&#x3D;float, count&#x3D;-1, sep&#x3D;’’, offset&#x3D;0, <em>, like&#x3D;None)</em></em></p>
-<p>&emsp;&emsp;file：<strong>读取文件</strong>，必需，接受一个文件路径或者一个文件读取对象</p>
-<p>&emsp;&emsp;count：<strong>读取项数</strong>，可选，默认为-1，即读取文件中所有项，接受一个非负整数</p>
-<p>&emsp;&emsp;sep：<strong>分隔字符</strong>，可选，以分隔符分割数据，用于从文本文件读取数据，接受一个字符</p>
-<p>&emsp;&emsp;offset：<strong>偏移量</strong>，可选，即从何处开始读取文件，默认为0，即从头读取，接受一个正整数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">array1 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, dtype=np.float32, sep=<span class="string">&#x27; &#x27;</span>)  <span class="comment"># 以空格为间隔符，读取data.txt中所有数据，生成数组</span></span><br><span class="line">array2 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, count=<span class="number">10</span>, sep=<span class="string">&#x27;!&#x27;</span>)          <span class="comment"># 以！为间隔符，读取data.txt中10个数据，生成数组</span></span><br><span class="line">array2 = np.fromfile(<span class="string">&#x27;data.txt&#x27;</span>, count=<span class="number">10</span>, offset=<span class="number">16</span>)        <span class="comment"># 从第17个字节读取data.txt中10个数据，生成数组</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;该函数主要用于读取二进制文件，对于文本文件的读取有专门的函数numpy.loadtxt，较为复杂，可<a href="https://numpy.org/devdocs/reference/generated/numpy.loadtxt.html#numpy.loadtxt">自行查阅</a></p>
-<h4><span id="9-调用函数创建数组">9、调用函数创建数组</span></h4><p>&emsp;&emsp;*<em>numpy.fromfunction(function, shape, <em>, dtype&#x3D;&lt;class ‘float’&gt;, like&#x3D;None,</em></em> ******<strong>kwargs)</strong></p>
-<p>&emsp;&emsp;function：<strong>调用函数</strong>，必需，接受一个函数，函数的参数数量与数组维度相匹配</p>
-<p>&emsp;&emsp;shape：<strong>数组尺寸</strong>，数组的维度不能超过函数的参数数量，数组中每个元素的索引值将作为参数传入函数并调用，并将返回后的结果作为初始化值储存</p>
-<p>&emsp;&emsp;**kwargs：函数允许当数组维度小于参数数量时，捕捉外界变量作为参数，较为复杂，不做使用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">my_function</span>(<span class="params">x, y</span>):</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">result = np.fromfunction(my_function, (<span class="number">3</span>, <span class="number">3</span>), dtype=<span class="built_in">int</span>)</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">返回数组</span></span><br><span class="line"><span class="string">[[0 1 2]</span></span><br><span class="line"><span class="string"> [1 2 3]</span></span><br><span class="line"><span class="string"> [2 3 4]]</span></span><br><span class="line"><span class="string"> &#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h2><span id="二-操作多维数组">二、操作多维数组</span></h2><p>&emsp;&emsp;ndarray容器的属性与方法多样，这里只记录已学习使用的部分</p>
-<h4><span id="1-ndarray数组的数组属性">1、ndarray数组的数组属性</span></h4><p>&emsp;&emsp;<strong>ndarray.flags</strong>：一个包含了关于 NumPy 数组内存布局信息的对象，其内存放多个bool属性值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建NumPy数组</span></span><br><span class="line">arr = numpy.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line"><span class="comment"># 访问ndarray.flags属性</span></span><br><span class="line">flags = arr.flags</span><br><span class="line"><span class="comment"># 打印各个标志（列举部分）</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;C_CONTIGUOUS:&quot;</span>, flags.C_CONTIGUOUS)          <span class="comment"># 为True则表示数组以行单位存储方式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;F_CONTIGUOUS:&quot;</span>, flags.F_CONTIGUOUS)          <span class="comment"># 为True则表示数组以列单位存储方式</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;OWNDATA:&quot;</span>, flags.OWNDATA)                    <span class="comment"># 为True则表示数组拥有独立内存，修改该数组不会影响其他数组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;WRITEABLE:&quot;</span>, flags.WRITEABLE)                <span class="comment"># 为True则表示数组中数据可以被修改，为False则数组只读</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ALIGNED:&quot;</span>, flags.ALIGNED)                    <span class="comment"># 为True则表示数组针对硬件进行了适当的对齐</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;WRITEBACKIFCOPY:&quot;</span>, flags.WRITEBACKIFCOPY)    <span class="comment"># 为True则表示数组是另一数组的副本</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.shape</strong>：一个存储数组维度数据的元组，也可以通过赋值修改数组的尺寸</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))           <span class="comment"># 生成一个2×3×4尺寸数组</span></span><br><span class="line"><span class="built_in">print</span>(arr.shape)                       <span class="comment"># 返回：(2, 3, 4)</span></span><br><span class="line">arr.shape = (<span class="number">3</span>, <span class="number">8</span>)                     <span class="comment"># 可以通过赋值修改属性值，前提是新形状的数组元素个数要与之前一致</span></span><br><span class="line"><span class="built_in">print</span>(arr)                             <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">                                         返回：[[0, 0, 0, 0, 0, 0, 0, 0],</span></span><br><span class="line"><span class="string">                                               [0, 0, 0, 0, 0, 0, 0, 0],</span></span><br><span class="line"><span class="string">                                               [0, 0, 0, 0, 0, 0, 0, 0]]</span></span><br><span class="line"><span class="string">                                       &#x27;&#x27;&#x27;</span>      </span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.ndim</strong>：数组维数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 生成三维数组</span></span><br><span class="line"><span class="built_in">print</span>(arr.ndim)                      <span class="comment"># 返回为3</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.size</strong>：数组中元素数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 生成2×3×4零数组</span></span><br><span class="line"><span class="built_in">print</span>(arr.size)                      <span class="comment"># 返回为24</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.itemsize</strong>：单个元素所占内存字节数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 未对数组数据类型修改，默认为numpy.float64</span></span><br><span class="line"><span class="built_in">print</span>(arr.itemsize)                  <span class="comment"># 返回为8</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.nbytes</strong>：整个数组所占内存字节数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))         <span class="comment"># 未对数组数据类型修改，默认为numpy.float64</span></span><br><span class="line"><span class="built_in">print</span>(arr.nbytes)                    <span class="comment"># 返回为8×24=192</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.base</strong>：指向数组的基对象，如果为其本身则返回None，当该属性不为None时，修改数组可能会对其基对象产生影响</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(arr.base)                      <span class="comment"># 数组基对象即其本身，返回None</span></span><br><span class="line">arr_0 = arr[<span class="number">0</span>]                       <span class="comment"># arr_0借助arr的内存切片生成</span></span><br><span class="line"><span class="built_in">print</span>(arr_0.base)                    <span class="comment"># 返回：&lt;memory at 0x...&gt;，即为数组arr的内存地址</span></span><br><span class="line">arr_0[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>                      <span class="comment"># 修改arr_0第一行第一列元素为1</span></span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>])                  <span class="comment"># 此时arr_0[0][0]对应的原数组中arr[0][0][0]也会变成1，输出：1</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.T</strong>：转置数组，即返回一个颠倒维度的数组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">print</span>(arr.T)                         <span class="comment"># 返回的应为一个5×4×3×2数组</span></span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;<strong>ndarray.real</strong>：复数数组的实部</p>
-<p>&emsp;&emsp;<strong>ndarray.imag</strong>：复数数组的虚部</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.array([<span class="number">1</span> + <span class="number">0j</span>, <span class="number">0</span> + <span class="number">1j</span>])</span><br><span class="line"><span class="built_in">print</span>(arr.real)                      <span class="comment"># 返回：[1, 0]</span></span><br><span class="line"><span class="built_in">print</span>(arr.imag)                      <span class="comment"># 返回：[0, 1]</span></span><br></pre></td></tr></table></figure>
-
-<h4><span id="2-数组的各种方法">2、数组的各种方法</span></h4><p>&emsp;&emsp;太多了太多了，这里只展示使用过的 T_T  T_T  T_T</p>
-<p>&emsp;&emsp;<strong>ndarray.sum(axis&#x3D;None, dtype&#x3D;None, out&#x3D;None, keepdims&#x3D;False, initial&#x3D;0, where&#x3D;True)</strong></p>
-<p>&emsp;&emsp;axis：<strong>沿某一轴求和</strong>，可选，默认为None，表示为求数组中所有元素和，接受一个整数或整数元组</p>
-<p>&emsp;&emsp;out：<strong>指定一个数组来放置结果</strong>，可选，默认无，如果提供，它必须具有与默认输出相同的形状和类型</p>
-<p>&emsp;&emsp;keepdims：<strong>是否保持原有维数</strong>，可选，默认否，不推荐使用(据说很不好用，不过我也没用过)</p>
-<p>&emsp;&emsp;initial：<strong>累加初始值</strong>，可选，默认为零，即求和结果为&lt;元素总和+初始值&gt;，接受一个整数</p>
-<p>&emsp;&emsp;where：<strong>根据指定bool数组确定求和元素</strong>，可选，默认无，只有当where数组中对应位置为True时，输入数组中的元素才会被包含在总和计算中，接受一个尺寸相同的bool数组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">arr = numpy.ones((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))                     <span class="comment"># 生成一个2×3×4的全1数组</span></span><br><span class="line">sum_all = numpy.<span class="built_in">sum</span>(arr)                        <span class="comment"># 返回：24</span></span><br><span class="line">sum_axis0 = arr.<span class="built_in">sum</span>(axis=<span class="number">0</span>)                     <span class="comment"># 顺第1轴计算结果</span></span><br><span class="line"><span class="built_in">print</span>(sum_axis0)                                <span class="comment"># 返回一个3×4的数组，其中第(i, j)位为原数组中第(:, i ,j)的和</span></span><br><span class="line">sum_axis1 = arr.<span class="built_in">sum</span>(axis=<span class="number">1</span>)                     <span class="comment"># 顺第2轴计算结果</span></span><br><span class="line"><span class="built_in">print</span>(sum_axis1)                                <span class="comment"># 返回一个2×4的数组</span></span><br><span class="line">sum_axis2 = arr.<span class="built_in">sum</span>(axis=[<span class="number">0</span>, <span class="number">1</span>])                <span class="comment"># axis接受第几轴的数字，该维维数输出时即变成1</span></span><br><span class="line"><span class="built_in">print</span>(sum_axis2)                                <span class="comment"># 返回一个四个数(1×1×4)的数组</span></span><br><span class="line">out_arr = numpy.zeros((<span class="number">2</span>, <span class="number">4</span>), dtype=arr.dtype)  <span class="comment"># 生成一个类型、尺寸均符合输出结果要求的数组</span></span><br><span class="line">arr.<span class="built_in">sum</span>(out=out_arr)                            <span class="comment"># 结果储存于out_array中</span></span><br><span class="line"><span class="built_in">print</span>(out_arr)                                  <span class="comment"># 返回一个2×4的数组</span></span><br><span class="line">arr_initial = <span class="number">1</span></span><br><span class="line">sum_initial = numpy.<span class="built_in">sum</span>(initial=arr_initial)    <span class="comment"># 返回：24 + 1 = 25</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Programming Language Learning</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第一篇博客献给建博客的自己</title>
-    <url>/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1><span id="利用hexo和github-pages搭建个人博客">利用Hexo和GitHub Pages搭建个人博客</span></h1><p>&emsp;&emsp;博主在利用Hexo和GitHub Pages创建本博客网站时，几经波折得以建成，又几经波折得以发送出人生中第一篇博客。现将流程及所遇问题梳理如下，唯望前人栽树，后人乘凉。</p>
-<span id="more"></span>
-
-<!-- toc -->
-
-<ul>
-<li><a href="#1-%E9%A2%84%E5%A4%87%E5%B7%A5%E4%BD%9C">1、预备工作</a></li>
-<li><a href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96github%E4%BB%93%E5%BA%93">2、初始化GitHub仓库</a></li>
-<li><a href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96hexo">3、初始化Hexo</a></li>
-<li><a href="#4-%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2">4、实现远程部署</a></li>
-<li><a href="#5-%E4%BD%BF%E7%94%A8%E6%9B%B4%E7%BE%8E%E8%A7%82%E7%9A%84%E4%B8%BB%E9%A2%98%E5%8F%AF%E9%80%89">5、使用更美观的主题（可选）</a></li>
-<li><a href="#6-%E5%8F%91%E8%A1%A8%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2">6、发表第一篇博客</a></li>
-<li><a href="#7-%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">7、可能出现的报错及解决方案</a></li>
-</ul>
-<!-- tocstop -->
-
-<h2><span id="1-预备工作">1、预备工作</span></h2><p>&emsp;&emsp;环境准备：安装<span style="background-color: yellow;">Node.js</span>，用于使用npm包管理器，附官网 <a href="https://nodejs.org/en">https://nodejs.org/en</a></p>
-<p>&emsp;&emsp;工具准备：安装<span style="background-color: yellow;">Git</span>，用于远程拉取和上传，附官网<a href="https://git-scm.com/">https://git-scm.com/</a></p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">VsCode</span>，用于后期修改代码，附官网<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;安装<span style="background-color: yellow;">Typora</span>，用于更方便的编写Markdown文档，需收费，附官网<a href="https://typora.io/">https://typora.io/</a></p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(可以逃课，CSDN博主阿辉的日常：<a href="https://blog.csdn.net/qq_56746297/article/details/141232176?ops_request_misc=&request_id=&biz_id=102&utm_term=typora%E7%A0%B4%E8%A7%A3%E7%89%88%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-141232176.nonecase&spm=1018.2226.3001.4450">Typora2024最新版破解方法（博主亲测可用）</a>)</p>
-<p>&emsp;&emsp;账号准备：注册<span style="background-color: yellow;">GitHub账号</span>，用来搭建仓库，附官网<a href="https://github.com/">https://github.com/</a></p>
-<p>&emsp;&emsp;前置知识：知晓<span style="background-color: yellow;">Markdown语法</span>、有HTML基础会好</p>
-<h2><span id="2-初始化github仓库">2、初始化GitHub仓库</span></h2><p>&emsp;&emsp;创建GitHub仓库：进入自己的GitHub账号主页，在Repositories中找到“New”跳转到仓库创建页面</p>
-<hr>
-<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93.png" class title="创建仓库"></p>
-<hr>
-<p>&emsp;&emsp;如图进行填写勾选，<span style="background-color: red;">注</span>：Repository name处必须填“<span style="background-color: yellow;">账号名字.github.io</span>”</p>
-<h2><span id="3-初始化hexo">3、初始化Hexo</span></h2><p>&emsp;&emsp;[1]、在电脑选一个喜欢的位置，新建一个文件夹作为博客文件夹，比如博主的博客就建在：D:\Blog</p>
-<p>&emsp;&emsp;[2]、该目录下点击上方地址栏，输入cmd，打开命令行窗口，输入以安装Hexo：<span style="background-color: yellow;">npm i hexo-cli -g</span></p>
-<p>&emsp;&emsp;[3]、同样是该窗口，输入：<span style="background-color: yellow;">npm install</span>，下载依赖</p>
-<p>&emsp;&emsp;[4]、安装完成后即可初始化Hexo：<span style="background-color: yellow;">hexo init</span></p>
-<p>&emsp;&emsp;恭喜你，到这一步你已经可以在本地运行你的博客了，不要关闭命令行窗口，输入：<span style="background-color: yellow;">hexo s</span>看看成果</p>
-<p>&emsp;&emsp;虽然很丑而且还不能远程访问，不过果子得一口口吃，都会有的</p>
-<h2><span id="4-实现远程部署">4、实现远程部署</span></h2><p>&emsp;&emsp;这一步，我们要使自己的博客能够被远程访问，即通过网址让他人能看到你的博客，最终效果就是你可以在离我不知道多远的地方看我的文章๑乛◡乛๑</p>
-<p>&emsp;&emsp;[1]、同样，我们不需要关闭命令行窗口(当然如果你关闭了，重新打开就是了)，输入：<span style="background-color: yellow;">ssh</span>，检查ssh是否可用</p>
-<p>&emsp;&emsp;[2]、无异常后，输入两行代码，让Git知道你的GitHub账号信息：</p>
-<p>&emsp;&emsp;<code>git config --global user.name &quot;GitHub账号名&quot; </code></p>
-<p>&emsp;&emsp;<code>git config --global user.email &quot;GitHub账号注册邮箱&quot;</code></p>
-<p>&emsp;&emsp;[3]、在本地创建ssh秘钥，输入：</p>
-<p>&emsp;&emsp;<code>ssh-keygen -t rsa -C &quot;GitHub账号注册邮箱&quot;</code></p>
-<p>&emsp;&emsp;程序会出现三次暂停等候输入，不用理会直接跳过。随后会出现如下界面：</p>
-<hr>
-<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E5%88%9B%E5%BB%BAssh%E5%AF%86%E9%92%A5.png" class title="创建ssh密钥"></p>
-<hr>
-<p>&emsp;&emsp;[4]、完成后，根据上图第三行代码括号中路径，找到<span style="background-color: orange;">id_rsa.pub</span>文件，用记事本打开，复制密钥</p>
-<p>&emsp;&emsp;[5]、来到GitHub个人主页，点击右上方个人账号头像，找到“Settings”，接着点击“SSH and GPG keys”</p>
-<p>&emsp;&emsp;[6]、界面右侧会有绿色按钮“New SSH key”，点击，密钥名字任意，然后在“Key”处输入复制的密钥</p>
-<p>&emsp;&emsp;[7]、密钥生成后，可以在原命令行窗口输入以检查是否有异：</p>
-<p>&emsp;&emsp;<code>ssh git@github.com</code></p>
-<p>&emsp;&emsp;密钥密钥，自然是保护用的，密钥生成使用后，GitHub便只允许本地有私钥文件的电脑进行内容推送，你的博客才不会被随意篡改</p>
-<p>&emsp;&emsp;[8]、闲谈结束，接下来我们要让博客被推送到GitHub仓库中，首先下载必需插件：<span style="background-color: yellow;">npm install hexo-deployer-git –save</span></p>
-<p>&emsp;&emsp;[9]、打开你的博客文件夹，找到<span style="background-color: orange;">_config.yml</span>文件，，用准备好的VsCode打开。这是博客的配置文件，之后的样式、文字、功能等修改都需要在此对代码进行修改</p>
-<p>&emsp;&emsp;[10]、ctrl+快捷键搜索：<span style="background-color: yellow;">deploy</span>，并将此处代码修改为如下图示例：</p>
-<hr>
-<p>&emsp;&emsp;<img src="/2024/10/16/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%E4%BB%A3%E7%A0%81%E7%A4%BA%E8%8C%831.png" class title="代码示范"></p>
-<hr>
-<p>&emsp;&emsp;显然，在“repo”这一行，大家应修改为：</p>
-<p>&emsp;&emsp;<code>git@github.com:GitHub账号名/GitHub账号名.github.io.git</code></p>
-<p>&emsp;&emsp;[11]、在原命令行窗口下，生成静态文件，输入：<span style="background-color: yellow;">hexo g</span></p>
-<p>&emsp;&emsp;[12]、上传到GitHub，输入：<span style="background-color: yellow;">hexo d</span></p>
-<p>&emsp;&emsp;如果你成功完成了上述十二步，现在是享受劳动成果的时候了，<span style="background-color: yellow;">https:&#x2F;&#x2F;账号名.github.io</span>，这就是专属于你的博客网址啦！&lt;(￣︶￣)&gt;</p>
-<h2><span id="5-使用更美观的主题可选">5、使用更美观的主题（可选）</span></h2><p>&emsp;&emsp;有点丑，至少我是这么想的。来选个好看的主题吧，博主这里推荐Next主体和Butterfly主体，博主会以自身博客为例，讲解下载、使用Next主题。</p>
-<p>&emsp;&emsp;[1]、打开GitHub，在搜索框搜索：<span style="background-color: yellow;">hexo next</span>，没错，这是GitHub大佬的杰作，点击“Code”，下载zip压缩包，解压到博客文件夹中的“theme”目录下</p>
-<p>&emsp;&emsp;[2]、在博客文件夹目录的<span style="background-color: orange;">_config.yml</span>文件修改配置theme：</p>
-<p>&emsp;&emsp;<code>theme: next</code></p>
-<p>&emsp;&emsp;可以先在本地运行一下博客看看有没有成功更换主题，没忘吧•⌄•(忘了就参考第三板块倒数第二句)</p>
-<p>&emsp;&emsp;[3]、当然，Next主体可更改的属性有很多，博主也还在学习怎么把博客变得更个性化，不过这不是有大佬嘛，推荐CSDN博主ywang_wnlo：<a href="https://blog.csdn.net/CoolBoySilverBullet/article/details/121719830?ops_request_misc=%257B%2522request%255Fid%2522%253A%25226298D213-4C23-421C-88C8-99A1DE4019D6%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=6298D213-4C23-421C-88C8-99A1DE4019D6&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-121719830-null-null.nonecase&utm_term=hexonext&spm=1018.2226.3001.4450">【Hexo】NexT 主题的配置使用记录</a></p>
-<h2><span id="6-发表第一篇博客">6、发表第一篇博客</span></h2><p>&emsp;&emsp;来吧，发篇博客体验一下，打开你的Typora开始写文咯，这里我将讲述我新建文章的方法</p>
-<p>&emsp;&emsp;[1]、新建一个.md文件，在利用Typora完成编写后，将文件另存到：<span style="background-color: yellow;">hexo next博客文件夹&#x2F;source&#x2F;_posts&#x2F;</span></p>
-<p>&emsp;&emsp;[2]、在博客文件夹下通过cmd命令打开命令行窗口，依次输入以下三行代码，我简称为“三板斧”：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;通过上述三行代码，你的Hexo博客和GitHub仓库会被更新，写好的md文件也会挂在博客上</p>
-<p>&emsp;&emsp;<span style="background-color: red;">注</span>：在每次修改博客文件夹中内容后，都需运行一遍“三板斧”，才会在博客中生效</p>
-<h2><span id="7-可能出现的报错及解决方案">7、可能出现的报错及解决方案</span></h2><p>&emsp;&emsp;来说说我目前在建博客上碰到的壁，满满血泪史(Ｔ▽Ｔ)</p>
-<p>&emsp;&emsp;[1]、在使用npm包管理器下载<span style="background-color: yellow;">hexo-cli</span>时卡住，可尝试两种手段</p>
-<p>&emsp;&emsp;&emsp;①、修改npm源为阿里的镜像源，不使用国外服务器：</p>
-<p>&emsp;&emsp;&emsp;<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-<p>&emsp;&emsp;&emsp;②、未下载依赖：<span style="background-color: yellow;">npm install</span></p>
-<p>&emsp;&emsp;随后重新进行<span style="background-color: yellow;">hexo-cli</span>下载，即重新进行3~[2]，若使用手段①，只需将命令开头的npm改为<span style="background-color: yellow;">cnpm</span></p>
-<p>&emsp;&emsp;[2]、检查自己创建的仓库是不是公开的，即“Public”，若不是，在该步骤会出现问题：4~[12]</p>
-<p>&emsp;&emsp;[3]、一定是根据4~[5]找到“Settings”，而不是在仓库的“Settings”中的“Deploy keys”中操作</p>
-<p>&emsp;&emsp;以下是在写文章时遇到的问题(っ╥╯﹏╰╥c)</p>
-<p>&emsp;&emsp;[4]、如果你想根据标题建立目录，不要使用Typora的一键目录，使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!--toc--&gt;</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;[5]、不知为何，当使用Markdown文件的高亮语法“&#x3D;&#x3D;高亮内容&#x3D;&#x3D;”时，Hexo上无法显示，这里可以直接使用HTML语法：</p>
-<p>&emsp;&emsp;<code>&lt;span style=&quot;background-color: yellow;&quot;&gt;高亮内容&lt;/span&gt;</code></p>
-<p>&emsp;&emsp;[6]、为了插入图片，我也同样撞了两次壁，查了百度，查了CSDN，找到成功方案，以下使用C++注释风格：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//在博客文件夹的_config.yml文件修改</span><br><span class="line">post_asset_folder: true</span><br><span class="line">marked:</span><br><span class="line">  prependRoot: true</span><br><span class="line">  postAsset: true</span><br><span class="line">//在博客文件夹下打开命令行窗口，安装新插件</span><br><span class="line">npm install hexo-asset-img --save</span><br><span class="line">//在/source/_posts/中建立一个同md文件相同名字的文件夹，将图片存放进去</span><br><span class="line">//插入图片的语法必须要求如下(至少咱试了下其他的，都没出来)</span><br><span class="line">！[](图片路径/图片名.图片后缀 &quot;图片名&quot;) // 路径使用相对路径</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;看到这里，肯定有些人没有找到想要的解决方案，没关系，CSDN嘛，总会找到的，期待你的博客！</p>
-<p>&emsp;&emsp;╭（′▽‵）╭（′▽‵）╭（′▽‵）╯</p>
-]]></content>
   </entry>
 </search>
