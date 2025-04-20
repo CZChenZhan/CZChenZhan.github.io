@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=ZCOOL XiaoWei:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"czchenzhan.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="基于Go指南的个人总结&emsp;&emsp;博主通过Go官网提供的学习文档进行Go语言的学习，并整理笔记，记录如下！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言学习笔记">
+<meta property="og:url" content="https://czchenzhan.github.io/2024/11/11/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="陈展的博客">
+<meta property="og:description" content="基于Go指南的个人总结&emsp;&emsp;博主通过Go官网提供的学习文档进行Go语言的学习，并整理笔记，记录如下！">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-20T09:25:18.716Z">
+<meta property="article:author" content="作者：陈展">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://czchenzhan.github.io/2024/11/11/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Go语言学习笔记 | 陈展的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">陈展的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录点滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://czchenzhan.github.io/2024/11/11/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="作者：陈展">
+      <meta itemprop="description" content="欢迎到访">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈展的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Go语言学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-11T00:00:00+08:00">2024-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-04-20 17:25:18" itemprop="dateModified" datetime="2025-04-20T17:25:18+08:00">2025-04-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Programming-Language-Learning/" itemprop="url" rel="index"><span itemprop="name">Programming Language Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基于Go指南的个人总结"><a href="#基于Go指南的个人总结" class="headerlink" title="基于Go指南的个人总结"></a>基于Go指南的个人总结</h1><p>&emsp;&emsp;博主通过Go官网提供的<a target="_blank" rel="noopener" href="https://tour.go-zh.org/">学习文档</a>进行Go语言的学习，并整理笔记，记录如下！</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+<h2 id="一、包、函数、变量、常量"><a href="#一、包、函数、变量、常量" class="headerlink" title="一、包、函数、变量、常量"></a>一、包、函数、变量、常量</h2><h4 id="1、包的导入与导出"><a href="#1、包的导入与导出" class="headerlink" title="1、包的导入与导出"></a>1、包的导入与导出</h4><p>&emsp;&emsp;<strong>包的导入</strong>：无论导入一个包还是多个包，为了便于后续再添加、更改，使用如下语法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;package1&quot;</span>                <span class="comment">// 熟悉吗，Go的注释方法同C、C++一致</span></span><br><span class="line">    <span class="string">&quot;package2/package3&quot;</span>       <span class="comment">// 导入package2包中的package3子包</span></span><br><span class="line">    <span class="string">&quot;package4&quot;</span>                <span class="comment">// 导入package4</span></span><br><span class="line">    ····</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>包的导入</strong><span style="background-color: yellow;"> <strong>&gt; 注</strong></span>：导入的包必须使用，不使用则Go语言会报错 —-&gt; “包名” imported and not used</p>
+<p>&emsp;&emsp;<strong>包的导出</strong>：在自定义包&#x2F;标准库中，如果你想让其他包访问某些函数、类型、变量或常量，你需要以大写字母开头来声明它们；在引用某一包中的元素时，需要增加包名作前缀以使程序识别</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;math/rand&quot;</span>               <span class="comment">// 导入math中的rand包，包名即为rand</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span>                     <span class="comment">// 导入fmt包，包名即为fmt</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(rand.Intn(<span class="number">100</span>))      <span class="comment">// 生成一个0到99之间的随机整数并输出</span></span><br><span class="line">    <span class="comment">// fmt.println(rand.Intn(100))   // 错误，因为能导出包的首字母均大写，引用包中属性时，也需要首字母大写</span></span><br><span class="line">    <span class="comment">// fmt.Println(math.Intn(100))   // 错误，前缀需为包名，故引用函数Intn()前应加rand</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、函数定义"><a href="#2、函数定义" class="headerlink" title="2、函数定义"></a>2、函数定义</h4><p>&emsp;&emsp;<strong>函数基本结构：func ~1 ( ~2 ) ( ~3 ) { ~4 }</strong></p>
+<p>&emsp;&emsp;~1：<strong>函数名</strong>，首字母大写与小写会导致函数是否能被导出</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Myfunction</span><span class="params">()</span></span> &#123;&#125;   <span class="comment">// 可以被外部程序导出并使用</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">()</span></span> &#123;&#125;   <span class="comment">// 只能在包内部才能被识别，外界无法使用</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;~2：<strong>参数列表</strong>，可以设置1或多个传入参数，也可以不设置参数；设置参数需要参数名与参数类型，参数名在参数类型前面</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">()</span></span> &#123;&#125;                     <span class="comment">// 不设置参数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(x <span class="type">int</span>)</span></span> &#123;&#125;                <span class="comment">// 设置int型参数x</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(x <span class="type">int</span>, y <span class="type">int</span>)</span></span> &#123;&#125;         <span class="comment">// 设置int型参数x、y</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(x, y <span class="type">int</span>)</span></span> &#123;&#125;             <span class="comment">// 多个相同类型参数可以合并参数类型写于末尾</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(x <span class="type">int</span>, y <span class="type">string</span>)</span></span> &#123;&#125;      <span class="comment">// 设置int型参数x，string型参数y</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(x, y <span class="type">int</span>, z <span class="type">string</span>)</span></span> &#123;&#125;   <span class="comment">// 设置int型参数x、y，string型参数z</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;~3：<strong>返回值</strong>，可以设置一个或多个返回值，逗号分隔；(<span style="background-color: yellow;"> <strong>特色！</strong></span>:返回值也可以取名字，作用独特)</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;&#125;               <span class="comment">// 单个返回值或无返回值可以省略括号</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (<span class="type">int</span>, <span class="type">string</span>) &#123;&#125;     <span class="comment">// 多返回值需对应一一点名类型</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (<span class="type">int</span>, <span class="type">int</span>) &#123;&#125;        <span class="comment">// 多个相同类型返回值，类型不能省去(没有人会这么想吧我想)</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (x, y <span class="type">int</span>) &#123;&#125;        <span class="comment">// 当然，当返回值取了名字，就不一样了，相同类型返回值可以合并</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;~3 &gt; <strong>特性</strong>：当返回值有名字后，被称为命名返回值或裸返回值，它们会被视作定义在函数顶部的变量，当函数使用的return语句不跟参数时，会自动返回这些特殊的返回值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一般返回值：return语句后必须跟参数，逗号隔开，类型顺序对应</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (<span class="type">int</span>, <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> b, a</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 命名返回值、一般返回值不可混合使用</span></span><br><span class="line">：<span class="keyword">return</span>语句后允许不跟参数，自动按序返回命名返回值的值</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (x, y <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果不对这些返回值赋值，它们会正常输出程序自动初始化的值，int型为0，string型为&quot;&quot;，bool型为false</span></span><br><span class="line">    <span class="comment">// 在返回值中声明命名返回值，等效为在函数开头将其视为变量声明，比如此例，即为下述两行：</span></span><br><span class="line">    <span class="comment">// x = 0</span></span><br><span class="line">    <span class="comment">// y = 0</span></span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 当然你也可以声明命名返回值后在使用return时继续跟上对应参数，一旦return后跟上参数，参数必须同返回值数量、类型、顺序一致</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (x, y <span class="type">int</span>, z <span class="type">string</span>) &#123;</span><br><span class="line">    x = <span class="number">1</span></span><br><span class="line">    y = <span class="number">2</span></span><br><span class="line">    z = <span class="string">&quot;China&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>, <span class="number">4</span>, <span class="string">&quot;Power&quot;</span>        <span class="comment">// 不会返回 1 2 China ，返回 2 4 Power</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 错误1：声明返回值后，函数体中必须使用return语句</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (x, y <span class="type">int</span>) &#123;&#125;     <span class="comment">// 返回错误提示：missing return</span></span><br><span class="line"><span class="comment">// 错误2：命名返回值、一般返回值不可混合使用</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">myfunction</span><span class="params">(a <span class="type">int</span>, b <span class="type">int</span>)</span></span> (x <span class="type">int</span>, <span class="type">int</span>) &#123;    <span class="comment">// 返回错误提示：mixed named and unnamed parameters</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;~4：<strong>函数体</strong>，没啥好说的，注意声明返回值后，函数体中必须使用return语句即可</p>
+<h4 id="3、变量声明"><a href="#3、变量声明" class="headerlink" title="3、变量声明"></a>3、变量声明</h4><p>&emsp;&emsp;<strong>声明区域</strong>：可以声明在包内或函数内，包级别声明的变量包内全局可被访问修改，而函数级别声明的变量只在函数体内有效</p>
+<p>&emsp;&emsp;<strong>变量声明的一般方法</strong>：使用var语句可以声明一或多个变量，允许声明的类型、位置均不限，声明的格式为“ 变量名 变量类型”</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="type">int</span>, y <span class="type">bool</span>                     <span class="comment">// 每次声明的变量间逗号隔开，若没有在声明时赋值，则变量自动初始化为默认值</span></span><br><span class="line"><span class="keyword">var</span> x, y <span class="type">int</span>                          <span class="comment">// 当&quot;所有声明&quot;的变量均一致时，可以将变量类型合并置于末尾</span></span><br><span class="line"><span class="keyword">var</span> x, y = <span class="number">1</span>, <span class="literal">true</span>                    <span class="comment">// 懒人方法，当你声明变量时对其赋初始值时，可以不在声明时注明类型，程序自动推断</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>短变量声明</strong>：使用 :&#x3D; 短赋值语句可以为函数体级别的变量进行声明，语法为：变量名 :&#x3D; 初始值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">k := <span class="number">12</span>                       <span class="comment">// k被自动推断为int型</span></span><br><span class="line">a, b, c := <span class="number">1</span>, <span class="number">3.14</span>, <span class="string">&quot;China&quot;</span>   <span class="comment">// 当然，一次性可以声明一或多个变量</span></span><br><span class="line"><span class="comment">// 如果初始值是一变量，则自动认为是该变量的类型</span></span><br><span class="line"><span class="keyword">var</span> name <span class="type">string</span></span><br><span class="line">firstname := name             <span class="comment">// k被自动推断为string型</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>Go的变量类型</strong>：不报菜名了，<a target="_blank" rel="noopener" href="https://tour.go-zh.org/basics/11">点这里☜</a></p>
+<p>&emsp;&emsp;<strong>Go的变量类型</strong><span style="background-color: yellow;"> <strong>&gt; 注-1</strong></span>：int、uint、uintptr的位数同操作系统有关</p>
+<p>&emsp;&emsp;<strong>Go的变量类型</strong><span style="background-color: yellow;"> <strong>&gt; 注-2</strong></span>：var语句可以一个代码块的方式声明变量，建议以后均使用此语法，便于添加、修改</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (  </span><br><span class="line">    a <span class="type">int</span>    = <span class="number">1</span>  </span><br><span class="line">    b, c <span class="type">int</span> = <span class="number">2</span>, <span class="number">3</span>  </span><br><span class="line">    d        = <span class="number">4</span></span><br><span class="line">    e        = <span class="string">&quot;China&quot;</span></span><br><span class="line">    f <span class="type">string</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>类型转换</strong>：使用表达式T(v)，其中T为需转化为的变量类型，v为转化变量本身，使用该表达式不会对变量v本身造成影响</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>                    <span class="comment">// x声明为int型变量</span></span><br><span class="line"><span class="keyword">var</span> y = <span class="type">float32</span>(x)           <span class="comment">// 表达式返回一个float32型变量，其值为x，y通过初始化确定其类型也为float32</span></span><br><span class="line">z := <span class="type">float32</span>(x)              <span class="comment">// 短赋值语句也可以使用</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>类型转换</strong><span style="background-color: yellow;"> <strong>&gt; 注</strong></span>：不是任意变量的类型转换均可使用该表达式，这里特别指出与其余主流编程语言的不同，即字符串和数值无法互相转换，布尔型数据也无法和数值型变量互相转换</p>
+<h4 id="4、常量声明"><a href="#4、常量声明" class="headerlink" title="4、常量声明"></a>4、常量声明</h4><p>&emsp;&emsp;<strong>声明区域</strong>：同变量声明机制完全相同</p>
+<p>&emsp;&emsp;<strong>声明方法</strong>：常量的声明只能使用const关键字，不能使用 :&#x3D; 语句，且常量的声明必须初始化；常量的类型仅字符、字符串、布尔值或数值四种，其格式为：const 常量名 常量类型 &#x3D; 初始化值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x <span class="type">int</span> = <span class="number">1</span>                       <span class="comment">// x为int型常量1</span></span><br><span class="line"><span class="keyword">const</span> y, z <span class="type">int</span> = <span class="number">2</span>, <span class="number">2</span>                 <span class="comment">// 相同类型常量，其类型可合并</span></span><br><span class="line"><span class="keyword">const</span> p, q = <span class="number">3</span>, <span class="string">&quot;China&quot;</span>               <span class="comment">// 同样，由于进行了初始化，常量类型可不写明，但这我并不建议</span></span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>声明方法</strong><span style="background-color: yellow;"> <strong>&gt; 注</strong></span>：同var语句声明变量一样，const关键字也可以一个代码块的方式声明变量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (  </span><br><span class="line">    a    = <span class="number">1</span>  </span><br><span class="line">    b, c = <span class="number">2</span>, <span class="number">3</span>  </span><br><span class="line">    d    = <span class="string">&quot;China&quot;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>未指定类型常量的特点</strong>：一个未指定类型的常量由上下文来决定其类型，故建议声明时即显式确定其类型</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比如，根据算术运算式确定类型</span></span><br><span class="line"><span class="keyword">const</span> a = <span class="number">1</span>  </span><br><span class="line"><span class="keyword">const</span> b = <span class="number">2.0</span>  </span><br><span class="line"><span class="keyword">const</span> c = a + b         <span class="comment">// c被推断为float64型，因为b是float64型，而a会被提升为float64运算</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="二、for、if、else、switch和defer"><a href="#二、for、if、else、switch和defer" class="headerlink" title="二、for、if、else、switch和defer"></a>二、for、if、else、switch和defer</h2><h4 id="1、for循环的多种用法"><a href="#1、for循环的多种用法" class="headerlink" title="1、for循环的多种用法"></a>1、for循环的多种用法</h4><p>&emsp;&emsp;<strong>一般结构：for ~1; ~2; ~3 { ~4}</strong></p>
+<p>&emsp;&emsp;~1：<strong>变量声明初始化语句</strong>，可选，在进入循环之前定义，只能使用 :&#x3D; 语句，所定义的变量只存活于该for循环内</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123; fmt.Println(i) &#125;         <span class="comment">// i被声明为0，可以被循环体中的fmt.Println(i)访问</span></span><br><span class="line">    <span class="comment">// for var i = 0; i &lt; 10; i++ &#123; fmt.Println(i) &#125;   // 错误，不可以使用var语句，返回报错：var declaration not allowed in for initializer</span></span><br><span class="line">    <span class="comment">// fmt.Println(i)                                  // 外界不可访问for中的i，返回报错：undefined: i</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;~2：<strong>进入循环条件表达式</strong>，可选，在每次循环开始前执行表达式，为真则进入循环</p>
+<p>&emsp;&emsp;~3：<strong>后置语句</strong>，可选，在每次循环结束后执行一次</p>
+<p>&emsp;&emsp;~4：<strong>循环体</strong>，可以为空，循环体中语句运行完即运行后置语句</p>
+<p>&emsp;&emsp;<strong>作为while使用：for ~2 { ~4}</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    i := <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i &lt; <span class="number">10</span> &#123; i += i &#125;       <span class="comment">// 等效于C++中的while (i &lt; 10) &#123; i += i;&#125;</span></span><br><span class="line">    fmt.Println(i)              <span class="comment">// 输出应为16</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;<strong>无限循环：for { ~4 }</strong>，慎用且一般不用或避免使用</p>
+<h4 id="2、if判断语句"><a href="#2、if判断语句" class="headerlink" title="2、if判断语句"></a>2、if判断语句</h4><p>&emsp;&emsp;<strong>语句结构：if ~1; ~2 { ~3 }</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Go/" rel="tag"># Go</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/10/20/%E5%88%A9%E7%94%A8Hexo%E5%92%8CGitHubPages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="第一篇博客献给建博客的自己">
+      <i class="fa fa-chevron-left"></i> 第一篇博客献给建博客的自己
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/11/23/NSSCTF-Web%E7%AC%94%E8%AE%B01-50/" rel="next" title="NSSCTF-Web笔记1-50">
+      NSSCTF-Web笔记1-50 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EGo%E6%8C%87%E5%8D%97%E7%9A%84%E4%B8%AA%E4%BA%BA%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">基于Go指南的个人总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8C%85%E3%80%81%E5%87%BD%E6%95%B0%E3%80%81%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F"><span class="nav-number">1.1.</span> <span class="nav-text">一、包、函数、变量、常量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%8C%85%E7%9A%84%E5%AF%BC%E5%85%A5%E4%B8%8E%E5%AF%BC%E5%87%BA"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">1、包的导入与导出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">2、函数定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">3、变量声明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%B8%B8%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">4、常量声明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81for%E3%80%81if%E3%80%81else%E3%80%81switch%E5%92%8Cdefer"><span class="nav-number">1.2.</span> <span class="nav-text">二、for、if、else、switch和defer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81for%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%A4%9A%E7%A7%8D%E7%94%A8%E6%B3%95"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1、for循环的多种用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81if%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2、if判断语句</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">作者：陈展</p>
+  <div class="site-description" itemprop="description">欢迎到访</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">作者：陈展</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
