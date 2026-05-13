@@ -248,135 +248,147 @@
       
         <h1 id="知识点记录"><a href="#知识点记录" class="headerlink" title="知识点记录"></a>知识点记录</h1><p>&emsp;&emsp;此文用于记录学习 TryHackMe 网站中 Room: Nmap Live Host Discovery 获得的知识点。ƪ(˘⌣˘)ʃ</p>
 <span id="more"></span>
-
 <!-- toc -->
-
 <h2 id="网段、子网与子网掩码"><a href="#网段、子网与子网掩码" class="headerlink" title="网段、子网与子网掩码"></a>网段、子网与子网掩码</h2><p>&emsp;&emsp;<code>网段</code>：一个网段由一个网络地址和一个子网掩码组成；网段的主要作用是将IP地址空间划分成多个小块，分配给多个链接同一路由的主机；网段将其管理的多个主机打包，以便他们在网络中作为一个整体进行管理，以下是网段的分类</p>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/%E7%BD%91%E6%AE%B5%E5%88%86%E7%B1%BB.png" title="网段分类"></p>
-<p>&emsp;&emsp;<code>子网</code>：子网是对网段的细分，如果是做一次类比，网段就好比电脑的 1TB 存储空间，而子网就等同于对这一大块硬盘分为 C&#x2F;D&#x2F;E 区</p>
+<p><img src="网段分类.png" alt="" title="网段分类"></p>
+<p>&emsp;&emsp;<code>子网</code>：子网是对网段的细分，如果是做一次类比，网段就好比电脑的 1TB 存储空间，而子网就等同于对这一大块硬盘分为 C/D/E 区</p>
 <p>&emsp;&emsp;<code>子网掩码</code>：子网掩码通过和精确的 IP 作用，找到其链接的网段或子网，其工作原理及示例展示如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 比如我现在拥有C类网段 192.168.1.0 =&gt; 共可管理256个IP</span><br><span class="line">1、不使用子网划分，即子网为网段本事：192.168.1.0/24</span><br><span class="line">   /x：该子网的子网掩码为 111……11(x位)000……00(32-x)</span><br><span class="line">2、使用子网划分，比如分为：192.168.1.0/25、192.168.1.128/25</span><br><span class="line">   192.168.1.0/25 =&gt; 192.168.1.0~192.168.1.127</span><br><span class="line">   192.168.1.128/25 =&gt; 192.168.1.128~192.168.1.255</span><br><span class="line"># 子网掩码的工作原理：子网掩码与IP地址进行按位“与”运算，得到子网地址</span><br></pre></td></tr></table></figure>
-
-<p>&emsp;&emsp;显然，越大的网段，比如 10.1.0.0 这类，其可分配的 IP 也更多(10.1.0.0~10.1.255.255)，此时子网可写为 10.1.0.0&#x2F;16</p>
+<p>&emsp;&emsp;显然，越大的网段，比如 10.1.0.0 这类，其可分配的 IP 也更多(10.1.0.0~10.1.255.255)，此时子网可写为 10.1.0.0/16</p>
 <h2 id="ARP查询"><a href="#ARP查询" class="headerlink" title="ARP查询"></a>ARP查询</h2><p>&emsp;&emsp;<code>ARP简介</code>：又称“地址解析协议”，利用该协议，可以获取同一子网主机的硬件地址(MAC)；需注意的是，<font color="red">ARP查询数据包仅会在链接同一交换机(数据链路层设备)的主机中通信，并不能被路由，无法跨越至其他网络</font></p>
 <p>&emsp;&emsp;<code>MAC地址</code>：MAC 地址用于局域网内设备之间的通信。当一个设备想要与另一个设备通信时，它会使用目标设备的 MAC 地址来标识目标；它是一个唯一的标识符，通常与网卡绑定，每个网络设备在出厂时都会被分配一个唯一的 MAC 地址</p>
 <p>&emsp;&emsp;<code>ARP查询流程</code>：ARP 查询的流程如下，假设使用主机 computer_A，交换机 Switch 记录的 MAC 地址表如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">主机名</th>
-<th align="center">MAC地址</th>
+<th style="text-align:center">主机名</th>
+<th style="text-align:center">MAC地址</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">computer_A</td>
-<td align="center">00:14:22:01:23:45</td>
+<tbody>
+<tr>
+<td style="text-align:center">computer_A</td>
+<td style="text-align:center">00:14:22:01:23:45</td>
 </tr>
 <tr>
-<td align="center">computer_B</td>
-<td align="center">00:14:22:01:23:46</td>
+<td style="text-align:center">computer_B</td>
+<td style="text-align:center">00:14:22:01:23:46</td>
 </tr>
 <tr>
-<td align="center">computer_C</td>
-<td align="center">00:14:22:01:23:47</td>
+<td style="text-align:center">computer_C</td>
+<td style="text-align:center">00:14:22:01:23:47</td>
 </tr>
 <tr>
-<td align="center">computer_D</td>
-<td align="center">00:14:22:01:23:48</td>
+<td style="text-align:center">computer_D</td>
+<td style="text-align:center">00:14:22:01:23:48</td>
 </tr>
-</tbody></table>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/ARP%E6%9F%A5%E8%AF%A2%E6%B5%81%E7%A8%8B.png" title="ARP查询流程"></p>
+</tbody>
+</table>
+</div>
+<p><img src="ARP查询流程.png" alt="" title="ARP查询流程"></p>
 <h2 id="Nmap扫描指定"><a href="#Nmap扫描指定" class="headerlink" title="Nmap扫描指定"></a>Nmap扫描指定</h2><p>&emsp;&emsp;<code>指定扫描IP的四种方式</code>：列表、范围、子网和文件，展示如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list：MACHINE_IP scanme.nmap.org example.com  =&gt;  扫描3个IP</span><br><span class="line">range：10.11.12.15-20  =&gt;  扫描6个IP</span><br><span class="line">subnet：MACHINE_IP/30  =&gt;  扫描4个IP</span><br><span class="line">file：将扫描的IP以列表形式存储为.txt文件，需使用 nmap -iL filename</span><br></pre></td></tr></table></figure>
-
 <p>&emsp;&emsp;<code>附加项的作用</code>：列举提到的两项如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">附件选项</th>
-<th align="center">作用</th>
+<th style="text-align:center">附件选项</th>
+<th style="text-align:center">作用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>nmap -sL 扫描IP</code></td>
-<td align="center">输出将扫描的主机的详细列表</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>nmap -sL 扫描IP</code></td>
+<td style="text-align:center">输出将扫描的主机的详细列表</td>
 </tr>
 <tr>
-<td align="center"><code>nmap -n 扫描IP</code></td>
-<td align="center">不对 IP 进行反向 DNS 解析，这导致无法通过 IP 获得主机名</td>
+<td style="text-align:center"><code>nmap -n 扫描IP</code></td>
+<td style="text-align:center">不对 IP 进行反向 DNS 解析，这导致无法通过 IP 获得主机名</td>
 </tr>
-</tbody></table>
-<h2 id="TCP-IP层协议解析"><a href="#TCP-IP层协议解析" class="headerlink" title="TCP&#x2F;IP层协议解析"></a>TCP&#x2F;IP层协议解析</h2><p>&emsp;&emsp;一图流如下</p>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/TCP-IP%E5%B1%82.png" title="TCP-IP层"></p>
-<p>&emsp;&emsp;<code>扫描所需协议</code>：ARP，同一子网下存活主机扫描；ICMP，进行 ping 操作(可跨越路由操作)；TCP&#x2F;UDP，将特制的数据包发送到常见的 TCP 或 UDP 端口，以检查目标是否会响应</p>
+</tbody>
+</table>
+</div>
+<h2 id="TCP-IP层协议解析"><a href="#TCP-IP层协议解析" class="headerlink" title="TCP/IP层协议解析"></a>TCP/IP层协议解析</h2><p>&emsp;&emsp;一图流如下</p>
+<p><img src="TCP-IP层.png" alt="" title="TCP-IP层"></p>
+<p>&emsp;&emsp;<code>扫描所需协议</code>：ARP，同一子网下存活主机扫描；ICMP，进行 ping 操作(可跨越路由操作)；TCP/UDP，将特制的数据包发送到常见的 TCP 或 UDP 端口，以检查目标是否会响应</p>
 <h2 id="使用ARP进行Nmap扫描"><a href="#使用ARP进行Nmap扫描" class="headerlink" title="使用ARP进行Nmap扫描"></a>使用ARP进行Nmap扫描</h2><p>&emsp;&emsp;<code>使用条件</code>：可使用 sudo 指令，目标与本机处于同一子网中，无需目标在线</p>
-<p>&emsp;&emsp;<code>使用语法</code>：sudo nmap -PR -sn MACHINE_IP&#x2F;24</p>
+<p>&emsp;&emsp;<code>使用语法</code>：sudo nmap -PR -sn MACHINE_IP/24</p>
 <p>&emsp;&emsp;<code>示例扫描结果</code>：如下图所示</p>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/%E7%A4%BA%E4%BE%8B%E6%89%AB%E6%8F%8F%E7%BB%93%E6%9E%9C.png" title="示例扫描结果"></p>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/ARP%E6%89%AB%E6%8F%8F.png" title="ARP扫描"></p>
+<p><img src="示例扫描结果.png" alt="" title="示例扫描结果"></p>
+<p><img src="ARP扫描.png" alt="" title="ARP扫描"></p>
 <p>&emsp;&emsp;<code>一个专用ARP查询的扫描器</code>：称<code>arp-scan</code>，使用指令<code>apt install arp-scan</code>下载，一般使用<code>arp-scan -l</code>，即扫描本地子网上所有有效 IP</p>
 <h2 id="使用ICMP进行Nmap扫描"><a href="#使用ICMP进行Nmap扫描" class="headerlink" title="使用ICMP进行Nmap扫描"></a>使用ICMP进行Nmap扫描</h2><p>&emsp;&emsp;<code>使用条件</code>：可使用 sudo 指令，需目标在线，即需目标对 ping 请求进行回复</p>
-<p>&emsp;&emsp;<code>使用语法</code>：sudo nmap -PE&#x2F;-PP&#x2F;-PM -sn 扫描IP，<code>-sn</code>表示无需扫描端口</p>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/ICMP%E6%89%AB%E6%8F%8F.png" title="ICMP扫描"></p>
-<h2 id="使用TCP和UDP进行Nmap扫描"><a href="#使用TCP和UDP进行Nmap扫描" class="headerlink" title="使用TCP和UDP进行Nmap扫描"></a>使用TCP和UDP进行Nmap扫描</h2><p>&emsp;&emsp;<code>使用语法</code>：sudo nmap -PS&#x2F;-PA&#x2F;PU[端口号] -sn 扫描IP，端口号默认为 80 端口</p>
-<p><img src="/2025/04/20/TryHackMe-NmapLiveHostDiscovery/TCP%E6%89%AB%E6%8F%8F.png" title="TCP扫描"></p>
+<p>&emsp;&emsp;<code>使用语法</code>：sudo nmap -PE/-PP/-PM -sn 扫描IP，<code>-sn</code>表示无需扫描端口</p>
+<p><img src="ICMP扫描.png" alt="" title="ICMP扫描"></p>
+<h2 id="使用TCP和UDP进行Nmap扫描"><a href="#使用TCP和UDP进行Nmap扫描" class="headerlink" title="使用TCP和UDP进行Nmap扫描"></a>使用TCP和UDP进行Nmap扫描</h2><p>&emsp;&emsp;<code>使用语法</code>：sudo nmap -PS/-PA/PU[端口号] -sn 扫描IP，端口号默认为 80 端口</p>
+<p><img src="TCP扫描.png" alt="" title="TCP扫描"></p>
 <p>&emsp;&emsp;<code>一个专用TCP/UDP查询的扫描器</code>：称<code>masscan</code>，使用指令<code>apt install masscan</code>下载，使用语法<code>masscan 扫描网段 -p端口</code></p>
-<h2 id="总结-当搬运工了"><a href="#总结-当搬运工了" class="headerlink" title="总结(当搬运工了)"></a>总结(当搬运工了)</h2><table>
-<thead>
-<tr>
-<th align="center">扫描类型</th>
-<th align="center">示例命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">ARP Scan ARP （ARP）扫描</td>
-<td align="center"><code>sudo nmap -PR -sn MACHINE_IP/24</code></td>
-</tr>
-<tr>
-<td align="center">ICMP Echo Scan ICMP 回声扫描</td>
-<td align="center"><code>sudo nmap -PE -sn MACHINE_IP/24</code></td>
-</tr>
-<tr>
-<td align="center">ICMP Timestamp Scan ICMP 时间戳扫描</td>
-<td align="center"><code>sudo nmap -PP -sn MACHINE_IP/24</code></td>
-</tr>
-<tr>
-<td align="center">ICMP Address Mask Scan ICMP 地址掩码扫描</td>
-<td align="center"><code>sudo nmap -PM -sn MACHINE_IP/24</code></td>
-</tr>
-<tr>
-<td align="center">TCP SYN Ping Scan TCP 协议 SYN Ping 扫描</td>
-<td align="center"><code>sudo nmap -PS22,80,443 -sn MACHINE_IP/30</code></td>
-</tr>
-<tr>
-<td align="center">TCP ACK Ping Scan TCP 协议 ACK Ping 扫描</td>
-<td align="center"><code>sudo nmap -PA22,80,443 -sn MACHINE_IP/30</code></td>
-</tr>
-<tr>
-<td align="center">UDP Ping Scan UDP 协议 Ping 扫描</td>
-<td align="center"><code>sudo nmap -PU53,161,162 -sn MACHINE_IP/30</code></td>
-</tr>
-</tbody></table>
+<h2 id="总结-当搬运工了"><a href="#总结-当搬运工了" class="headerlink" title="总结(当搬运工了)"></a>总结(当搬运工了)</h2><div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">选择</th>
-<th align="center">目的</th>
+<th style="text-align:center">扫描类型</th>
+<th style="text-align:center">示例命令</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>-n</code></td>
-<td align="center">无 DNS 查找</td>
+<tbody>
+<tr>
+<td style="text-align:center">ARP Scan ARP （ARP）扫描</td>
+<td style="text-align:center"><code>sudo nmap -PR -sn MACHINE_IP/24</code></td>
 </tr>
 <tr>
-<td align="center"><code>-R</code></td>
-<td align="center">所有主机的反向 DNS 查找</td>
+<td style="text-align:center">ICMP Echo Scan ICMP 回声扫描</td>
+<td style="text-align:center"><code>sudo nmap -PE -sn MACHINE_IP/24</code></td>
 </tr>
 <tr>
-<td align="center"><code>-sn</code></td>
-<td align="center">仅主机发现</td>
+<td style="text-align:center">ICMP Timestamp Scan ICMP 时间戳扫描</td>
+<td style="text-align:center"><code>sudo nmap -PP -sn MACHINE_IP/24</code></td>
 </tr>
-</tbody></table>
+<tr>
+<td style="text-align:center">ICMP Address Mask Scan ICMP 地址掩码扫描</td>
+<td style="text-align:center"><code>sudo nmap -PM -sn MACHINE_IP/24</code></td>
+</tr>
+<tr>
+<td style="text-align:center">TCP SYN Ping Scan TCP 协议 SYN Ping 扫描</td>
+<td style="text-align:center"><code>sudo nmap -PS22,80,443 -sn MACHINE_IP/30</code></td>
+</tr>
+<tr>
+<td style="text-align:center">TCP ACK Ping Scan TCP 协议 ACK Ping 扫描</td>
+<td style="text-align:center"><code>sudo nmap -PA22,80,443 -sn MACHINE_IP/30</code></td>
+</tr>
+<tr>
+<td style="text-align:center">UDP Ping Scan UDP 协议 Ping 扫描</td>
+<td style="text-align:center"><code>sudo nmap -PU53,161,162 -sn MACHINE_IP/30</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">选择</th>
+<th style="text-align:center">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>-n</code></td>
+<td style="text-align:center">无 DNS 查找</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>-R</code></td>
+<td style="text-align:center">所有主机的反向 DNS 查找</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>-sn</code></td>
+<td style="text-align:center">仅主机发现</td>
+</tr>
+</tbody>
+</table>
+</div>
 
     </div>
 
@@ -574,6 +586,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

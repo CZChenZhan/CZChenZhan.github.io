@@ -240,36 +240,37 @@
       
         <h1 id="知识点记录"><a href="#知识点记录" class="headerlink" title="知识点记录"></a>知识点记录</h1><p>&emsp;&emsp;此文用于记录学习 TryHackMe 网站中，一些细碎而有用的知识点。ƪ(˘⌣˘)ʃ</p>
 <span id="more"></span>
-
 <!-- toc -->
-
 <h2 id="Search-Skills"><a href="#Search-Skills" class="headerlink" title="Search Skills"></a>Search Skills</h2><p>&emsp;&emsp;<code>Google支持的搜索运算符</code>：以下展示四个常用搜索运算符的作用并提供一定示例</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">搜索运算符</th>
-<th align="center">作用</th>
+<th style="text-align:center">搜索运算符</th>
+<th style="text-align:center">作用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center"><code>&quot;exact phrase&quot;</code></td>
-<td align="center">返回包含确切单词或短语的页面</td>
+<tbody>
+<tr>
+<td style="text-align:center"><code>&quot;exact phrase&quot;</code></td>
+<td style="text-align:center">返回包含确切单词或短语的页面</td>
 </tr>
 <tr>
-<td align="center"><code>site:</code></td>
-<td align="center">指定要将搜索限制到的域名</td>
+<td style="text-align:center"><code>site:</code></td>
+<td style="text-align:center">指定要将搜索限制到的域名</td>
 </tr>
 <tr>
-<td align="center"><code>-</code></td>
-<td align="center">省略包含特定单词或短语的搜索结果</td>
+<td style="text-align:center"><code>-</code></td>
+<td style="text-align:center">省略包含特定单词或短语的搜索结果</td>
 </tr>
 <tr>
-<td align="center"><code>filetype:</code></td>
-<td align="center">查找指定类型的文件</td>
+<td style="text-align:center"><code>filetype:</code></td>
+<td style="text-align:center">查找指定类型的文件</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># “exact phrase”</span></span><br><span class="line">|“civil procedural law”|  =&gt;  返回包含该短语的网页</span><br><span class="line"><span class="comment"># site:</span></span><br><span class="line">|site:gov.cn sichuan|  =&gt;  返回域名为 gov.cn 且同四川相联系的网页</span><br><span class="line"><span class="comment"># -</span></span><br><span class="line">|-dafabet soccer|  =&gt;  返回有关足球而不包含足球博彩的网页</span><br><span class="line"><span class="comment"># filetype</span></span><br><span class="line">|filetype:pdf report|  =&gt;  返回文件类型为 PDF 的报告</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -467,6 +468,61 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
